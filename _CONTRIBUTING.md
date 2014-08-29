@@ -70,8 +70,8 @@ changes.
 
 #### Commit Message Guidelines
 
-- Commit messages should be written in the present tense; e.g. "Fix continuous
-  integration script".
+- Commit messages should be written in the present tense; e.g. "Fixes continuous
+  integration script.".
 - The first line of your commit message should be a brief summary of what the
   commit changes. Aim for about 70 characters max. Remember: This is a summary,
   not a detailed description of everything that changed.
