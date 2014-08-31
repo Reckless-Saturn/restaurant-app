@@ -1,10 +1,4 @@
 # Reckless Saturn #
-
- 
-## Heading ##
-> Reckless Saturn
-
-## Sub-Heading ##
 > Eat what you want, when you want it. 
 
 ## Summary ##
