@@ -47,6 +47,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
+
     .state('app.playlists', {
       url: "/playlists",
       views: {
@@ -65,7 +66,80 @@ angular.module('starter', ['ionic', 'starter.controllers'])
           controller: 'PlaylistCtrl'
         }
       }
-    });
+    })
+
+    .state('app.splash', {
+      url: "/splash",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/splash.html"
+        }
+      }
+    })
+
+    // Customer
+    .state('app.customerSignUp', {
+      url: "/customer/signup",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/customer/signup.html",
+          controller: 'CustomerCtrl'
+        }
+      }
+    })
+
+    .state('app.customerSearchCriteria', {
+      url: "/customer/search-criteria",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/customer/search-criteria.html",
+          controller: 'CustomerCtrl'
+        }
+      }
+    })
+
+    .state('app.customerSearchResults', {
+      url: "/customer/search-results",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/customer/search-results.html",
+          controller: 'CustomerCtrl'
+        }
+      }
+    })
+
+    // Restaurant
+    .state('app.restaurantSignUp', {
+      url: "/restaurant/signup",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/restaurant/signup.html",
+          controller: 'RestaurantCtrl'
+        }
+      }
+    })
+
+    .state('app.restaurantAvailability', {
+      url: "/restaurant/availability",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/restaurant/availability.html",
+          controller: 'RestaurantCtrl'
+        }
+      }
+    })
+
+    .state('app.restaurantInterestedCustomers', {
+      url: "/restaurant/interested-customers",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/restaurant/interested-customers.html",
+          controller: 'RestaurantCtrl'
+        }
+      }
+    })
+
+    ;
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
 });
