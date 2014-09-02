@@ -45,4 +45,51 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+})
+
+// Start Restaurant App's controllers
+.controller('CustomerCtrl', function($scope) {
+
+  // Todo: Hard-coded data for now. Eventually received via GET request.
+  $scope.searchResults = [
+    { restaurantID: 0,
+      restaurantName: 'Mission Beach Cafe',
+      priceRange: '$$',
+      restaurantLoc: [1, 1],
+      cuisine: 'American',
+      available: true,
+      // Todo: For ion-checkbox.
+      // Todo: Ideally, shouldn't have this property in the data.
+      chosen: false },
+    { restaurantID: 1,
+      restaurantName: 'Local Sushi',
+      priceRange: '$',
+      restaurantLoc: [2, 2],
+      cuisine: 'Japanese',
+      available: true,
+      // Todo: For ion-checkbox.
+      // Todo: Ideally, shouldn't have this property in the data.
+      chosen: false }
+  ];
+
+})
+
+.controller('RestaurantCtrl', function($scope) {
+
+  // Todo: Eventually, 'available' will be determined by GET request?
+  $scope.available = true;
+
+  $scope.interestedCustomers = [
+    { userID: 1,
+      name: 'David Nguyen',
+      phoneNumber: '415-555-5555',
+      partySize: 5 },
+    { userID: 2,
+      name: 'Mai Le',
+      phoneNumber: '222-333-3333',
+      partySize: 4 }
+  ];
+
+})
+
+;
