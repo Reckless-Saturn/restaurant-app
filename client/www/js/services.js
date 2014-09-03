@@ -63,7 +63,6 @@ angular.module('starter.services', [])
     })
     .then(function(response) {
       searchResults = response.data;
-      // todo: redirect to search-results page
       // Mai to David: not sure if this is the right way to do it, but it works.
       $location.path('/app/customer/search-results');
     });
@@ -105,7 +104,6 @@ angular.module('starter.services', [])
 
     $http({
       method: 'POST',
-      // todo: update URL
       url: 'http://[URL-HERE]/restaurant/signup',
       data: {
         restaurantName: restaurantName,
