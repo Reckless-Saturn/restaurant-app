@@ -1,29 +1,29 @@
 angular.module('starter.controllers', ['starter.services'])
 
 // Start Restaurant App's controllers
-.controller('CustomerCtrl', function($scope, Customers) {
+.controller('CustomerCtrl', function($scope, Customer) {
 
-  $scope.signup = Customers.signup;
+  $scope.signup = Customer.signup;
 
-  $scope.searchResults = Customers.searchResults;
+  $scope.searchResults = Customer.searchResults;
 
   // invoked after submitting search criteria form
-  $scope.getSearchResults = Customers.getSearchResults;
+  $scope.getSearchResults = Customer.getSearchResults;
 
-  $scope.chooseRestaurant = Customers.chooseRestaurant;
+  $scope.chooseRestaurant = Customer.chooseRestaurant;
 
 })
 
-.controller('RestaurantCtrl', function($scope, Restaurants) {
+.controller('RestaurantCtrl', function($scope, Restaurant) {
 
-  $scope.signup = Restaurants.signup;
+  $scope.signup = Restaurant.signup;
 
   // David to Mai: The restaurant should send a POST request asking the server to change their availability to true. 
 
-  $scope.toggleAvailability = Restaurants.toggleAvailability;
+  $scope.toggleAvailability = Restaurant.toggleAvailability;
 
-  $scope.interestedCustomers = Restaurants.interestedCustomers;
+  $scope.interestedCustomers = Restaurant.interestedCustomers;
 
-  $scope.chooseCustomer = Restaurants.chooseCustomer;
+  $scope.chooseCustomer = Restaurant.chooseCustomer;
 
 });

@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory('Customers', function($http, $location) {
+.factory('Customer', function($http, $location) {
 
   var signup = function(username, firstName, lastName, email, phoneNumber, password) {
     console.log({
@@ -89,7 +89,7 @@ angular.module('starter.services', [])
 
 })
 
-.factory('Restaurants', function($http) {
+.factory('Restaurant', function($http) {
 
   var signup = function(restaurantName, address, priceRange, cuisine, email, phoneNumber, password) {
   
