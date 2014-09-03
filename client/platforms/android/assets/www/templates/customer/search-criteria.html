@@ -1,0 +1,42 @@
+<ion-view title="Customer: Search Criteria">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+
+    <form name="searchCriteria">
+      Distance (mi): 
+      <select name="distance">
+        <option value="0.25">0.25</option>
+        <option value="0.5">0.5</option>
+        <option value="1.0">1.0</option>
+      </select>
+
+      <p></p>
+      Price: 
+      <select name="price">
+        <option name="$">$</option>
+        <option name="$$">$$</option>
+        <option name="$$$">$$$</option>
+      </select>
+
+      <p></p>
+      Party Size: 
+      <input type="text" name="party-size" placeholder="Example: 6"></input>
+
+      <!-- Todo: Cuisine drop-down list will be populated by GET request for all cuisine types available in database -->
+      <p></p>
+      Cuisine: 
+      <select name="cuisine">
+        <!-- Todo: Hard-coded cuisines -->
+        <option name="american">American</option>
+        <option name="japanese">Japanese</option>
+        <option name="chinese">Chinese</option>
+      </select>
+
+      <p></p>
+      <input type="submit" value="Find me some restaurants!"></input>
+    </form>
+
+  </ion-content>
+</ion-view>

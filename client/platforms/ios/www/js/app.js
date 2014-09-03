@@ -1,9 +1,3 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers'])
 
 .run(function($ionicPlatform) {
@@ -47,6 +41,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
+
     .state('app.playlists', {
       url: "/playlists",
       views: {
@@ -65,8 +60,81 @@ angular.module('starter', ['ionic', 'starter.controllers'])
           controller: 'PlaylistCtrl'
         }
       }
-    });
+    })
+
+    .state('app.splash', {
+      url: "/splash",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/splash.html"
+        }
+      }
+    })
+
+    // Customer
+    .state('app.customerSignUp', {
+      url: "/customer/signup",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/customer/signup.html",
+          controller: 'CustomerCtrl'
+        }
+      }
+    })
+
+    .state('app.customerSearchCriteria', {
+      url: "/customer/search-criteria",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/customer/search-criteria.html",
+          controller: 'CustomerCtrl'
+        }
+      }
+    })
+
+    .state('app.customerSearchResults', {
+      url: "/customer/search-results",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/customer/search-results.html",
+          controller: 'CustomerCtrl'
+        }
+      }
+    })
+
+    // Restaurant
+    .state('app.restaurantSignUp', {
+      url: "/restaurant/signup",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/restaurant/signup.html",
+          controller: 'RestaurantCtrl'
+        }
+      }
+    })
+
+    .state('app.restaurantAvailability', {
+      url: "/restaurant/availability",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/restaurant/availability.html",
+          controller: 'RestaurantCtrl'
+        }
+      }
+    })
+
+    .state('app.restaurantInterestedCustomers', {
+      url: "/restaurant/interested-customers",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/restaurant/interested-customers.html",
+          controller: 'RestaurantCtrl'
+        }
+      }
+    })
+
+    ;
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/splash');
 });
 
