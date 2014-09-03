@@ -6,8 +6,9 @@
 
     <ion-checkbox ng-repeat="restaurant in searchResults" ng-model="restaurant.chosen" ng-checked="restaurant.chosen">
       {{ restaurant.restaurantName }}
-      <!-- Todo: Eventually calculate distance from user using restaurantLoc -->
-      <br/>{{ restaurant.restaurantLoc }} mi away - {{ restaurant.cuisine }} - {{ restaurant.priceRange }}
+      <!-- Todo: Eventually calculate distance from user using restaurant.latitude and restaurant.longitude -->
+      <br/>{{ restaurant.address }}
+      <br/>{{ distance }} mi away - {{ restaurant.cuisine }} - {{ restaurant.priceRange }}
 
       <!-- Todo: Eventually will be removed. Just to showcase the check-box working. -->
       <br/>{{ restaurant.chosen }}

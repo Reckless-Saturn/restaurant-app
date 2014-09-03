@@ -51,26 +51,36 @@ angular.module('starter.controllers', [])
 .controller('CustomerCtrl', function($scope) {
 
   // Todo: Hard-coded data for now. Eventually received via GET request.
+  // Returned data will be all available restaurants.
   $scope.searchResults = [
     { restaurantID: 0,
       restaurantName: 'Mission Beach Cafe',
+      // priceRange will be a number from 1 to 5
       priceRange: '$$',
-      restaurantLoc: [1, 1],
+      address: '944 Market Street, San Francisco, CA',
+      latitude: 1,
+      longitude: 1,
       cuisine: 'American',
-      available: true,
+      // available field will be a 0 (false) or 1 (true) -- should all be true here
+      available: 1,
       // Todo: For ion-checkbox.
       // Todo: Ideally, shouldn't have this property in the data.
       chosen: false },
     { restaurantID: 1,
       restaurantName: 'Local Sushi',
       priceRange: '$',
-      restaurantLoc: [2, 2],
+      address: '945 Market Street, San Francisco, CA',
+      latitude: 2,
+      longitude: 2,
       cuisine: 'Japanese',
-      available: true,
+      available: 1,
       // Todo: For ion-checkbox.
       // Todo: Ideally, shouldn't have this property in the data.
       chosen: false }
   ];
+
+  // Todo: calculate distance for each restaurant from user
+  $scope.distance = 0.1;
 
 })
 
