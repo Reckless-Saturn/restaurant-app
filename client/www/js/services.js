@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-  .factory('Customers', function($http, $location) {
+  .factory('Customers', function($http) {
 
     var searchResults = [
         { restaurantID: 0,
@@ -31,8 +31,9 @@ angular.module('starter.controllers')
         ];
       
     var getSearchResults = function() {
-      console.log('send GET request');
-      $location.path("/customer/search-criteria");
+      console.log('send GET request. this should also redirect to search-results.html');
+      // see below what this actually should be
+      // this should also redirect to the search-results page
     };
 
     return {
