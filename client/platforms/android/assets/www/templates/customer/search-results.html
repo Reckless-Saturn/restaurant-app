@@ -1,0 +1,18 @@
+<ion-view title="Customer: Search Results">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+
+    <ion-checkbox ng-repeat="restaurant in searchResults" ng-model="restaurant.chosen" ng-checked="restaurant.chosen">
+      {{ restaurant.restaurantName }}
+      <!-- Todo: Eventually calculate distance from user using restaurant.latitude and restaurant.longitude -->
+      <br/>{{ restaurant.address }}
+      <br/>{{ distance }} mi away - {{ restaurant.cuisine }} - {{ restaurant.priceRange }}
+
+      <!-- Todo: Eventually will be removed. Just to showcase the check-box working. -->
+      <br/>{{ restaurant.chosen }}
+    </ion-checkbox>
+
+  </ion-content>
+</ion-view>

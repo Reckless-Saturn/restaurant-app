@@ -1,1 +1,9 @@
-/* Empty. Add your own CSS if you like */
+.splash {
+      background: 
+        linear-gradient(
+          rgba(0, 0, 0, 0.2), 
+          rgba(0, 0, 0, 0.2)
+        ),
+        url('../img/pizzaTitle.jpg') no-repeat center;
+      background-size: auto 100%;
+    }

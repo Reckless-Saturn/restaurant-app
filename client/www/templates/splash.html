@@ -2,9 +2,40 @@
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
+
   <ion-content class="has-header">
-    <div>
-    <button class="button button-block button-positive">Block Button</button>
+  <!-- 
+  C: this uses ionic's grid system. the button takes 75% of the row with two empty divs surrounding it. http://ionicframework.com/docs/components/#grid 
+  
+  TODO: position toward bottom of screen?
+  -->
+
+     <div class="row">
+      <div class="col"></div>
+      <div class="col col-75">
+        <button class="button button-block button-positive"><span class="icon ion-social-facebook iconbuffer"></span>Login with Facebook</button>
+      </div> 
+      <div class="col"></div>
     </div>
+
+    <div class="row">
+      <div class="col"></div>
+      <div class="col col-75">
+        <button class="button button-block button-calm"><span class="icon ion-social-twitter iconbuffer"></span>Login with Twitter</button>
+      </div> 
+      <div class="col"></div>
+    </div>
+
+    <div class="row">
+      <div class="col"></div>
+      <div class="col col-75">
+        <a href="#/app/customer/signup">
+          <button class="button button-block button-stable"><span class="icon ion-person-add iconbuffer"></span>Create an account</button>
+        </a>
+      </div> 
+      <div class="col"></div>
+    </div>
+
+
   </ion-content>
 </ion-view>
