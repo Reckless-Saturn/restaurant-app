@@ -13,12 +13,12 @@ angular.module('starter.controllers', ['starter.services'])
 })
 
 .controller('RestaurantCtrl', function($scope, Restaurants) {
-  
+
   $scope.signup = Restaurants.signup;
 
-  // Todo: Eventually, 'available' will be determined by GET request?
   // David to Mai: The restaurant should send a POST request asking the server to change their availability to true. 
-  $scope.available = true;
+
+  $scope.toggleAvailability = Restaurants.toggleAvailability;
 
   $scope.interestedCustomers = Restaurants.interestedCustomers;
 

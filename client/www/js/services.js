@@ -113,10 +113,7 @@ angular.module('starter.services', [])
         phoneNumber: phoneNumber,
         password: password
       },
-      headers: {
-        'Content-type': 'application/json'
-      }
-
+      headers: { 'content-type': 'application/json' }
     });
 
   };
@@ -132,9 +129,20 @@ angular.module('starter.services', [])
       partySize: 4 }
   ];
 
+  var toggleAvailability = function(available) {
+    console.log('available:', available);
+    $http({
+      method: 'POST',
+      url: 'http://[URL-HERE]/restaurant/toggleAvailability',
+      data: { available: available },
+      headers: { 'content-type': 'application/json' }
+    });
+  };
+
   return {
     signup: signup,
-    interestedCustomers: interestedCustomers
+    interestedCustomers: interestedCustomers,
+    toggleAvailability: toggleAvailability
   };
 
 });
