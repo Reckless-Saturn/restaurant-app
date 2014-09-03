@@ -56,7 +56,8 @@ angular.module('starter.controllers', [])
     { restaurantID: 0,
       restaurantName: 'Mission Beach Cafe',
       // priceRange will be a number from 1 to 5
-      priceRange: '$$',
+      // Todo: convert to dollar signs in view file; e.g. '2' --> '$$'
+      priceRange: 2,
       address: '944 Market Street, San Francisco, CA',
       latitude: 1,
       longitude: 1,
@@ -68,7 +69,7 @@ angular.module('starter.controllers', [])
       chosen: false },
     { restaurantID: 1,
       restaurantName: 'Local Sushi',
-      priceRange: '$',
+      priceRange: 1,
       address: '945 Market Street, San Francisco, CA',
       latitude: 2,
       longitude: 2,
