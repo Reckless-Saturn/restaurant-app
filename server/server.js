@@ -3,6 +3,7 @@
 var http = require("http");
 var url = require('url');
 var sendResponse = require('./helpers').sendResponse;
+var getMessages = require('./queries').getMessages;
 
 ///////////////////////////////////////////////////////
 // set up server config
@@ -18,13 +19,13 @@ var router = function(request, response) {
   var reply = messages = 'server works';
 
   if (path === '/' || path === '') {
-
-    // if (method === 'OPTIONS') {}
-    // if (method === 'GET') {}
+    if (method === 'OPTIONS') {
+      sendResponse(response, status, reply);
+    } else if (method === 'GET') {
+      getMessages(response, status, sendResponse);
+    }
     // if (method === 'POST') {}
 
-    // send a temp response
-    sendResponse(response, status, reply);
   } else {
     status = 404;
     reply = "Bad page";

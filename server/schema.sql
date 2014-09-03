@@ -46,10 +46,10 @@ update restaurants set latitude=37.773646 where restaurantId=1;
 
 update restaurants set longitude=-122.421573 where restaurantId=1;
 
-update restaurants set latitude= 37.902989 where restaurantId=2;
+update restaurants set latitude=37.782922 where restaurantId=2;
 
-update restaurants set longitude=-122.307637 where restaurantId=2;
+update restaurants set longitude=-122.418893 where restaurantId=2;
 
-update restaurants set latitude= 37.791256 where restaurantId=3;
+update restaurants set latitude=37.777048 where restaurantId=3;
 
-update restaurants set longitude=-122.396399 where restaurantId=3;
+update restaurants set longitude=-122.422912 where restaurantId=3;
