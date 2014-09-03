@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory('Customers', function($http) {
+.factory('Customers', function($http, $location) {
 
   var signup = function(username, firstName, lastName, email, phoneNumber, password) {
     console.log({
@@ -32,31 +32,31 @@ angular.module('starter.services', [])
   };
 
   var searchResults = [
-      { restaurantID: 0,
-        restaurantName: 'Mission Beach Cafe',
-        // priceRange will be a number from 1 to 5
-        // Todo: convert to dollar signs in view file; e.g. '2' --> '$$'
-        priceRange: 2,
-        address: '944 Market Street, San Francisco, CA',
-        latitude: 1,
-        longitude: 1,
-        distance: 0.1,
-        cuisine: 'American',
-        // Todo: For ion-checkbox.
-        // Todo: Ideally, shouldn't have this property in the data.
-        chosen: false },
-      { restaurantID: 1,
-        restaurantName: 'Local Sushi',
-        priceRange: 1,
-        address: '945 Market Street, San Francisco, CA',
-        latitude: 2,
-        longitude: 2,
-        distance: 0.2,
-        cuisine: 'Japanese',
-        // Todo: For ion-checkbox.
-        // Todo: Ideally, shouldn't have this property in the data.
-        chosen: false }
-      ];
+    { restaurantID: 0,
+      restaurantName: 'Mission Beach Cafe',
+      // priceRange will be a number from 1 to 5
+      // Todo: convert to dollar signs in view file; e.g. '2' --> '$$'
+      priceRange: 2,
+      address: '944 Market Street, San Francisco, CA',
+      latitude: 1,
+      longitude: 1,
+      distance: 0.1,
+      cuisine: 'American',
+      // Todo: For ion-checkbox.
+      // Todo: Ideally, shouldn't have this property in the data.
+      chosen: false },
+    { restaurantID: 1,
+      restaurantName: 'Local Sushi',
+      priceRange: 1,
+      address: '945 Market Street, San Francisco, CA',
+      latitude: 2,
+      longitude: 2,
+      distance: 0.2,
+      cuisine: 'Japanese',
+      // Todo: For ion-checkbox.
+      // Todo: Ideally, shouldn't have this property in the data.
+      chosen: false }
+  ];
     
   var getSearchResults = function(distance, priceRange, partySize, cuisine) {
 
@@ -72,6 +72,8 @@ angular.module('starter.services', [])
     .then(function(response) {
       searchResults = response.data;
       // todo: redirect to search-results page
+      // Mai to David: not sure if this is the right way to do it, but it works.
+      $location.path('/app/customer/search-results');
     });
 
   };
