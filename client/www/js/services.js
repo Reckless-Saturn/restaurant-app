@@ -24,9 +24,7 @@ angular.module('starter.services', [])
         phoneNumber: phoneNumber,
         password: password
       },
-      headers: {
-        'Content-type': 'application/json'
-      }
+      headers: { 'content-type': 'application/json' }
     });
 
   };
@@ -41,10 +39,7 @@ angular.module('starter.services', [])
       latitude: 1,
       longitude: 1,
       distance: 0.1,
-      cuisine: 'American',
-      // Todo: For ion-checkbox.
-      // Todo: Ideally, shouldn't have this property in the data.
-      chosen: false },
+      cuisine: 'American' },
     { restaurantID: 1,
       restaurantName: 'Local Sushi',
       priceRange: 1,
@@ -52,10 +47,7 @@ angular.module('starter.services', [])
       latitude: 2,
       longitude: 2,
       distance: 0.2,
-      cuisine: 'Japanese',
-      // Todo: For ion-checkbox.
-      // Todo: Ideally, shouldn't have this property in the data.
-      chosen: false }
+      cuisine: 'Japanese' }
   ];
     
   var getSearchResults = function(distance, priceRange, partySize, cuisine) {
@@ -78,9 +70,20 @@ angular.module('starter.services', [])
 
   };
 
+  var chooseRestaurant = function(restaurantName) {
+    console.log('chosen restaurant name:', restaurantName);
+    $http({
+      method: 'POST',
+      url: 'http://[URL-HERE]/customer/choose-restaurant',
+      data: { restaurantName: restaurantName },
+      headers: { 'content-type': 'application/json' }
+    });
+  };
+
   return {
     signup: signup,
     getSearchResults: getSearchResults,
+    chooseRestaurant: chooseRestaurant,
     searchResults: searchResults
   };
 

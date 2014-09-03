@@ -4,17 +4,16 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
 
-    <ion-checkbox ng-repeat="restaurant in searchResults" ng-model="restaurant.chosen" ng-checked="restaurant.chosen">
+    <ion-checkbox ng-repeat="restaurant in searchResults" ng-click="chooseRestaurant(restaurant.restaurantName)">
       {{ restaurant.restaurantName }}
       <br/>{{ restaurant.address }}
       <br/>{{ restaurant.distance }} mi away - {{ restaurant.cuisine }} - {{ restaurant.priceRange }}/5
 
       <!-- 
-      Todo: Eventually will be removed. Just to showcase the check-box working. 
-      
+      Todo: 
       David to Mai: Once the customer clicks on this, it should send a POST request to the server. Once the restaurant confirms, it would turn into a real checkmark. 
+      Mai to David: Need to work on this. ion-checkbox natively shows check immediately after clicking.
       -->
-      <br/>{{ restaurant.chosen }}
     </ion-checkbox>
 
   </ion-content>

@@ -10,6 +10,8 @@ angular.module('starter.controllers', ['starter.services'])
   // invoked after submitting search criteria form
   $scope.getSearchResults = Customers.getSearchResults;
 
+  $scope.chooseRestaurant = Customers.chooseRestaurant;
+
 })
 
 .controller('RestaurantCtrl', function($scope, Restaurants) {
