@@ -15,7 +15,7 @@ angular.module('starter.services', [])
     $http({
       method: 'POST',
       // todo: update URL
-      url: 'http://URL?/customer/signup',
+      url: 'http://[URL-HERE]/customer/signup',
       data: {
         username: username,
         firstName: firstName,
@@ -42,8 +42,6 @@ angular.module('starter.services', [])
         longitude: 1,
         distance: 0.1,
         cuisine: 'American',
-        // available field will be a 0 (false) or 1 (true) -- should all be true here
-        available: 1,
         // Todo: For ion-checkbox.
         // Todo: Ideally, shouldn't have this property in the data.
         chosen: false },
@@ -55,16 +53,27 @@ angular.module('starter.services', [])
         longitude: 2,
         distance: 0.2,
         cuisine: 'Japanese',
-        available: 1,
         // Todo: For ion-checkbox.
         // Todo: Ideally, shouldn't have this property in the data.
         chosen: false }
       ];
     
-  var getSearchResults = function() {
+  var getSearchResults = function(distance, priceRange, partySize, cuisine) {
+
     console.log('send GET request. this should also redirect to search-results.html');
-    // see below what this actually should be
-    // this should also redirect to the search-results page
+
+    var searchUrl = 'http://[URL-HERE]?find_distance='+distance+'&find_priceRange='+priceRange+'&find_partySize='+partySize+'&find_cuisine='+cuisine;
+    console.log(searchUrl);
+
+    $http({
+      method: 'GET', 
+      url: searchUrl
+    })
+    .then(function(response) {
+      searchResults = response.data;
+      // todo: redirect to search-results page
+    });
+
   };
 
   return {
@@ -92,7 +101,7 @@ angular.module('starter.services', [])
     $http({
       method: 'POST',
       // todo: update URL
-      url: 'http://URL?/restaurant/signup',
+      url: 'http://[URL-HERE]/restaurant/signup',
       data: {
         restaurantName: restaurantName,
         address: address,
@@ -133,14 +142,4 @@ CUSTOMERS FACTORY:
 this should be the function to request from the server. Once the user submits on 'search-criteria.html', it should invoke this function. 
 
 Upon success, this function should change the value of searchResults
-  
-  var getSearchResults = function() {
-    return $http({
-      method: 'GET', 
-      url: '/ArmandoAndEddieurl?find_cuisine=american&find_price=2&find_party=6&find_distance=0.5
-    })
-    .then(function(response) {
-      searchResults = response.data
-    });
-  }
-  */
+*/
