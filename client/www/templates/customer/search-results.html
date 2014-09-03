@@ -4,7 +4,7 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
 
-    <ion-checkbox ng-repeat="restaurant in searchResults" ng-click="chooseRestaurant(restaurant.restaurantName)">
+    <ion-checkbox ng-repeat="restaurant in searchResults" ng-click="chooseRestaurant(restaurant.restaurantID)">
       {{ restaurant.restaurantName }}
       <br/>{{ restaurant.address }}
       <br/>{{ restaurant.distance }} mi away - {{ restaurant.cuisine }} - {{ restaurant.priceRange }}/5

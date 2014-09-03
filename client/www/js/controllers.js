@@ -24,4 +24,6 @@ angular.module('starter.controllers', ['starter.services'])
 
   $scope.interestedCustomers = Restaurants.interestedCustomers;
 
+  $scope.chooseCustomer = Restaurants.chooseCustomer;
+
 });

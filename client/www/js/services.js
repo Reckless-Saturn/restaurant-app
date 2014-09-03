@@ -70,12 +70,12 @@ angular.module('starter.services', [])
 
   };
 
-  var chooseRestaurant = function(restaurantName) {
-    console.log('chosen restaurant name:', restaurantName);
+  var chooseRestaurant = function(restaurantID) {
+    console.log('chosen restaurant ID:', restaurantID);
     $http({
       method: 'POST',
       url: 'http://[URL-HERE]/customer/choose-restaurant',
-      data: { restaurantName: restaurantName },
+      data: { restaurantID: restaurantID },
       headers: { 'content-type': 'application/json' }
     });
   };
@@ -136,8 +136,18 @@ angular.module('starter.services', [])
     console.log('available:', available);
     $http({
       method: 'POST',
-      url: 'http://[URL-HERE]/restaurant/toggleAvailability',
+      url: 'http://[URL-HERE]/restaurant/toggle-availability',
       data: { available: available },
+      headers: { 'content-type': 'application/json' }
+    });
+  };
+
+  var chooseCustomer = function(userID) {
+    console.log('chosen customer ID:', userID);
+    $http({
+      method: 'POST',
+      url: 'http://[URL-HERE]/restaurant/choose-customer',
+      data: { userID: userID },
       headers: { 'content-type': 'application/json' }
     });
   };
@@ -145,7 +155,8 @@ angular.module('starter.services', [])
   return {
     signup: signup,
     interestedCustomers: interestedCustomers,
-    toggleAvailability: toggleAvailability
+    toggleAvailability: toggleAvailability,
+    chooseCustomer: chooseCustomer
   };
 
 });

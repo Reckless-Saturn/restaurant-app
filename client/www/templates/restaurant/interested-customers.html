@@ -4,7 +4,7 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
 
-    <ion-checkbox ng-repeat="customer in interestedCustomers">
+    <ion-checkbox ng-repeat="customer in interestedCustomers" ng-click="chooseCustomer(customer.userID)">
       {{ customer.name }}
       <br/>Party of {{ customer.partySize }}
       <br/>{{ customer.phoneNumber }}
