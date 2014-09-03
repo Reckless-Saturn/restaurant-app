@@ -120,11 +120,11 @@ angular.module('starter.services', [])
   };
 
   var interestedCustomers = [
-    { userID: 1,
+    { customerID: 1, 
       name: 'David Nguyen',
       phoneNumber: '415-555-5555',
       partySize: 5 },
-    { userID: 2,
+    { customerID: 2,
       name: 'Mai Le',
       phoneNumber: '222-333-3333',
       partySize: 4 }
@@ -140,12 +140,12 @@ angular.module('starter.services', [])
     });
   };
 
-  var chooseCustomer = function(userID) {
-    console.log('chosen customer ID:', userID);
+  var chooseCustomer = function(customerID) {
+    console.log('chosen customer ID:', customerID);
     $http({
       method: 'POST',
       url: 'http://[URL-HERE]/restaurant/choose-customer',
-      data: { userID: userID },
+      data: { customerID: customerID },
       headers: { 'content-type': 'application/json' }
     });
   };
