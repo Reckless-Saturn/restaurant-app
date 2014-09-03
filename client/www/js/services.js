@@ -1,47 +1,71 @@
-angular.module('starter.controllers')
+angular.module('starter.services', [])
 
-  .factory('Customers', function($http) {
+.factory('Customers', function($http) {
 
-    var searchResults = [
-        { restaurantID: 0,
-          restaurantName: 'Mission Beach Cafe',
-          // priceRange will be a number from 1 to 5
-          // Todo: convert to dollar signs in view file; e.g. '2' --> '$$'
-          priceRange: 2,
-          address: '944 Market Street, San Francisco, CA',
-          latitude: 1,
-          longitude: 1,
-          cuisine: 'American',
-          // available field will be a 0 (false) or 1 (true) -- should all be true here
-          available: 1,
-          // Todo: For ion-checkbox.
-          // Todo: Ideally, shouldn't have this property in the data.
-          chosen: false },
-        { restaurantID: 1,
-          restaurantName: 'Local Sushi',
-          priceRange: 1,
-          address: '945 Market Street, San Francisco, CA',
-          latitude: 2,
-          longitude: 2,
-          cuisine: 'Japanese',
-          available: 1,
-          // Todo: For ion-checkbox.
-          // Todo: Ideally, shouldn't have this property in the data.
-          chosen: false }
-        ];
-      
-    var getSearchResults = function() {
-      console.log('send GET request. this should also redirect to search-results.html');
-      // see below what this actually should be
-      // this should also redirect to the search-results page
-    };
+  var signup = function(username, firstName, lastName, email, phoneNumber, password) {
 
-    return {
-      getSearchResults: getSearchResults,
-      searchResults: searchResults
-    };
+    $http({
+      method: 'POST',
+      url: '/customer/signup',
+      data: {
+        username: username,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phoneNumber: phoneNumber,
+        password: password
+      },
+      headers: {
+        'Content-type': 'application/json'
+      }
+    });
 
-  })
+  };
+
+  var searchResults = [
+      { restaurantID: 0,
+        restaurantName: 'Mission Beach Cafe',
+        // priceRange will be a number from 1 to 5
+        // Todo: convert to dollar signs in view file; e.g. '2' --> '$$'
+        priceRange: 2,
+        address: '944 Market Street, San Francisco, CA',
+        latitude: 1,
+        longitude: 1,
+        distance: 0.1,
+        cuisine: 'American',
+        // available field will be a 0 (false) or 1 (true) -- should all be true here
+        available: 1,
+        // Todo: For ion-checkbox.
+        // Todo: Ideally, shouldn't have this property in the data.
+        chosen: false },
+      { restaurantID: 1,
+        restaurantName: 'Local Sushi',
+        priceRange: 1,
+        address: '945 Market Street, San Francisco, CA',
+        latitude: 2,
+        longitude: 2,
+        distance: 0.2,
+        cuisine: 'Japanese',
+        available: 1,
+        // Todo: For ion-checkbox.
+        // Todo: Ideally, shouldn't have this property in the data.
+        chosen: false }
+      ];
+    
+  var getSearchResults = function() {
+    console.log('send GET request. this should also redirect to search-results.html');
+    // see below what this actually should be
+    // this should also redirect to the search-results page
+  };
+
+  return {
+    signup: signup,
+    getSearchResults: getSearchResults,
+    searchResults: searchResults
+  };
+
+})
+
 .factory('Restaurants', function($http) {
   var interestedCustomers = [
     { userID: 1,

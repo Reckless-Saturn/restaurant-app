@@ -1,16 +1,21 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['starter.services'])
 
 // Start Restaurant App's controllers
 .controller('CustomerCtrl', function($scope, Customers) {
+
+  $scope.username;
+  $scope.firstName;
+  $scope.lastName;
+  $scope.email;
+  $scope.phoneNumber;
+  $scope.password;
   
+  $scope.signup = Customers.signup;
+
   $scope.searchResults = Customers.searchResults;
 
   // invoked after submitting search criteria form
   $scope.getSearchResults = Customers.getSearchResults;
-
-// Todo: calculate distance for each restaurant from user
-// David to Mai: If the server will give this back to us, will this distance be in the data model?
-  $scope.distance = 0.1;
 
 })
 
