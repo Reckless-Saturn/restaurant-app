@@ -1,8 +1,7 @@
 angular.module('starter.controllers')
 
-  .factory('Customers', function($http) {
-  // Todo: Hard-coded data for now. Eventually received via GET request.
-  // Returned data will be all available restaurants.
+  .factory('Customers', function($http, $location) {
+
     var searchResults = [
         { restaurantID: 0,
           restaurantName: 'Mission Beach Cafe',
@@ -29,10 +28,48 @@ angular.module('starter.controllers')
           // Todo: For ion-checkbox.
           // Todo: Ideally, shouldn't have this property in the data.
           chosen: false }
-      ];
+        ];
+      
+    var getSearchResults = function() {
+      console.log('send GET request');
+      $location.path("/customer/search-criteria");
+    };
 
     return {
+      getSearchResults: getSearchResults,
       searchResults: searchResults
     };
 
-  });
+  })
+.factory('Restaurants', function($http) {
+  var interestedCustomers = [
+    { userID: 1,
+      name: 'David Nguyen',
+      phoneNumber: '415-555-5555',
+      partySize: 5 },
+    { userID: 2,
+      name: 'Mai Le',
+      phoneNumber: '222-333-3333',
+      partySize: 4 }
+  ];
+  return {
+    interestedCustomers: interestedCustomers
+  }
+});
+
+/* 
+CUSTOMERS FACTORY:
+this should be the function to request from the server. Once the user submits on 'search-criteria.html', it should invoke this function. 
+
+Upon success, this function should change the value of searchResults
+  
+  var getSearchResults = function() {
+    return $http({
+      method: 'GET', 
+      url: '/ArmandoAndEddieurl?find_cuisine=american&find_price=2&find_party=6&find_distance=0.5
+    })
+    .then(function(response) {
+      searchResults = response.data
+    });
+  }
+  */

@@ -23,22 +23,17 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       templateUrl: "templates/menu.html"
     })
 
-
-
-    .state('app.playlists', {
-      url: "/playlists",
+    .state('app.splash', {
+      url: "/splash",
       views: {
         'menuContent' :{
-          templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
+          templateUrl: "templates/splash.html"
         }
       }
-    })
-
-
-
-
-    // Customer
+    })   
+/////////////////////////////////////////////
+// C: Customer routing
+//
     .state('app.customerSignUp', {
       url: "/customer/signup",
       views: {
@@ -69,7 +64,9 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
-    // Restaurant
+/////////////////////////////////////////////
+// C: Restaurant Routing
+//
     .state('app.restaurantSignUp', {
       url: "/restaurant/signup",
       views: {
@@ -102,6 +99,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
     ;
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/splash');
 });
 
