@@ -11,13 +11,16 @@ drop table restaurants;
 drop table diners;
 
 CREATE TABLE restaurants (
-  `restaurantId` int(100) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
+  `restaurantID` int(100) NOT NULL AUTO_INCREMENT,
+  `restaurantName` varchar(50) NOT NULL,
+  `priceRange` int NOT NULL DEFAULT 1,
   `address` varchar(50) NOT NULL,
+  `latitude` double NOT NULL DEFAULT 0,
+  `longitude` double NOT NULL DEFAULT 0,
   `cuisine` varchar(100) NOT NULL,
   `created` timestamp NOT NULL DEFAULT now(),
   `available` tinyint(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`restaurantId`)
+  PRIMARY KEY (`restaurantID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE diners (
@@ -34,6 +37,19 @@ insert into diners (username, name, email, reservationsMade) values ('david', 'D
 insert into diners (username, name, email, reservationsMade) values ('mai', 'Mai', 'ccc@ccc.com', 143);
 insert into diners (username, name, email, reservationsMade) values ('eddie', 'Eddie', 'ddd@ddd.com', 4);
 
-insert into restaurants (name, address, cuisine) values ('Zuni Cafe', '1658 Market St, San Francisco, CA', 'Mediterranean');
-insert into restaurants (name, address, cuisine) values ('Brenda\'s French Soul Food', '652 Polk St, San Francisco, CA', 'Southern/Soul');
-insert into restaurants (name, address, cuisine) values ('Absinthe Brasserie and Bar', '398 Hayes St, San Francisco, CA', 'French');
+insert into restaurants (restaurantName, address, cuisine) values ('Zuni Cafe', '1658 Market St, San Francisco, CA', 'Mediterranean');
+insert into restaurants (restaurantName, address, cuisine) values ('Brenda\'s French Soul Food', '652 Polk St, San Francisco, CA', 'Southern/Soul');
+insert into restaurants (restaurantName, address, cuisine) values ('Absinthe Brasserie and Bar', '398 Hayes St, San Francisco, CA', 'French');
+
+
+update restaurants set latitude=37.773646 where restaurantId=1;
+
+update restaurants set longitude=-122.421573 where restaurantId=1;
+
+update restaurants set latitude= 37.902989 where restaurantId=2;
+
+update restaurants set longitude=-122.307637 where restaurantId=2;
+
+update restaurants set latitude= 37.791256 where restaurantId=3;
+
+update restaurants set longitude=-122.396399 where restaurantId=3;
