@@ -4,16 +4,18 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
 
-    <form name="restaurantSignUp">
-      <input type="text" placeholder="Restaurant Name"></input>
-      <input type="text" placeholder="Address"></input>
-      <input type="text" placeholder="Price Range (a number between 1 to 5, low to high)"></input>
-      <input type="text" placeholder="Cuisine"></input>
-      <input type="text" placeholder="Email"></input>
-      <input type="text" placeholder="Phone Number (e.g. 415-555-5555)"></input>
-      <input type="password" placeholder="Password"></input>
+    <form name="restaurantSignUp" ng-submit="signup(restaurantName, address, priceRange, cuisine, email, phoneNumber, password)">
+      <input type="text" placeholder="Restaurant Name" ng-model="restaurantName"></input>
+      <input type="text" placeholder="Address" ng-model="address"></input>
+      <input type="text" placeholder="Price Range (a number between 1 to 5, low to high)" ng-model="priceRange"></input>
+      <input type="text" placeholder="Cuisine" ng-model="cuisine"></input>
+      <input type="text" placeholder="Email" ng-model="email"></input>
+      <input type="text" placeholder="Phone Number (e.g. 415-555-5555)" ng-model="phoneNumber"></input>
+      <input type="password" placeholder="Password" ng-model="password"></input>
+
       <!-- Todo: Possibly to upload restaurant image? -->
-      <input type="file" accept="image/*"></input>
+      <!-- Mai to David: not sure how to do this, so commented out for now. -->
+      <!-- <input type="file" accept="image/*"></input> -->
 
       <p></p>
       <input type="submit" value="Sign me up!"></input>

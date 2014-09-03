@@ -3,10 +3,19 @@ angular.module('starter.services', [])
 .factory('Customers', function($http) {
 
   var signup = function(username, firstName, lastName, email, phoneNumber, password) {
+    console.log({
+      username: username,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phoneNumber: phoneNumber,
+      password: password
+    });
 
     $http({
       method: 'POST',
-      url: '/customer/signup',
+      // todo: update URL
+      url: 'http://URL?/customer/signup',
       data: {
         username: username,
         firstName: firstName,
@@ -67,6 +76,40 @@ angular.module('starter.services', [])
 })
 
 .factory('Restaurants', function($http) {
+
+  var signup = function(restaurantName, address, priceRange, cuisine, email, phoneNumber, password) {
+  
+    console.log({
+      restaurantName: restaurantName,
+      address: address,
+      priceRange: priceRange,
+      cuisine: cuisine,
+      email: email,
+      phoneNumber: phoneNumber,
+      password: password
+    });
+
+    $http({
+      method: 'POST',
+      // todo: update URL
+      url: 'http://URL?/restaurant/signup',
+      data: {
+        restaurantName: restaurantName,
+        address: address,
+        priceRange: priceRange,
+        cuisine: cuisine,
+        email: email,
+        phoneNumber: phoneNumber,
+        password: password
+      },
+      headers: {
+        'Content-type': 'application/json'
+      }
+
+    });
+
+  };
+
   var interestedCustomers = [
     { userID: 1,
       name: 'David Nguyen',
@@ -77,9 +120,12 @@ angular.module('starter.services', [])
       phoneNumber: '222-333-3333',
       partySize: 4 }
   ];
+
   return {
+    signup: signup,
     interestedCustomers: interestedCustomers
-  }
+  };
+
 });
 
 /* 
