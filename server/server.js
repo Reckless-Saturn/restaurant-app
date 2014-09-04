@@ -23,6 +23,9 @@ var router = function(request, response) {
     sendResponse(response, reply, status);
   } else if (method === 'GET') {
     if (path === '/customer/search-criteria' && query.find_distance > 0) {
+      var coords = query.customerLoc.split(',');
+      query.latitude = coords[0];
+      query.longitude = coords[1];
       getRestaurants(response, query, sendResponse);
     } else {
       sendResponse(response, reply, status);
