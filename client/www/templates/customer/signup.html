@@ -5,13 +5,13 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
 
-    <form name="customerSignUp">
-      <input type="text" placeholder="Username"></input>
-      <input type="text" placeholder="First Name"></input>
-      <input type="text" placeholder="Last Name"></input>
-      <input type="text" placeholder="E-mail"></input>
-      <input type="text" placeholder="Phone Number (e.g. 415-555-5555)"></input>
-      <input type="password" placeholder="Password"></input>
+    <form name="customerSignUp" ng-submit="signup(username, firstName, lastName, email, phoneNumber, password)">
+      <input type="text" placeholder="Username" ng-model="username"></input>
+      <input type="text" placeholder="First Name" ng-model="firstName"></input>
+      <input type="text" placeholder="Last Name" ng-model="lastName"></input>
+      <input type="text" placeholder="E-mail" ng-model="email"></input>
+      <input type="text" placeholder="Phone Number (e.g. 415-555-5555)" ng-model="phoneNumber"></input>
+      <input type="password" placeholder="Password" ng-model="password"></input>
       <input type="submit" value="Sign me up!"></input>
     </form>
 

@@ -4,9 +4,7 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
 
-    <ion-toggle ng-model="available">Available ({{ available }})</ion-toggle>
-
-    <ion-checkbox ng-repeat="customer in interestedCustomers">
+    <ion-checkbox ng-repeat="customer in interestedCustomers" ng-click="chooseCustomer(customer.customerID)">
       {{ customer.name }}
       <br/>Party of {{ customer.partySize }}
       <br/>{{ customer.phoneNumber }}
