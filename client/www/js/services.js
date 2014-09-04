@@ -62,8 +62,13 @@ angular.module('starter.services', ['ngCordova'])
         var long = position.coords.longitude
         console.log('lat', lat, 'long', long);
 
-        var searchUrl = serverUrl+'/customer/search-criteria?find_distance='+distance+'&find_priceRange='+priceRange+'&find_partySize='+partySize+'&find_cuisine='+cuisine+'&customerLoc='+lat+','+long;
-        
+        var searchUrl = serverUrl+'/customer/search-criteria?'+
+          'find_distance='+distance+
+          '&find_priceRange='+priceRange+
+          '&find_partySize='+partySize+
+          '&find_cuisine='+cuisine+
+          '&customerLoc='+lat+','+long;
+
         console.log('searchUrl', searchUrl);
 
         // Send GET request after getting customer position
