@@ -1,8 +1,12 @@
 ///////////////////////////////////////////////////////
-// pull in required files
+// import required files
 var http = require("http");
 var url = require('url');
 var sendResponse = require('./helpers').sendResponse;
+var parser = require('./helpers').parseData;
+///////////////////////////////////////////////////////
+// import db queries
+var addUser = require('./queries').addUser;
 var getRestaurants = require('./queries').getRestaurants;
 
 ///////////////////////////////////////////////////////
@@ -20,9 +24,11 @@ var router = function(request, response) {
   var reply = 'server works';
 
   if (method === 'OPTIONS') {
+    console.log("Replying to OPTIONS request");
     sendResponse(response, reply, status);
   } else if (method === 'GET') {
     if (path === '/customer/search-criteria' && query.find_distance > 0) {
+      console.log("GET request -", path);
       var coords = query.customerLoc.split(',');
       query.latitude = coords[0];
       query.longitude = coords[1];
@@ -31,7 +37,8 @@ var router = function(request, response) {
       sendResponse(response, reply, status);
     }
   } else if (method === 'POST') {
-    sendResponse(response, reply, status);
+    console.log("POST request");
+    parser(response, request, addUser);
   } else {
     status = 404;
     reply = "Bad page";
