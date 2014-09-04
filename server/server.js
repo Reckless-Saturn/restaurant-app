@@ -3,6 +3,7 @@
 var http = require("http");
 var url = require('url');
 var sendResponse = require('./helpers').sendResponse;
+var getRestaurants = require('./queries').getRestaurants;
 
 ///////////////////////////////////////////////////////
 // set up server config
@@ -12,23 +13,26 @@ var port = 5555;
 ///////////////////////////////////////////////////////
 // main server router
 var router = function(request, response) {
-  var path = url.parse(request.url).pathname;
+  var path = url.parse(request.url, true).pathname;
+  var query = url.parse(request.url, true).query;
   var method = request.method;
   var status = 200;
-  var reply = messages = 'server works';
+  var reply = 'server works';
 
-  if (path === '/' || path === '') {
-
-    // if (method === 'OPTIONS') {}
-    // if (method === 'GET') {}
-    // if (method === 'POST') {}
-
-    // send a temp response
-    sendResponse(response, status, reply);
+  if (method === 'OPTIONS') {
+    sendResponse(response, reply, status);
+  } else if (method === 'GET') {
+    if (path === '/customer/search-criteria' && query.find_distance > 0) {
+      getRestaurants(response, query, sendResponse);
+    } else {
+      sendResponse(response, reply, status);
+    }
+  } else if (method === 'POST') {
+    sendResponse(response, reply, status);
   } else {
     status = 404;
     reply = "Bad page";
-    sendResponse(response, status, reply);
+    sendResponse(response, reply, status);
   }
 }
 

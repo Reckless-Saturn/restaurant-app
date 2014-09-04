@@ -10,8 +10,9 @@ var headers = {
 
 ///////////////////////////////////////////////////////
 // send reply back to client
-exports.sendResponse = function(response, status, text) {
-  responseText = JSON.stringify(text);
+exports.sendResponse = function(response, data, status) {
+  status = status || 200;
+  responseText = JSON.stringify(data);
   response.writeHead(status, headers);
   response.end(responseText);
 };
