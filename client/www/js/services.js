@@ -1,3 +1,5 @@
+var serverUrl = 'http://[URL-HERE]';
+
 angular.module('starter.services', [])
 
 .factory('Customer', function($http, $location) {
@@ -15,7 +17,7 @@ angular.module('starter.services', [])
     $http({
       method: 'POST',
       // todo: update URL
-      url: 'http://[URL-HERE]/customer/signup',
+      url: serverUrl+'/customer/signup',
       data: {
         username: username,
         firstName: firstName,
@@ -23,8 +25,7 @@ angular.module('starter.services', [])
         email: email,
         phoneNumber: phoneNumber,
         password: password
-      },
-      headers: { 'content-type': 'application/json' }
+      }
     });
 
   };
@@ -54,7 +55,7 @@ angular.module('starter.services', [])
 
     console.log('send GET request. this should also redirect to search-results.html');
 
-    var searchUrl = 'http://[URL-HERE]?find_distance='+distance+'&find_priceRange='+priceRange+'&find_partySize='+partySize+'&find_cuisine='+cuisine;
+    var searchUrl = serverUrl+'?find_distance='+distance+'&find_priceRange='+priceRange+'&find_partySize='+partySize+'&find_cuisine='+cuisine;
     console.log(searchUrl);
 
     $http({
@@ -73,9 +74,8 @@ angular.module('starter.services', [])
     console.log('chosen restaurant ID:', restaurantID);
     $http({
       method: 'POST',
-      url: 'http://[URL-HERE]/customer/choose-restaurant',
-      data: { restaurantID: restaurantID },
-      headers: { 'content-type': 'application/json' }
+      url: serverUrl+'/customer/choose-restaurant',
+      data: { restaurantID: restaurantID }
     });
   };
 
@@ -104,7 +104,7 @@ angular.module('starter.services', [])
 
     $http({
       method: 'POST',
-      url: 'http://[URL-HERE]/restaurant/signup',
+      url: serverUrl+'/restaurant/signup',
       data: {
         restaurantName: restaurantName,
         address: address,
@@ -113,8 +113,7 @@ angular.module('starter.services', [])
         email: email,
         phoneNumber: phoneNumber,
         password: password
-      },
-      headers: { 'content-type': 'application/json' }
+      }
     });
 
   };
@@ -134,9 +133,8 @@ angular.module('starter.services', [])
     console.log('available:', available);
     $http({
       method: 'POST',
-      url: 'http://[URL-HERE]/restaurant/toggle-availability',
-      data: { available: available },
-      headers: { 'content-type': 'application/json' }
+      url: serverUrl+'/restaurant/toggle-availability',
+      data: { available: available }
     });
   };
 
@@ -144,9 +142,8 @@ angular.module('starter.services', [])
     console.log('chosen customer ID:', customerID);
     $http({
       method: 'POST',
-      url: 'http://[URL-HERE]/restaurant/choose-customer',
-      data: { customerID: customerID },
-      headers: { 'content-type': 'application/json' }
+      url: serverUrl+'/restaurant/choose-customer',
+      data: { customerID: customerID }
     });
   };
 
