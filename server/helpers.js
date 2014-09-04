@@ -10,9 +10,26 @@ var headers = {
 
 ///////////////////////////////////////////////////////
 // send reply back to client
-exports.sendResponse = function(response, data, status) {
+var sendResponse = function(response, data, status) {
   status = status || 200;
   responseText = JSON.stringify(data);
   response.writeHead(status, headers);
   response.end(responseText);
 };
+
+///////////////////////////////////////////////////////
+// parser for post requests
+var parseData = function(response, request, callback) {
+  var data = "";
+
+  request.on("data", function(chunk) {
+    data += chunk;
+  });
+  request.on("end", function() {
+    console.log(JSON.parse(data));
+    callback(response, JSON.parse(data), sendResponse);
+  });
+};
+
+module.exports.sendResponse = sendResponse;
+module.exports.parseData = parseData;
