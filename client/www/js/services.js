@@ -55,7 +55,7 @@ angular.module('starter.services', [])
 
     console.log('send GET request. this should also redirect to search-results.html');
 
-    var searchUrl = serverUrl+'?find_distance='+distance+'&find_priceRange='+priceRange+'&find_partySize='+partySize+'&find_cuisine='+cuisine;
+    var searchUrl = serverUrl+'/customer/search-criteria?find_distance='+distance+'&find_priceRange='+priceRange+'&find_partySize='+partySize+'&find_cuisine='+cuisine;
     console.log(searchUrl);
 
     $http({
