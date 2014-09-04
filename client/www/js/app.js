@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 angular.module('starter', ['ionic', 'starter.controllers'])
-=======
+
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -9,9 +8,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', 
   ['ionic', 
-  'starter.controllers',
-  'ngCordova.plugins.push' ])
->>>>>>> Start Push Notifications
+  'starter.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -52,13 +49,8 @@ angular.module('starter',
       url: "/customer/signup",
       views: {
         'menuContent' :{
-<<<<<<< HEAD
           templateUrl: "templates/customer/signup.html",
           controller: 'CustomerCtrl'
-=======
-          templateUrl: "templates/search.html",
-          controller: 'PushCtrl'
->>>>>>> Start Push Notifications
         }
       }
     })
