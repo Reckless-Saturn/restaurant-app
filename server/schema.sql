@@ -26,17 +26,20 @@ CREATE TABLE restaurants (
 CREATE TABLE diners (
   `customerId` int(100) NOT NULL AUTO_INCREMENT,
   `username` varchar(40) NOT NULL UNIQUE,
-  `name` varchar(40) DEFAULT NULL,
-  `email` varchar(40) DEFAULT NULL UNIQUE,
+  `password` varchar(40) NOT NULL,
+  `firstName` varchar(40) DEFAULT NULL,
+  `lastName` varchar(40) DEFAULT NULL,
+  `email` varchar(40) NOT NULL UNIQUE,
+  `phone` varchar(20) NOT NULL,
   `reservationsMade` int(50) NOT NULL DEFAULT 0,
   PRIMARY KEY (`customerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /* test data */
-insert into diners (username, name, email, reservationsMade) values ('armando', 'Armando', 'aaa@aaa.com', 12);
-insert into diners (username, name, email, reservationsMade) values ('david', 'David', 'bbb@bbb.com', 34);
-insert into diners (username, name, email, reservationsMade) values ('mai', 'Mai', 'ccc@ccc.com', 143);
-insert into diners (username, name, email, reservationsMade) values ('eddie', 'Eddie', 'ddd@ddd.com', 4);
+insert into diners (username, password, firstName, lastName, email, phone, reservationsMade) values ('armando', 'armando', 'Armando', 'P', 'aaa@aaa.com', '5555555555', 12);
+insert into diners (username, password, firstName, lastName, email, phone, reservationsMade) values ('david', 'david', 'David', 'N', 'bbb@bbb.com', '5555555555', 34);
+insert into diners (username, password, firstName, lastName, email, phone, reservationsMade) values ('mai', 'mai', 'Mai', 'L', 'ccc@ccc.com', '5555555555', 143);
+insert into diners (username, password, firstName, lastName,  email, phone, reservationsMade) values ('eddie', 'eddie', 'Eddie', 'J', 'ddd@ddd.com', '5555555555', 4);
 
 insert into restaurants (restaurantName, address, cuisine) values ('Zuni Cafe', '1658 Market St, San Francisco, CA', 'mediterranean');
 insert into restaurants (restaurantName, address, cuisine, available) values ('Brenda\'s French Soul Food', '652 Polk St, San Francisco, CA', 'soul', 1);
