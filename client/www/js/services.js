@@ -1,8 +1,8 @@
 var serverUrl = 'http://[URL-HERE]';
 
-angular.module('starter.services', [])
+angular.module('starter.services', ['ngCordova'])
 
-.factory('Customer', function($http, $location) {
+.factory('Customer', function($http, $location, $cordovaGeolocation) {
 
   var signup = function(username, firstName, lastName, email, phoneNumber, password) {
     console.log({
@@ -53,20 +53,32 @@ angular.module('starter.services', [])
     
   var getSearchResults = function(distance, priceRange, partySize, cuisine) {
 
-    console.log('send GET request. this should also redirect to search-results.html');
+    // ngCordova geolocation
+    $cordovaGeolocation
+      .getCurrentPosition()
+      .then(function (position) {
 
-    var searchUrl = serverUrl+'/customer/search-criteria?find_distance='+distance+'&find_priceRange='+priceRange+'&find_partySize='+partySize+'&find_cuisine='+cuisine;
-    console.log(searchUrl);
+        var lat  = position.coords.latitude
+        var long = position.coords.longitude
+        console.log('lat', lat, 'long', long);
 
-    $http({
-      method: 'GET', 
-      url: searchUrl
-    })
-    .then(function(response) {
-      searchResults = response.data;
-      // Mai to David: not sure if this is the right way to do it, but it works.
-      $location.path('/app/customer/search-results');
-    });
+        var searchUrl = serverUrl+'/customer/search-criteria?find_distance='+distance+'&find_priceRange='+priceRange+'&find_partySize='+partySize+'&find_cuisine='+cuisine+'&customerLoc='+lat+','+long;
+        
+        console.log('searchUrl', searchUrl);
+
+        // Send GET request after getting customer position
+        $http({
+          method: 'GET', 
+          url: searchUrl
+        })
+        .then(function(response) {
+          searchResults = response.data;
+          $location.path('/app/customer/search-results');
+        });
+
+      }, function(err) {
+        console.log(err)
+      });
 
   };
 
