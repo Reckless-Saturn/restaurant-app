@@ -1,0 +1,26 @@
+{
+  "name": "restaurant-app",
+  "version": "1.0.0",
+  "description": "> Reckless Saturn is a mobile app, which gives restaurants with available seating access to hungry customers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Reckless-Saturn/restaurant-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Reckless-Saturn/restaurant-app/issues"
+
+  },
+  "homepage": "https://github.com/Reckless-Saturn/restaurant-app",
+  "dependencies": {
+    "chai": "^1.9.1",
+    "chai-http": "^0.5.0",
+    "mocha": "^1.21.4",
+    "mysql": "^2.4.3"
+  }
+}
