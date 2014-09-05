@@ -18,6 +18,49 @@ var ip = "127.0.0.1";
 var port = 5555;
 
 ///////////////////////////////////////////////////////
+<<<<<<< HEAD
+=======
+// main server router
+var router = function(request, response) {
+  var path = url.parse(request.url, true).pathname;
+  var query = url.parse(request.url, true).query;
+  var method = request.method;
+  var status = 200;
+  var reply = 'server works';
+
+  if (method === 'OPTIONS') {
+    sendResponse(response, reply, status);
+  } else if (method === 'GET') {
+    if (path === '/customer/search-criteria' && query.find_distance > 0) {
+      getRestaurants(response, query, sendResponse);
+    } else {
+      sendResponse(response, reply, status);
+    }
+  } else if (method === 'POST') {
+    
+      // D: For receiving data
+      var data = { results: [] }, final_message = '';
+      
+      request.on('data', function( chunk ) {
+        final_message += chunk;
+      });
+
+      request.on('end', function() {
+        final_message = JSON.parse( final_message );
+        console.log(final_message);
+
+      })
+
+    // sendResponse(response, reply, status);
+  } else {
+    status = 404;
+    reply = "Bad page";
+    sendResponse(response, reply, status);
+  }
+}
+
+///////////////////////////////////////////////////////
+>>>>>>> Add 'push' style communication between consumer and restaurant
 // fire up the server
 var server = http.createServer(router);
 server.listen(port, ip);
@@ -35,7 +78,7 @@ Publish Messages
 --------------------------------------------------------------------------- */
 var message = { "some" : "data" };
 pubnub.publish({ 
-    channel   : 'my_channel',
+    channel   : 'r0',
     message   : message,
     callback  : function(e) { console.log( "SUCCESS!", e ); },
     error     : function(e) { console.log( "FAILED! RETRY PUBLISH!", e ); }
@@ -45,7 +88,7 @@ pubnub.publish({
 // Listen for Messages
 // --------------------------------------------------------------------------- 
 pubnub.subscribe({
-    channel  : "my_channel",
+    channel  : "r0",
     callback : function(message) {
         console.log( " > ", message );
     }
@@ -57,7 +100,7 @@ Type Console Message
 var stdin = process.openStdin();
 stdin.on( 'data', function(chunk) {
     pubnub.publish({
-        channel : "my_channel",
+        channel : "r0",
         message : ''+chunk
     });
 });
