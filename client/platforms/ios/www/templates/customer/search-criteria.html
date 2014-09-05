@@ -4,9 +4,10 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
 
-    <form name="searchCriteria">
+    <!-- todo: Try to use forms' native 'action' and 'method' attributes to submit request to server (http://www.w3schools.com/tags/att_form_method.asp) -->
+    <form name="searchCriteria" ng-submit="getSearchResults(distance, priceRange, partySize, cuisine)">
       Distance (mi): 
-      <select name="distance">
+      <select name="distance" ng-model="distance">
         <option value="0.25">0.25</option>
         <option value="0.5">0.5</option>
         <option value="1.0">1.0</option>
@@ -14,24 +15,26 @@
 
       <p></p>
       Price: 
-      <select name="price">
-        <option name="$">$</option>
-        <option name="$$">$$</option>
-        <option name="$$$">$$$</option>
+      <select name="priceRange" ng-model="priceRange">
+        <option value="1">$</option>
+        <option value="2">$$</option>
+        <option value="3">$$$</option>
+        <option value="4">$$$$</option>
+        <option value="5">$$$$$</option>
       </select>
 
       <p></p>
       Party Size: 
-      <input type="text" name="party-size" placeholder="Example: 6"></input>
+      <input type="text" name="party-size" placeholder="Example: 6" ng-model="partySize"></input>
 
       <!-- Todo: Cuisine drop-down list will be populated by GET request for all cuisine types available in database -->
       <p></p>
       Cuisine: 
-      <select name="cuisine">
+      <select name="cuisine" ng-model="cuisine">
         <!-- Todo: Hard-coded cuisines -->
-        <option name="american">American</option>
-        <option name="japanese">Japanese</option>
-        <option name="chinese">Chinese</option>
+        <option value="american">American</option>
+        <option value="japanese">Japanese</option>
+        <option value="chinese">Chinese</option>
       </select>
 
       <p></p>

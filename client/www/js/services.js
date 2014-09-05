@@ -4,10 +4,38 @@ angular.module('starter.services', ['ngCordova'])
 
 .factory('Customer', function($http, $location, $cordovaGeolocation) {
 
+  //// D: PubNub Stuff:
+  var pubNub = function() {
+    
+    var pubnub = PUBNUB.init({
+      publish_key: 'pub-c-2c4e8ddb-7e65-4123-af2d-ef60485170d4',
+      subscribe_key: 'sub-c-693a352e-3394-11e4-9846-02ee2ddab7fe'
+    });
+
+    pubnub.time(
+      function(time){
+        console.log(time);
+      }
+    );
+
+    pubnub.publish({
+      channel: 'my_channel',        
+      message: 'Hello from the PubNub Javascript SDK'
+    });
+
+    // C: .subscribe and .init should be the first things to happen so that the client is always able to here the server
+    pubnub.subscribe({
+      channel: 'my_channel',
+      message: function(m){console.log("--In subscribe: ", m)}
+    });
+
+  }
+  //// D: END PubNub Stuff:
+
   var signup = function(username, firstName, lastName, email, phoneNumber, password) {
-    console.log({
-      username: username,
-      firstName: firstName,
+    console.log({ 
+    username: username,
+     firstName: firstName,
       lastName: lastName,
       email: email,
       phoneNumber: phoneNumber,
@@ -89,6 +117,7 @@ angular.module('starter.services', ['ngCordova'])
 
   var chooseRestaurant = function(restaurantID) {
     console.log('chosen restaurant ID:', restaurantID);
+    pubNub(); // D: pubNub invocation for testing 
     $http({
       method: 'POST',
       url: serverUrl+'/customer/choose-restaurant',
