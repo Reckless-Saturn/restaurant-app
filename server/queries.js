@@ -19,9 +19,14 @@ exports.addUser = function(response, data, callback) {
     connection.query(
       'insert into diners (username, password, firstName, lastName,'
       + ' email, phone)'
-      + ' values ("' + data.username + '", "' + data.password + '", "'
-      + data.firstName + '", "' + data.lastName + '", "' + data.email + '", "'
-      + data.phoneNumber + '")',
+      + ' values ("'
+        + data.username   + '", "'
+        + data.password   + '", "'
+        + data.firstName  + '", "'
+        + data.lastName   + '", "'
+        + data.email      + '", "'
+        + data.phoneNumber
+      + '")',
       function(err, results) {
         if (err) { throw err; }
         callback(response, "User added successfully");
@@ -31,9 +36,8 @@ exports.addUser = function(response, data, callback) {
 
   // step 1 - find if username or email already exists
   connection.query(
-    'select 1 from diners where username = "'
-    + data.username + '" or email = "'
-    + data.email + '"',
+    'select 1 from diners where username = "' + data.username
+    + '" or email = "' + data.email + '"',
     function(err, results) {
       if (err) { throw err; }
       if (results.length > 0) {
@@ -43,6 +47,27 @@ exports.addUser = function(response, data, callback) {
       }
     }
   );
+};
+
+///////////////////////////////////////////////////////
+// insert restaurants
+exports.addRestaurant = function(response, data, callback) {
+  connection.query(
+    'insert into restaurants (restaurantName, password, address, priceRange, cuisine, email, phone)'
+    + ' values ("'
+      + data.restaurantName + '", "'
+      + data.password       + '", "'
+      + data.address        + '", "'
+      + data.priceRange     + '", "'
+      + data.cuisine        + '", "'
+      + data.email          + '", "'
+      + data.phoneNumber
+    + '")',
+    function(err, results) {
+      if (err) { throw err; }
+      callback(response, "Restaurant added successfully");
+    }
+  )
 };
 
 ///////////////////////////////////////////////////////
