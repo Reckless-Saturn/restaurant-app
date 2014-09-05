@@ -1,3 +1,5 @@
+var url = require('url');
+
 ///////////////////////////////////////////////////////
 // static data
 var headers = {
@@ -10,7 +12,7 @@ var headers = {
 
 ///////////////////////////////////////////////////////
 // send reply back to client
-var sendResponse = function(response, data, status) {
+module.exports.sendResponse = function(response, data, status) {
   status = status || 200;
   responseText = JSON.stringify(data);
   response.writeHead(status, headers);
@@ -18,18 +20,23 @@ var sendResponse = function(response, data, status) {
 };
 
 ///////////////////////////////////////////////////////
-// parser for post requests
-var parseData = function(response, request, callback) {
-  var data = "";
+// parser for get requests
+module.exports.parseQuery = function(request) {
+  var query = url.parse(request.url, true).query;
+  var coords = query.customerLoc.split(',');
+  query.latitude = coords[0];
+  query.longitude = coords[1];
+  return query;
+};
 
+///////////////////////////////////////////////////////
+// parser for post requests
+module.exports.parseData = function(request, callback) {
+  var data = "";
   request.on("data", function(chunk) {
     data += chunk;
   });
   request.on("end", function() {
-    console.log(JSON.parse(data));
-    callback(response, JSON.parse(data), sendResponse);
+    callback(JSON.parse(data));
   });
 };
-
-module.exports.sendResponse = sendResponse;
-module.exports.parseData = parseData;
