@@ -6,13 +6,33 @@
   <ion-content class="has-header">
 
     <form name="customerSignUp" ng-submit="signup(username, firstName, lastName, email, phoneNumber, password)">
-      <input type="text" placeholder="Username" ng-model="username"></input>
-      <input type="text" placeholder="First Name" ng-model="firstName"></input>
-      <input type="text" placeholder="Last Name" ng-model="lastName"></input>
-      <input type="text" placeholder="E-mail" ng-model="email"></input>
-      <input type="text" placeholder="Phone Number (e.g. 415-555-5555)" ng-model="phoneNumber"></input>
-      <input type="password" placeholder="Password" ng-model="password"></input>
-      <input type="submit" value="Sign me up!"></input>
+      <div class="list list-inset">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Username</span>
+          <input type="text" placeholder="armandito415" ng-model="username"></input>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">First Name</span>
+          <input type="text" placeholder="Armando" ng-model="firstName"></input>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Last Name</span>
+          <input type="text" placeholder="Perez" ng-model="lastName"></input>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">E-mail</span>
+          <input type="text" placeholder="armanditoperez@gmail.com" ng-model="email"></input>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Phone Number</span>
+          <input type="text" placeholder="415-555-5555" ng-model="phoneNumber"></input>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Password</span>
+          <input type="password" placeholder="It's super secret." ng-model="password"></input>
+        </label>
+      </div>
+      <input type="submit" value="Sign me up!" class="button button-block button-assertive"></input>
     </form>
 
   </ion-content>
