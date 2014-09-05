@@ -26,6 +26,7 @@ angular.module('starter.controllers', ['starter.services'])
   // $cordovaGeolocation.clearWatch(watch.watchID)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 .controller('PushCtrl', function($scope, $stateParams, $cordovaPush) {
   $scope.sendPush = function() {
@@ -45,6 +46,8 @@ angular.module('starter.controllers', ['starter.services'])
   ];
 >>>>>>> Start Push Notifications
 >>>>>>> Start Push Notifications
+=======
+>>>>>>> fix controllers merge issue
 })
 
 .controller('RestaurantCtrl', function($scope, Restaurant) {
