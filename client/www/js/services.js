@@ -5,6 +5,7 @@ angular.module('starter.services', ['ngCordova'])
 .factory('Customer', function($http, $location, $cordovaGeolocation) {
 
   var signup = function(username, firstName, lastName, email, phoneNumber, password) {
+    
     console.log({
       username: username,
       firstName: firstName,
@@ -108,28 +109,44 @@ angular.module('starter.services', ['ngCordova'])
 .factory('Restaurant', function($http) {
 
   var signup = function(restaurantName, address, priceRange, cuisine, email, phoneNumber, password) {
-  
-    console.log({
-      restaurantName: restaurantName,
-      address: address,
-      priceRange: priceRange,
-      cuisine: cuisine,
-      email: email,
-      phoneNumber: phoneNumber,
-      password: password
-    });
+    
+    var geocoder = new google.maps.Geocoder();
 
-    $http({
-      method: 'POST',
-      url: serverUrl+'/restaurant/signup',
-      data: {
-        restaurantName: restaurantName,
-        address: address,
-        priceRange: priceRange,
-        cuisine: cuisine,
-        email: email,
-        phoneNumber: phoneNumber,
-        password: password
+    geocoder.geocode({ address: address }, function(results, status) {
+      if(status = google.maps.GeocoderStatus.OK) {
+        var lat = results[0].geometry.location.lat();
+        var long = results[0].geometry.location.lng();
+        console.log('lat', lat, 'long', long);
+
+        $http({
+          method: 'POST',
+          url: serverUrl+'/restaurant/signup',
+          data: {
+            restaurantName: restaurantName,
+            address: address,
+            lat: lat,
+            long: long,
+            priceRange: priceRange,
+            cuisine: cuisine,
+            email: email,
+            phoneNumber: phoneNumber,
+            password: password
+          }
+        });
+
+        console.log({
+          restaurantName: restaurantName,
+          address: address,
+          lat: lat,
+          long: long,
+          priceRange: priceRange,
+          cuisine: cuisine,
+          email: email,
+          phoneNumber: phoneNumber,
+          password: password
+        });
+      } else {
+        alert('Google Maps Geocoder failed.');
       }
     });
 
