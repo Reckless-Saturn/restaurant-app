@@ -1,13 +1,21 @@
-var serverUrl = 'http://[URL-HERE]';
+var serverUrl = 'http://127.0.0.1:5555';
 
 angular.module('starter.services', ['ngCordova'])
 
 .factory('Customer', function($http, $location, $cordovaGeolocation) {
 
+  // Define global pubnub variable
+  var pubnub;
+  //// C: needed customer info for .publish
+  var customerInfo = {  customerID: 1, 
+                        name: "Armando Perez",
+                        phoneNumber: '503-555-7777',
+                        partySize: 1};
+
   var signup = function(username, firstName, lastName, email, phoneNumber, password) {
-    console.log({
-      username: username,
-      firstName: firstName,
+    console.log({ 
+    username: username,
+     firstName: firstName,
       lastName: lastName,
       email: email,
       phoneNumber: phoneNumber,
@@ -53,6 +61,13 @@ angular.module('starter.services', ['ngCordova'])
     
   var getSearchResults = function(distance, priceRange, partySize, cuisine) {
 
+    // C: Initialize PubNub
+    // D: TODO - Initialization should be on User Login
+    pubnub = PUBNUB.init({
+      publish_key: 'pub-c-2c4e8ddb-7e65-4123-af2d-ef60485170d4',
+      subscribe_key: 'sub-c-693a352e-3394-11e4-9846-02ee2ddab7fe'
+    });
+
     // ngCordova geolocation
     $cordovaGeolocation
       .getCurrentPosition()
@@ -78,8 +93,11 @@ angular.module('starter.services', ['ngCordova'])
         })
         .then(function(response) {
           searchResults = response.data;
+          customerInfo.partySize = partySize;
           $location.path('/app/customer/search-results');
         });
+        // D: the line below is temporary until above post is working with actual online server
+        $location.path('/app/customer/search-results');
 
       }, function(err) {
         console.log(err)
@@ -88,24 +106,45 @@ angular.module('starter.services', ['ngCordova'])
   };
 
   var chooseRestaurant = function(restaurantID) {
-    console.log('chosen restaurant ID:', restaurantID);
-    $http({
-      method: 'POST',
-      url: serverUrl+'/customer/choose-restaurant',
-      data: { restaurantID: restaurantID }
+
+    //C: Send Interest to Restaurant using PubNub
+    var restaurant_channel = "r" + restaurantID; 
+    console.log( restaurant_channel );
+    pubnub.publish({
+      channel: restaurant_channel,        
+      message: customerInfo
     });
+
+    // C: .subscribe and .init should be the first things to happen so that the client is always able to here the server
+    // D: need to decide if .subscribe will be necessary
+    pubnub.subscribe({
+      channel: restaurant_channel,
+      message: function(m){console.log("--In subscribe: ", m)}
+    });
+
+    console.log('chosen restaurant ID:', restaurantID);
+    // D: the POST request will not be needed thanks to PubNub
+    // $http({
+    //   method: 'POST',
+    //   url: serverUrl+'/customer/choose-restaurant',
+    //   data: { restaurantID: restaurantID }
+    // });
   };
 
   return {
     signup: signup,
     getSearchResults: getSearchResults,
     chooseRestaurant: chooseRestaurant,
-    searchResults: searchResults
+    searchResults: searchResults,
+    customerInfo: customerInfo // C: Needed for PubNub Communication
   };
 
 })
 
-.factory('Restaurant', function($http) {
+.factory('Restaurant', function($http, $location) {
+
+  // Define global pubnub variable
+  var pubnub;
 
   var signup = function(restaurantName, address, priceRange, cuisine, email, phoneNumber, password) {
   
@@ -147,12 +186,45 @@ angular.module('starter.services', ['ngCordova'])
   ];
 
   var toggleAvailability = function(available) {
+    
+    // C: Initialize PubNub
+    pubnub = PUBNUB.init({
+      publish_key: 'pub-c-2c4e8ddb-7e65-4123-af2d-ef60485170d4',
+      subscribe_key: 'sub-c-693a352e-3394-11e4-9846-02ee2ddab7fe'
+    });
+
+    //C: Subscribe to restaurant's own channel
+    // var restaurant_channel = "r" + restaurantID; 
+    var restaurant_channel = "r" + "0"; // D: need to create global on restaurant login to obtain restaurant id
+    console.log( restaurant_channel );
+
+    // C: .subscribe and .init should be the first things to happen when a re
+    pubnub.subscribe({
+      channel: restaurant_channel,
+      message: function(m){ 
+        console.log(interestedCustomers);
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // D: data is coming in properly however view (ng-repeat) does not update
+        //    unless nav bar is taped or other customer is clicked
+        interestedCustomers.push(m);
+        console.log(interestedCustomers); }
+    });
+
     console.log('available:', available);
+
     $http({
       method: 'POST',
       url: serverUrl+'/restaurant/toggle-availability',
       data: { available: available }
-    });
+    })        
+    // D: This will replace the $location.path below once post is actually working 
+    // .then( function() {
+    //   $location.path('/app/restaurant/interested-customers');
+    //   console.log("In the then where template switches");
+    // });
+
+    // D: the line below is temporary until above post is working with actual online server
+    $location.path('/app/restaurant/interested-customers');
   };
 
   var chooseCustomer = function(customerID) {
