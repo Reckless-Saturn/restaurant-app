@@ -12,11 +12,16 @@ a {
   background-size: auto 100%;
 }
 
-/* adds space btw icon and text in buttons */
+/* add space btw icon and text in buttons */
 .iconbuffer {
   margin-right: 10px;
 }
 
 .splashBottom {
   margin-top:70%;
+}
+
+form[name="customerSignUp"] input[type="submit"], form[name="restaurantSignUp"] input[type="submit"] {
+  margin: auto;
+  width: 95%;
 }

@@ -5,20 +5,44 @@
   <ion-content class="has-header">
 
     <form name="restaurantSignUp" ng-submit="signup(restaurantName, address, priceRange, cuisine, email, phoneNumber, password)">
-      <input type="text" placeholder="Restaurant Name" ng-model="restaurantName"></input>
-      <input type="text" placeholder="Address" ng-model="address"></input>
-      <input type="text" placeholder="Price Range (a number between 1 to 5, low to high)" ng-model="priceRange"></input>
-      <input type="text" placeholder="Cuisine" ng-model="cuisine"></input>
-      <input type="text" placeholder="Email" ng-model="email"></input>
-      <input type="text" placeholder="Phone Number (e.g. 415-555-5555)" ng-model="phoneNumber"></input>
-      <input type="password" placeholder="Password" ng-model="password"></input>
 
       <!-- Todo: Possibly to upload restaurant image? -->
       <!-- Mai to David: not sure how to do this, so commented out for now. -->
       <!-- <input type="file" accept="image/*"></input> -->
 
-      <p></p>
-      <input type="submit" value="Sign me up!"></input>
+      <div class="list list-inset">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Resataurant Name</span>
+          <input type="text" placeholder="Zuni Cafe" ng-model="restaurantName"></input>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Address</span>
+          <input type="text" placeholder="944 Market Street, San Francisco, CA" ng-model="address"></input>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Price Range</span>
+          <input type="text" placeholder="A number between 1 to 5, low to high" ng-model="priceRange"></input>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Cuisine</span>
+          <input type="text" placeholder="American" ng-model="cuisine"></input>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">E-mail</span>
+          <input type="text" placeholder="contact@zunicafe.com" ng-model="email"></input>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Phone Number</span>
+          <input type="text" placeholder="415-555-5555" ng-model="phoneNumber"></input>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Password</span>
+          <input type="password" placeholder="It's a secret!" ng-model="password"></input>
+        </label>
+      </div>
+
+      <input type="submit" value="Sign me up!" class="button button-block button-assertive"></input>
+
     </form>
 
   </ion-content>
