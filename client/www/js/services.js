@@ -9,7 +9,7 @@ angular.module('starter.services', ['ngCordova'])
   //// C: needed customer info for .publish
   var customerInfo = {  customerID: 1, 
                         name: "Armando Perez",
-                        phoneNumber: 5557774444,
+                        phoneNumber: '503-555-7777',
                         partySize: 1};
 
   var signup = function(username, firstName, lastName, email, phoneNumber, password) {
