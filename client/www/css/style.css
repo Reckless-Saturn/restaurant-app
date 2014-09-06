@@ -5,11 +5,10 @@ a {
 .splash {
   background: 
     linear-gradient(
-      rgba(0, 0, 0, 0.3), 
+      rgba(0, 0, 0, 0.6), 
       rgba(0, 0, 0, 0)
     ),
     url('../img/splash_repeat.png') repeat;
-  /*background-size: auto 100%;*/
 }
 
 /* add space btw icon and text in buttons */
