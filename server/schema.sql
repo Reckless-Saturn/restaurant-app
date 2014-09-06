@@ -9,6 +9,7 @@ USE restApp;
 /* watch out for these lines - remove later */
 drop table restaurants;
 drop table diners;
+drop table trans_history;
 
 CREATE TABLE restaurants (
   `restaurantID` int(100) NOT NULL AUTO_INCREMENT,
@@ -39,13 +40,14 @@ CREATE TABLE diners (
   PRIMARY KEY (`customerID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE trans_history {
-  `transactionID`, int(100) NOT NULL AUTO_INCREMENT,
+CREATE TABLE trans_history (
+  `transactionID` int(100) NOT NULL AUTO_INCREMENT,
   `restaurantID` int(100) NOT NULL,
   `customerID` int(100) NOT NULL,
   `partySize` int DEFAULT 1,
+  `created` timestamp NOT NULL DEFAULT now(),
   PRIMARY KEY (`transactionID`)
-} ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /* test data */
 insert into diners (username, password, firstName, lastName, email, phone, reservationsMade) values ('armando', 'armando', 'Armando', 'P', 'aaa@aaa.com', '5555555555', 12);

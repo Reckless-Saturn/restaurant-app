@@ -13,8 +13,6 @@ var headers = {
 ///////////////////////////////////////////////////////
 // send reply back to client
 module.exports.sendResponse = function(response, data, status) {
-console.log("data", data);
-
   status = status || 200;
   responseText = JSON.stringify(data);
   response.writeHead(status, headers);

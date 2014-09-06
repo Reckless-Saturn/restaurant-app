@@ -34,7 +34,7 @@ var handlePost = function(request, response, type) {
 
 var handleTransactionPost = function(request, response, type) {
   parser(request, function(data) {
-    addTransaction(response, data, sendResponse);
+    addTransaction(response, data);
   });
 };
 
