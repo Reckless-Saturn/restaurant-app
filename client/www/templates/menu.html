@@ -1,47 +1,42 @@
-<ion-side-menus>
+<ion-nav-bar class="nav-title-slide-ios7 bar-assertive">
+  <ion-nav-back-button class="button-icon ion-arrow-left-c">
+  </ion-nav-back-button>
+</ion-nav-bar>
+         
+<ion-nav-view animation="slide-left-right"></ion-nav-view>
 
-  <ion-pane ion-side-menu-content>
-    <ion-nav-bar class="bar-stable nav-title-slide-ios7">
-      <ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i> Back</ion-nav-back-button>
-    </ion-nav-bar>
-    <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
-  </ion-pane>
+<ion-tabs style="display:none" class="tabs-icon-top tabs-assertive">
 
-  <ion-side-menu side="left">
-    <header class="bar bar-header bar-stable">
-      <h1 class="title">Navigation</h1>
-    </header>
-    <ion-content class="has-header">
-      <ion-list>
+  <ion-tab title="Splash" icon="ion-home" href="#/app/splash">
+    <ion-nav-view name="splash-tab"></ion-nav-view>
+  </ion-tab>
 
-        <!-- Todo: Easy access to all html files for the time being -->
-        <!-- Todo: Eventually customer and restaurant will each have own separate menu -->
-        <ion-item nav-clear menu-close href="#/app/splash">
-          (Splash)
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/app/login">
-          (Login)
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/customer/signup">
-          (Customer: Sign-Up)
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/customer/search-criteria">
-          (Customer: Search Criteria)
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/customer/search-results">
-          (Customer: Search Results)
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/restaurant/signup">
-          (Restaurant: Sign-Up)
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/restaurant/availability">
-          (Restaurant: Availability)
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/restaurant/interested-customers">
-          (Restaurant: Interested Customers)
-        </ion-item>
-        
-      </ion-list>
-    </ion-content>
-  </ion-side-menu>
-</ion-side-menus>
+  <ion-tab title="Login" icon="ion-log-in" href="#/app/login">
+    <ion-nav-view name="login-tab"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="C: Sign-Up" icon="ion-home" href="#/customer/signup">
+    <ion-nav-view name="customer/signup-tab"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="C: Search Criteria" icon="ion-search" href="#/customer/search-criteria">
+    <ion-nav-view name="customer/search-criteria-tab"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="C: Search Results" icon="ion-pizza" href="#/customer/search-results">
+    <ion-nav-view name="customer/search-results-tab"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="R: Sign-Up" icon="ion-home" href="#/restaurant/signup">
+    <ion-nav-view name="restaurant/signup-tab"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="R: Availability" icon="ion-toggle" href="#/restaurant/availability">
+    <ion-nav-view name="restaurant/availability-tab"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="R: Interested Customers" icon="ion-person-stalker" href="#/restaurant/interested-customers">
+    <ion-nav-view name="restaurant/interested-customers-tab"></ion-nav-view>
+  </ion-tab>
+
+</ion-tabs>

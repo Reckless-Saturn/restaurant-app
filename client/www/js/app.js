@@ -36,7 +36,7 @@ angular.module('starter',
     .state('app.splash', {
       url: "/splash",
       views: {
-        'menuContent' :{
+        'splash-tab' :{
           templateUrl: "templates/splash.html"
         }
       }
@@ -45,7 +45,7 @@ angular.module('starter',
    .state('app.login', {
     url: "/login",
     views: {
-      'menuContent' :{
+      'login-tab' :{
         templateUrl: "templates/login.html",
         controller: 'AppCtrl'
         }
@@ -64,7 +64,7 @@ angular.module('starter',
     .state('customer.signUp', {
       url: "/signup",
       views: {
-        'menuContent' :{
+        'customer/signup-tab' :{
           templateUrl: "templates/customer/signup.html",
           controller: 'CustomerCtrl'
         }
@@ -74,7 +74,7 @@ angular.module('starter',
     .state('customer.searchCriteria', {
       url: "/search-criteria",
       views: {
-        'menuContent' :{
+        'customer/search-criteria-tab' :{
           templateUrl: "templates/customer/search-criteria.html",
           controller: 'CustomerCtrl'
         }
@@ -84,7 +84,7 @@ angular.module('starter',
     .state('customer.searchResults', {
       url: "/search-results",
       views: {
-        'menuContent' :{
+        'customer/search-results-tab' :{
           templateUrl: "templates/customer/search-results.html",
           controller: 'CustomerCtrl'
         }
@@ -103,7 +103,7 @@ angular.module('starter',
     .state('restaurant.signUp', {
       url: "/signup",
       views: {
-        'menuContent' :{
+        'restaurant/signup-tab' :{
           templateUrl: "templates/restaurant/signup.html",
           controller: 'RestaurantCtrl'
         }
@@ -113,7 +113,7 @@ angular.module('starter',
     .state('restaurant.availability', {
       url: "/availability",
       views: {
-        'menuContent' :{
+        'restaurant/availability-tab' :{
           templateUrl: "templates/restaurant/availability.html",
           controller: 'RestaurantCtrl'
         }
@@ -123,7 +123,7 @@ angular.module('starter',
     .state('restaurant.interestedCustomers', {
       url: "/interested-customers",
       views: {
-        'menuContent' :{
+        'restaurant/interested-customers-tab' :{
           templateUrl: "templates/restaurant/interested-customers.html",
           controller: 'RestaurantCtrl'
         }

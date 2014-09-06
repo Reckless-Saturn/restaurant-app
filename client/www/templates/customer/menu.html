@@ -1,25 +1,22 @@
-<ion-side-menus>
+<ion-nav-bar class="nav-title-slide-ios7 bar-assertive">
+  <ion-nav-back-button class="button-icon ion-arrow-left-c">
+  </ion-nav-back-button>
+</ion-nav-bar>
+         
+<ion-nav-view animation="slide-left-right"></ion-nav-view>
 
-  <ion-pane ion-side-menu-content>
-    <ion-nav-bar class="bar-stable nav-title-slide-ios7">
-      <ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i> Back</ion-nav-back-button>
-    </ion-nav-bar>
-    <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
-  </ion-pane>
+<ion-tabs class="tabs-icon-top tabs-assertive">
 
-  <ion-side-menu side="left">
-    <header class="bar bar-header bar-stable">
-      <h1 class="title">Hungry Customer</h1>
-    </header>
-    <ion-content class="has-header">
-      <ion-list>
-        <ion-item nav-clear menu-close href="#/customer/search-criteria">
-          Search Criteria
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/customer/search-results">
-          Search Results
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-side-menu>
-</ion-side-menus>
+  <ion-tab title="C: Sign-Up" icon="ion-home" href="#/customer/signup">
+    <ion-nav-view name="customer/signup-tab"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="C: Search Criteria" icon="ion-search" href="#/customer/search-criteria">
+    <ion-nav-view name="customer/search-criteria-tab"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="C: Search Results" icon="ion-pizza" href="#/customer/search-results">
+    <ion-nav-view name="customer/search-results-tab"></ion-nav-view>
+  </ion-tab>
+
+</ion-tabs>

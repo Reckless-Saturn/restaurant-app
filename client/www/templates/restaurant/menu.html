@@ -1,25 +1,22 @@
-<ion-side-menus>
+<ion-nav-bar class="nav-title-slide-ios7 bar-assertive">
+  <ion-nav-back-button class="button-icon ion-arrow-left-c">
+  </ion-nav-back-button>
+</ion-nav-bar>
+         
+<ion-nav-view animation="slide-left-right"></ion-nav-view>
 
-  <ion-pane ion-side-menu-content>
-    <ion-nav-bar class="bar-stable nav-title-slide-ios7">
-      <ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i> Back</ion-nav-back-button>
-    </ion-nav-bar>
-    <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
-  </ion-pane>
+<ion-tabs class="tabs-icon-top tabs-assertive">
 
-  <ion-side-menu side="left">
-    <header class="bar bar-header bar-stable">
-      <h1 class="title">Restaurant</h1>
-    </header>
-    <ion-content class="has-header">
-      <ion-list>
-        <ion-item nav-clear menu-close href="#/restaurant/availability">
-          Availability
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/restaurant/interested-customers">
-          Interested Customers
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-side-menu>
-</ion-side-menus>
+  <ion-tab title="R: Sign-Up" icon="ion-home" href="#/restaurant/signup">
+    <ion-nav-view name="restaurant/signup-tab"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="R: Availability" icon="ion-toggle" href="#/restaurant/availability">
+    <ion-nav-view name="restaurant/availability-tab"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="R: Interested Customers" icon="ion-person-stalker" href="#/restaurant/interested-customers">
+    <ion-nav-view name="restaurant/interested-customers-tab"></ion-nav-view>
+  </ion-tab>
+
+</ion-tabs>
