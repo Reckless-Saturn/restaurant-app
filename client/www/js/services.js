@@ -265,12 +265,13 @@ angular.module('starter.services', ['ngCordova'])
     $location.path('/app/restaurant/interested-customers');
   };
 
-  var chooseCustomer = function(customerID) {
+  var chooseCustomer = function(customerID, partySize) {
     console.log('chosen customer ID:', customerID);
     $http({
       method: 'POST',
       url: serverUrl+'/restaurant/choose-customer',
-      data: { customerID: customerID }
+      // D: restaurantID is hard coded for now
+      data: { customerID: customerID, restaurantID: 0, partySize: partySize }
     });
   };
 
