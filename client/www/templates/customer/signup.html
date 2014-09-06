@@ -3,34 +3,83 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
 
+
     <form name="customerSignUp" ng-submit="signup(username, firstName, lastName, email, phoneNumber, password)">
       <div class="list">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Username</span>
-          <input type="text" placeholder="hungry_armandito415" ng-model="username"></input>
+          <input name="username" type="text" placeholder="hungry_armandito415" ng-model="username" required ng-minlength=3 ng-maxlength=20 ></input>
+
+          <!-- BEGIN error message-->
+          <div ng-show="customerSignUp.username.$dirty && customerSignUp.username.$invalid">
+            <small class="error" ng-show="customerSignUp.username.$error.required || customerSignUp.username.$error.minlength || customerSignUp.username.$error.maxlength">Username is required and must be 3-20 characters in length</small>
+          </div>
+          <!-- END error message-->
         </label>
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Password</span>
-          <input type="password" placeholder="Shhh... It's super secret." ng-model="password"></input>
+          <input name="password" type="password" placeholder="Shhh... It's super secret." ng-model="password" required ng-minlength=5 ng-maxlength=20 ></input>
+
+          <!-- BEGIN error message-->
+          <div ng-show="customerSignUp.password.$dirty && customerSignUp.password.$invalid">
+            <small class="error" ng-show="customerSignUp.password.$error.required || customerSignUp.password.$error.minlength || customerSignUp.password.$error.maxlength">Password required and must be 5-20 characters in length</small>
+          </div>
+
+          <!-- END error message-->
         </label>
+
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">First Name</span>
-          <input type="text" placeholder="Armando" ng-model="firstName"></input>
+          <input name="first" type="text" placeholder="Armando" ng-model="firstName" required ng-minlength=3 />
+
+          <!-- BEGIN error message-->
+          <div ng-show="customerSignUp.first.$dirty && customerSignUp.first.$invalid">
+            <small class="error" ng-show="customerSignUp.first.$error.required || customerSignUp.first.$error.minlength || customerSignUp.first.$error.maxlength">First name is required and must be at least 3 characters in length</small>
+          </div>
+          <!-- END error message-->
+
         </label>
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Last Name</span>
-          <input type="text" placeholder="Perez" ng-model="lastName"></input>
+          <input name="last" type="text" placeholder="Perez" ng-model="lastName" required ng-minlength=3/>
+
+           <!-- BEGIN error message-->
+          <div ng-show="customerSignUp.last.$dirty && customerSignUp.last.$invalid">
+            <small class="error" ng-show="customerSignUp.last.$error.required || customerSignUp.last.$error.minlength || customerSignUp.last.$error.maxlength">Last name is required and must be at least 3 characters in length</small>
+          </div>
+          <!-- END error message-->
+
         </label>
+
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">E-mail</span>
-          <input type="text" placeholder="armanditoperez@gmail.com" ng-model="email"></input>
+          <input name="email" type="email" placeholder="armanditoperez@gmail.com" ng-model="email" required />
+
+           <!-- BEGIN error message-->
+          <div ng-show="customerSignUp.email.$dirty && customerSignUp.email.$invalid">
+            <small class="error" ng-show="customerSignUp.email.$error.required">Valid email required</small>
+          </div>
+          <!-- END error message-->
         </label>
+
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Phone Number</span>
-          <input type="text" placeholder="415-555-5555" ng-model="phoneNumber"></input>
+          <input name="phone" type="text" placeholder="415-555-5555" ng-model="phoneNumber" required ng-minlength=12 ng-maxlength=12/>
+
+          <!-- BEGIN error message-->
+          <div ng-show="customerSignUp.phone.$dirty && customerSignUp.phone.$invalid">
+            <small class="error" ng-show="customerSignUp.phone.$error.required || customerSignUp.phone.$error.minlength || customerSignUp.phone.$error.maxlength">Phone number must match this format: 555-555-5555</small>
+          </div>
+          <!-- END error message-->
         </label>
+
       </div>
-      <button type="submit" class="button button-full button-dark">Sign me up!</button>
+      <button type="submit" class="button button-full button-dark" ng-disabled="customerSignUp.$invalid">Sign me up!</button>
     </form>
 
   </ion-content>

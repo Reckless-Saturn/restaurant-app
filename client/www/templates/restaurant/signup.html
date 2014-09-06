@@ -14,36 +14,44 @@
           <span class="input-label">Username</span>
           <input type="text" placeholder="missioncafe_sfca" ng-model="username"></input>
         </label>           
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Password</span>
           <input type="password" placeholder="Shhh... It's super secret." ng-model="password"></input>
         </label>        
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Restaurant Name</span>
           <input type="text" placeholder="Zuni Cafe" ng-model="restaurantName"></input>
         </label>
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Address</span>
           <input type="text" placeholder="944 Market Street, San Francisco, CA" ng-model="address"></input>
         </label>
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Price Range</span>
           <input type="text" placeholder="A number between 1 to 5, low to high" ng-model="priceRange"></input>
         </label>
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Cuisine</span>
           <input type="text" placeholder="American" ng-model="cuisine"></input>
         </label>
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">E-mail</span>
           <input type="text" placeholder="contact@zunicafe.com" ng-model="email"></input>
         </label>
+        
         <label class="item item-input item-stacked-label">
           <span class="input-label">Phone Number</span>
           <input type="text" placeholder="415-555-5555" ng-model="phoneNumber"></input>
         </label>
       </div>
-      <button type="submit" class="button button-full button-dark">Sign me up!</button>
+
+      <button type="submit" class="button button-full button-dark" ng-disabled="restaurantSignUp.$invalid">Sign me up!</button>
     </form>
 
   </ion-content>
