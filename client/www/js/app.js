@@ -41,6 +41,7 @@ angular.module('starter',
         }
       }
     })
+
    .state('app.login', {
     url: "/login",
     views: {
@@ -54,8 +55,14 @@ angular.module('starter',
 /////////////////////////////////////////////
 // C: Customer routing
 //
-    .state('app.customerSignUp', {
-      url: "/customer/signup",
+    .state('customer', {
+      url: "/customer",
+      abstract: true,
+      templateUrl: "templates/customer/menu.html"
+    })
+
+    .state('customer.signUp', {
+      url: "/signup",
       views: {
         'menuContent' :{
           templateUrl: "templates/customer/signup.html",
@@ -64,8 +71,8 @@ angular.module('starter',
       }
     })
 
-    .state('app.customerSearchCriteria', {
-      url: "/customer/search-criteria",
+    .state('customer.searchCriteria', {
+      url: "/search-criteria",
       views: {
         'menuContent' :{
           templateUrl: "templates/customer/search-criteria.html",
@@ -74,8 +81,8 @@ angular.module('starter',
       }
     })
 
-    .state('app.customerSearchResults', {
-      url: "/customer/search-results",
+    .state('customer.searchResults', {
+      url: "/search-results",
       views: {
         'menuContent' :{
           templateUrl: "templates/customer/search-results.html",
@@ -87,8 +94,14 @@ angular.module('starter',
 /////////////////////////////////////////////
 // C: Restaurant Routing
 //
-    .state('app.restaurantSignUp', {
-      url: "/restaurant/signup",
+    .state('restaurant', {
+      url: "/restaurant",
+      abstract: true,
+      templateUrl: "templates/restaurant/menu.html"
+    })
+
+    .state('restaurant.signUp', {
+      url: "/signup",
       views: {
         'menuContent' :{
           templateUrl: "templates/restaurant/signup.html",
@@ -97,8 +110,8 @@ angular.module('starter',
       }
     })
 
-    .state('app.restaurantAvailability', {
-      url: "/restaurant/availability",
+    .state('restaurant.availability', {
+      url: "/availability",
       views: {
         'menuContent' :{
           templateUrl: "templates/restaurant/availability.html",
@@ -107,8 +120,8 @@ angular.module('starter',
       }
     })
 
-    .state('app.restaurantInterestedCustomers', {
-      url: "/restaurant/interested-customers",
+    .state('restaurant.interestedCustomers', {
+      url: "/interested-customers",
       views: {
         'menuContent' :{
           templateUrl: "templates/restaurant/interested-customers.html",
