@@ -8,6 +8,8 @@ var parseQuery = require('./helpers').parseQuery;
 var addUser = require('./queries').addUser;
 var addRestaurant = require('./queries').addRestaurant;
 var getRestaurants = require('./queries').getRestaurants;
+var addTransaction = require('./queries').addTransaction;
+var getUserInfo = require('./queries').getUserInfo;
 
 ///////////////////////////////////////////////////////
 // route handlers
@@ -28,7 +30,19 @@ var handlePost = function(request, response, type) {
       addRestaurant(response, data, sendResponse);
     }
   });
-}
+};
+
+var handleTransactionPost = function(request, response, type) {
+  parser(request, function(data) {
+    addTransaction(response, data, sendResponse);
+  });
+};
+
+var handleLoginGet = function(request, response, type) {
+  parser(request, function(data) {
+    getUserInfo(response, data, sendResponse);
+  });
+};
 
 //////////////////////////////////////////////////////
 // main server router
@@ -47,7 +61,14 @@ module.exports = function(request, response) {
   } else if (request.method === 'POST' && path == '/restaurant/signup') {
     handlePost(request, response, 'restaurant');
 
+  } else if (request.method === 'POST' && path == '/restaurant/choose-customer') {
+    handleTransactionPost(request, response );
+
+  } else if (request.method === 'GET' && path == '/login') {
+    handleLoginGet(request, response );
+
   } else {
     sendResponse(response, 'Bad request', 404);
   }
 };
+
