@@ -53,11 +53,13 @@ exports.addUser = function(response, data, callback) {
 // insert restaurants
 exports.addRestaurant = function(response, data, callback) {
   connection.query(
-    'insert into restaurants (restaurantName, password, address, priceRange, cuisine, email, phone)'
+    'insert into restaurants (restaurantName, password, address, latitude, longitude, priceRange, cuisine, email, phone)'
     + ' values ("'
       + data.restaurantName + '", "'
       + data.password       + '", "'
       + data.address        + '", "'
+      + data.lat            + '", "'
+      + data.long           + '", "'
       + data.priceRange     + '", "'
       + data.cuisine        + '", "'
       + data.email          + '", "'
@@ -68,6 +70,36 @@ exports.addRestaurant = function(response, data, callback) {
       callback(response, "Restaurant added successfully");
     }
   )
+};
+
+///////////////////////////////////////////////////////
+// query to find restaurants within a certain range
+exports.getUserInfo = function(response, query, callback) {
+  connection.query(
+    'select * from diners where username = "' + query.username + '"',
+    function(err, results) {
+      if (err) { throw err; }
+      if (results.length > 0) {
+        callback(response, results, 200);
+      } else {
+        findRestaurants(results);
+      }
+    }
+  )
+
+  var findRestaurants = function(results) {
+    connection.query(
+      'select * from restaurants where username = "' + query.username + '"',
+      function(err, results) {
+        if (err) { throw err; }
+        if (results.length > 0) {
+          callback(response, results, 200);
+        } else {
+          callback(response, "No login found", 204);
+        }
+      }
+    )
+  }
 };
 
 ///////////////////////////////////////////////////////

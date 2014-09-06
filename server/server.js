@@ -1,5 +1,4 @@
 ///////////////////////////////////////////////////////
-<<<<<<< HEAD
 // import required files
 var http = require('http');
 var router = require('./request-handler');
