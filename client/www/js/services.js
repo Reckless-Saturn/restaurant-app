@@ -7,7 +7,6 @@ angular.module('starter.services', ['ngCordova'])
 
   var loginUrl = serverUrl +'/login?'+
     'username='+username;
-  console.log('Username:', loginUrl);
 
     $http({
       method: 'GET',
