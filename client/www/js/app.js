@@ -41,16 +41,16 @@ angular.module('starter',
         }
       }
     })
-       .state('app.login', {
-        url: "/login",
-        views: {
-          'menuContent' :{
-            templateUrl: "templates/login.html",
-            controller: 'AppCtrl'
 
-          }
+   .state('app.login', {
+    url: "/login",
+    views: {
+      'menuContent' :{
+        templateUrl: "templates/login.html",
+        controller: 'AppCtrl'
         }
-      })     
+      }
+    })
 
 /////////////////////////////////////////////
 // C: Customer routing
@@ -65,20 +65,26 @@ angular.module('starter',
       }
     })
 
-    .state('app.customerSearchCriteria', {
-      url: "/customer/search-criteria",
+    .state('customer', {
+      url: "/customer",
+      abstract: true,
+      templateUrl: "templates/customer/menu.html"
+    })
+
+    .state('customer.searchCriteria', {
+      url: "/search-criteria",
       views: {
-        'menuContent' :{
+        'customer/search-criteria-tab' :{
           templateUrl: "templates/customer/search-criteria.html",
           controller: 'CustomerCtrl'
         }
       }
     })
 
-    .state('app.customerSearchResults', {
-      url: "/customer/search-results",
+    .state('customer.searchResults', {
+      url: "/search-results",
       views: {
-        'menuContent' :{
+        'customer/search-results-tab' :{
           templateUrl: "templates/customer/search-results.html",
           controller: 'CustomerCtrl'
         }
@@ -98,20 +104,26 @@ angular.module('starter',
       }
     })
 
-    .state('app.restaurantAvailability', {
-      url: "/restaurant/availability",
+    .state('restaurant', {
+      url: "/restaurant",
+      abstract: true,
+      templateUrl: "templates/restaurant/menu.html"
+    })
+
+    .state('restaurant.availability', {
+      url: "/availability",
       views: {
-        'menuContent' :{
+        'restaurant/availability-tab' :{
           templateUrl: "templates/restaurant/availability.html",
           controller: 'RestaurantCtrl'
         }
       }
     })
 
-    .state('app.restaurantInterestedCustomers', {
-      url: "/restaurant/interested-customers",
+    .state('restaurant.interestedCustomers', {
+      url: "/interested-customers",
       views: {
-        'menuContent' :{
+        'restaurant/interested-customers-tab' :{
           templateUrl: "templates/restaurant/interested-customers.html",
           controller: 'RestaurantCtrl'
         }

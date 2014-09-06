@@ -1,6 +1,5 @@
-<ion-view title="Restaurant: Sign-Up">
+<ion-view title="Restaurant Sign-Up">
   <ion-nav-buttons side="left">
-    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header">
 
@@ -10,14 +9,14 @@
       <!-- Mai to David: not sure how to do this, so commented out for now. -->
       <!-- <input type="file" accept="image/*"></input> -->
 
-      <div class="list list-inset">
+      <div class="list">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Username</span>
-          <input type="text" placeholder="foodie415" ng-model="username"></input>
+          <input type="text" placeholder="missioncafe_sfca" ng-model="username"></input>
         </label>           
         <label class="item item-input item-stacked-label">
           <span class="input-label">Password</span>
-          <input type="password" placeholder="It's a secret!" ng-model="password"></input>
+          <input type="password" placeholder="Shhh... It's super secret." ng-model="password"></input>
         </label>        
         <label class="item item-input item-stacked-label">
           <span class="input-label">Restaurant Name</span>
@@ -43,11 +42,8 @@
           <span class="input-label">Phone Number</span>
           <input type="text" placeholder="415-555-5555" ng-model="phoneNumber"></input>
         </label>
-     
       </div>
-
-      <input type="submit" value="Sign me up!" class="button button-block button-assertive"></input>
-
+      <button type="submit" class="button button-full button-dark">Sign me up!</button>
     </form>
 
   </ion-content>

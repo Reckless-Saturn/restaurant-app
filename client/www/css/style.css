@@ -5,8 +5,8 @@ a {
 .splash {
   background: 
     linear-gradient(
-      rgba(0, 0, 0, 0.1), 
-      rgba(0, 0, 0, 0.1)
+      rgba(255, 255, 255, 0.3), 
+      rgba(255, 255, 255, 0)
     ),
     url('../img/pizzaTitle.jpg') no-repeat center;
   background-size: auto 100%;
@@ -17,11 +17,24 @@ a {
   margin-right: 10px;
 }
 
-.splashBottom {
-  margin-top:70%;
+div.logo {
+  margin-top: 50%;
+  text-align: center;
+  font-family: 'Lobster', cursive;
+  font-size: 5em;
+  line-height: 0.8em;
+  color: white;
+  text-shadow: 2px 2px #ef4e3a;
 }
 
-form[name="customerSignUp"] input[type="submit"], form[name="restaurantSignUp"] input[type="submit"] {
+div.splashButtons {
   margin: auto;
-  width: 95%;
+  margin-top: 30%;
+  width: 90%;
+}
+
+select {
+  width: 50%;
+  background-color: white;
+  border: 1px solid black;
 }
