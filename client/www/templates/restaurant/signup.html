@@ -4,13 +4,21 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
 
-    <form name="restaurantSignUp" ng-submit="signup(restaurantName, address, priceRange, cuisine, email, phoneNumber, password)">
+    <form name="restaurantSignUp" ng-submit="signup(username, password, restaurantName, address, priceRange, cuisine, email, phoneNumber)">
 
       <!-- Todo: Possibly to upload restaurant image? -->
       <!-- Mai to David: not sure how to do this, so commented out for now. -->
       <!-- <input type="file" accept="image/*"></input> -->
 
       <div class="list list-inset">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Username</span>
+          <input type="text" placeholder="foodie415" ng-model="username"></input>
+        </label>           
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Password</span>
+          <input type="password" placeholder="It's a secret!" ng-model="password"></input>
+        </label>        
         <label class="item item-input item-stacked-label">
           <span class="input-label">Restaurant Name</span>
           <input type="text" placeholder="Zuni Cafe" ng-model="restaurantName"></input>
@@ -35,10 +43,7 @@
           <span class="input-label">Phone Number</span>
           <input type="text" placeholder="415-555-5555" ng-model="phoneNumber"></input>
         </label>
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Password</span>
-          <input type="password" placeholder="It's a secret!" ng-model="password"></input>
-        </label>
+     
       </div>
 
       <input type="submit" value="Sign me up!" class="button button-block button-assertive"></input>

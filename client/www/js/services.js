@@ -166,7 +166,7 @@ angular.module('starter.services', ['ngCordova'])
   // Define global pubnub variable
   var pubnub;
 
-  var signup = function(restaurantName, address, priceRange, cuisine, email, phoneNumber, password) {
+  var signup = function(username, password, restaurantName, address, priceRange, cuisine, email, phoneNumber) {
 
     var geocoder = new google.maps.Geocoder();
 
@@ -175,11 +175,24 @@ angular.module('starter.services', ['ngCordova'])
         var lat = results[0].geometry.location.lat();
         var long = results[0].geometry.location.lng();
         console.log('lat', lat, 'long', long);
+        console.log({
+          username: username,
+          password: password,
+          restaurantName: restaurantName,
+          address: address,
+          lat: lat,
+          long: long,
+          priceRange: priceRange,
+          cuisine: cuisine,
+          email: email,
+          phoneNumber: phoneNumber
+        });
 
         $http({
           method: 'POST',
           url: serverUrl+'/restaurant/signup',
           data: {
+            username: username,
             restaurantName: restaurantName,
             address: address,
             lat: lat,
@@ -192,17 +205,6 @@ angular.module('starter.services', ['ngCordova'])
           }
         });
 
-        console.log({
-          restaurantName: restaurantName,
-          address: address,
-          lat: lat,
-          long: long,
-          priceRange: priceRange,
-          cuisine: cuisine,
-          email: email,
-          phoneNumber: phoneNumber,
-          password: password
-        });
       } else {
         alert('Google Maps Geocoder failed.');
       }
