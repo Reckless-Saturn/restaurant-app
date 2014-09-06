@@ -4,15 +4,14 @@ angular.module('starter.services', ['ngCordova'])
 
 .factory('App', function($http) {
   var login = function(username, password) {
-    console.log('Username:', username, ' Password: ', password);
+
+  var loginUrl = serverUrl +'/login?'+
+    'username='+username;
+  console.log('Username:', loginUrl);
 
     $http({
       method: 'GET',
-      // todo: update URL
-      url: serverUrl+'/login',
-      data: {
-        username: username,
-      }
+      url: loginUrl
     });
     // NOTE: We're only querying username at the moment. No password for the MVP
     // TODO: Add logic to determine if Customer or Restaurant. Add promise to redirect to appropriate page
