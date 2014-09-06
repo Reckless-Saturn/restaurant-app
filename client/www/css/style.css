@@ -17,8 +17,10 @@ a {
   margin-right: 10px;
 }
 
-.splashBottom {
-  margin-top:70%;
+div.splashButtons {
+  margin: auto;
+  margin-top: 75%;
+  width: 90%;
 }
 
 form[name="customerSignUp"] input[type="submit"], form[name="restaurantSignUp"] input[type="submit"] {
