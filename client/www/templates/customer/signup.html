@@ -8,6 +8,7 @@
       <div class="list">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Username</span>
+
           <input name="username" type="text" placeholder="hungry_armandito415" ng-model="username" required ng-minlength=3 ng-maxlength=20 ></input>
 
           <!-- BEGIN error message-->
@@ -29,6 +30,17 @@
           <!-- END error message-->
         </label>
 
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Password</span>
+          <input name="password" type="password" placeholder="It's super secret." ng-model="password"required ng-minlength=5 ng-maxlength=20 />
+
+          <!-- BEGIN error message-->
+          <div ng-show="customerSignUp.password.$dirty && customerSignUp.password.$invalid">
+            <small class="error" ng-show="customerSignUp.password.$error.required || customerSignUp.password.$error.minlength || customerSignUp.password.$error.maxlength">Password required and must be 5-20 characters in length</small>
+          </div>
+
+          <!-- END error message-->
+        </label>
 
         <label class="item item-input item-stacked-label">
           <span class="input-label">First Name</span>
@@ -59,7 +71,7 @@
           <span class="input-label">E-mail</span>
           <input name="email" type="email" placeholder="armanditoperez@gmail.com" ng-model="email" required />
 
-           <!-- BEGIN error message-->
+          <!-- BEGIN error message-->
           <div ng-show="customerSignUp.email.$dirty && customerSignUp.email.$invalid">
             <small class="error" ng-show="customerSignUp.email.$error.required">Valid email required</small>
           </div>

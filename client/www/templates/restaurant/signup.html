@@ -12,42 +12,98 @@
       <div class="list">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Username</span>
-          <input type="text" placeholder="missioncafe_sfca" ng-model="username"></input>
+
+          <input name="username" type="text" placeholder="missioncafe_sfca" ng-model="username" required ng-minlength=3 ng-maxlength=20 ></input>
+
+          <!-- BEGIN error message-->
+          <div ng-show="restaurantSignUp.username.$dirty && restaurantSignUp.username.$invalid">
+            <small class="error" ng-show="restaurantSignUp.username.$error.required || restaurantSignUp.username.$error.minlength || restaurantSignUp.username.$error.maxlength">Username required and must be 3-20 characters in length</small>
+          </div>
+          <!-- END error message-->
+
         </label>           
 
         <label class="item item-input item-stacked-label">
           <span class="input-label">Password</span>
-          <input type="password" placeholder="Shhh... It's super secret." ng-model="password"></input>
+
+          <input type="password" placeholder="Shhh... It's super secret." ng-model="password" required ng-minlength=5 ng-maxlength=20></input>
+
+          <!-- BEGIN error message-->
+          <div ng-show="restaurantSignUp.password.$dirty && restaurantSignUp.password.$invalid">
+            <small class="error" ng-show="restaurantSignUp.password.$error.required || restaurantSignUp.password.$error.minlength || restaurantSignUp.password.$error.maxlength">Password required and must be 5-20 characters in length</small>
+          </div>
+
+          <!-- END error message-->
+
         </label>        
 
         <label class="item item-input item-stacked-label">
           <span class="input-label">Restaurant Name</span>
-          <input type="text" placeholder="Zuni Cafe" ng-model="restaurantName"></input>
+          <input name="name" type="text" placeholder="Zuni Cafe" ng-model="restaurantName" required ng-minlength=1 ng-maxlength=20 />
+
+          <!-- BEGIN error message-->
+          <div ng-show="restaurantSignUp.name.$dirty && restaurantSignUp.name.$invalid">
+            <small class="error" ng-show="restaurantSignUp.name.$error.required || restaurantSignUp.name.$error.minlength || restaurantSignUp.name.$error.maxlength">Restaurant name required and must be 1-20 characters in length</small>
+          </div>
+          <!-- END error message-->
+
         </label>
 
         <label class="item item-input item-stacked-label">
           <span class="input-label">Address</span>
-          <input type="text" placeholder="944 Market Street, San Francisco, CA" ng-model="address"></input>
+          <input name="address" type="text" placeholder="944 Market Street, San Francisco, CA" ng-model="address" required />
+
+        <!-- BEGIN error message-->
+          <div ng-show="restaurantSignUp.address.$dirty && restaurantSignUp.address.$invalid">
+            <small class="error" ng-show="restaurantSignUp.address.$error.required">Address required</small>
+          </div>
+        <!-- END error message-->
         </label>
 
         <label class="item item-input item-stacked-label">
           <span class="input-label">Price Range</span>
-          <input type="text" placeholder="A number between 1 to 5, low to high" ng-model="priceRange"></input>
+          <input name="price" type="number" placeholder="A number between 1 to 5, low to high" ng-model="priceRange" required ng-maxlength=1 min=1 max=5/>
+
+        <!-- BEGIN error message-->
+          <div ng-show="restaurantSignUp.price.$dirty && restaurantSignUp.price.$invalid">
+            <small class="error" ng-show="restaurantSignUp.price.$error.required || restaurantSignUp.price.$error.maxlength || restaurantSignUp.price.$error.min || restaurantSignUp.price.$error.max">Please enter a number between 1-5</small>
+          </div>
+        <!-- END error message-->
+
         </label>
 
         <label class="item item-input item-stacked-label">
           <span class="input-label">Cuisine</span>
-          <input type="text" placeholder="American" ng-model="cuisine"></input>
+          <input name="cuisine" type="text" placeholder="American" ng-model="cuisine" required ng-minlength=3 ng-maxlength=20/>
+
+        <!-- BEGIN error message-->
+          <div ng-show="restaurantSignUp.cuisine.$dirty && restaurantSignUp.cuisine.$invalid">
+            <small class="error" ng-show="restaurantSignUp.cuisine.$error.required || restaurantSignUp.cuisine.$error.maxlength || restaurantSignUp.cuisine.$error.maxlength">Cuisine type required and must be between 3-20 characters in length</small>
+          </div>
+        <!-- END error message-->
         </label>
 
         <label class="item item-input item-stacked-label">
           <span class="input-label">E-mail</span>
-          <input type="text" placeholder="contact@zunicafe.com" ng-model="email"></input>
+          <input name="email" type="email" placeholder="contact@zunicafe.com" ng-model="email" required />
+
+          <!-- BEGIN error message-->
+          <div ng-show="restaurantSignUp.email.$dirty && restaurantSignUp.email.$invalid">
+            <small class="error" ng-show="restaurantSignUp.email.$error.required">Valid email required</small>
+          </div>
+          <!-- END error message-->
         </label>
-        
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Phone Number</span>
-          <input type="text" placeholder="415-555-5555" ng-model="phoneNumber"></input>
+          <input name="phone" type="text" placeholder="415-555-5555" ng-model="phoneNumber" required ng-minlength=12 ng-maxlength=12 />
+
+          <!-- BEGIN error message-->
+          <div ng-show="restaurantSignUp.phone.$dirty && restaurantSignUp.phone.$invalid">
+            <small class="error" ng-show="restaurantSignUp.phone.$error.required || restaurantSignUp.phone.$error.minlength || restaurantSignUp.phone.$error.maxlength">Phone number must match this format: 555-555-5555</small>
+          </div>
+          <!-- END error message-->
+
         </label>
       </div>
 
