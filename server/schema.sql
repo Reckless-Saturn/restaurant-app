@@ -27,7 +27,7 @@ CREATE TABLE restaurants (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE diners (
-  `customerId` int(100) NOT NULL AUTO_INCREMENT,
+  `customerID` int(100) NOT NULL AUTO_INCREMENT,
   `username` varchar(40) NOT NULL UNIQUE,
   `password` varchar(40) NOT NULL,
   `firstName` varchar(40) DEFAULT NULL,
@@ -35,8 +35,16 @@ CREATE TABLE diners (
   `email` varchar(40) NOT NULL UNIQUE,
   `phone` varchar(20) NOT NULL,
   `reservationsMade` int(50) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`customerId`)
+  PRIMARY KEY (`customerID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE trans_history {
+  `transactionID`, int(100) NOT NULL AUTO_INCREMENT,
+  `restaurantID` int(100) NOT NULL,
+  `customerID` int(100) NOT NULL,
+  `partySize` int DEFAULT 1,
+  PRIMARY KEY (`transactionID`)
+} ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /* test data */
 insert into diners (username, password, firstName, lastName, email, phone, reservationsMade) values ('armando', 'armando', 'Armando', 'P', 'aaa@aaa.com', '5555555555', 12);
