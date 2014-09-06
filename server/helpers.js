@@ -13,6 +13,8 @@ var headers = {
 ///////////////////////////////////////////////////////
 // send reply back to client
 module.exports.sendResponse = function(response, data, status) {
+console.log("data", data);
+
   status = status || 200;
   responseText = JSON.stringify(data);
   response.writeHead(status, headers);
@@ -23,9 +25,11 @@ module.exports.sendResponse = function(response, data, status) {
 // parser for get requests
 module.exports.parseQuery = function(request) {
   var query = url.parse(request.url, true).query;
-  var coords = query.customerLoc.split(',');
-  query.latitude = coords[0];
-  query.longitude = coords[1];
+  if (query.customerLoc) {
+    var coords = query.customerLoc.split(',');
+    query.latitude = coords[0];
+    query.longitude = coords[1];
+  }
   return query;
 };
 

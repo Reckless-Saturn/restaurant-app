@@ -39,9 +39,8 @@ var handleTransactionPost = function(request, response, type) {
 };
 
 var handleLoginGet = function(request, response, type) {
-  parser(request, function(data) {
-    getUserInfo(response, data, sendResponse);
-  });
+  query = parseQuery(request);
+  getUserInfo(response, query, sendResponse);
 };
 
 //////////////////////////////////////////////////////
