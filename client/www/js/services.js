@@ -114,10 +114,10 @@ angular.module('starter.services', ['ngCordova'])
         .then(function(response) {
           searchResults = response.data;
           customerInfo.partySize = partySize;
-          $location.path('/app/customer/search-results');
+          $location.path('/customer/search-results');
         });
         // D: the line below is temporary until above post is working with actual online server
-        $location.path('/app/customer/search-results');
+        $location.path('/customer/search-results');
 
       }, function(err) {
         console.log(err)
@@ -262,7 +262,7 @@ angular.module('starter.services', ['ngCordova'])
     // });
 
     // D: the line below is temporary until above post is working with actual online server
-    $location.path('/app/restaurant/interested-customers');
+    $location.path('/restaurant/interested-customers');
   };
 
   var chooseCustomer = function(customerID, partySize) {
