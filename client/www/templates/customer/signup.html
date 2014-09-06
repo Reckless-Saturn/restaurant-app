@@ -20,18 +20,6 @@
 
         <label class="item item-input item-stacked-label">
           <span class="input-label">Password</span>
-          <input name="password" type="password" placeholder="Shhh... It's super secret." ng-model="password" required ng-minlength=5 ng-maxlength=20 ></input>
-
-          <!-- BEGIN error message-->
-          <div ng-show="customerSignUp.password.$dirty && customerSignUp.password.$invalid">
-            <small class="error" ng-show="customerSignUp.password.$error.required || customerSignUp.password.$error.minlength || customerSignUp.password.$error.maxlength">Password required and must be 5-20 characters in length</small>
-          </div>
-
-          <!-- END error message-->
-        </label>
-
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Password</span>
           <input name="password" type="password" placeholder="It's super secret." ng-model="password"required ng-minlength=5 ng-maxlength=20 />
 
           <!-- BEGIN error message-->
