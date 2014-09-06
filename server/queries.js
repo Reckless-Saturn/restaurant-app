@@ -73,7 +73,24 @@ exports.addRestaurant = function(response, data, callback) {
 };
 
 ///////////////////////////////////////////////////////
-// query to find restaurants within a certain range
+// query to find login info
+exports.addTransaction = function(response, data) {
+  connection.query(
+    'insert into trans_history (customerID, restaurantID, partySize)'
+    + ' values ("'
+      + data.customerID   + '", "'
+      + data.restaurantID + '", "'
+      + data.partySize
+    + '")',
+    function(err, results) {
+      if (err) { throw err; }
+      console.log("Transaction inserted");
+    }
+  )
+};
+
+///////////////////////////////////////////////////////
+// query to find login info
 exports.getUserInfo = function(response, query, callback) {
   connection.query(
     'select * from diners where username = "' + query.username + '"',
