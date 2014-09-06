@@ -23,7 +23,7 @@ div.splashButtons {
   width: 90%;
 }
 
-form[name="customerSignUp"] input[type="submit"], form[name="restaurantSignUp"] input[type="submit"] {
+/*form[name="customerSignUp"] input[type="submit"], form[name="restaurantSignUp"] input[type="submit"] {
   margin: auto;
   width: 95%;
-}
+}*/

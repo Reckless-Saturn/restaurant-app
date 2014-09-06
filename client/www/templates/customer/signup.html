@@ -6,7 +6,7 @@
   <ion-content class="has-header">
 
     <form name="customerSignUp" ng-submit="signup(username, firstName, lastName, email, phoneNumber, password)">
-      <div class="list list-inset">
+      <div class="list">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Username</span>
           <input type="text" placeholder="armandito415" ng-model="username"></input>
@@ -32,7 +32,7 @@
           <input type="password" placeholder="It's super secret." ng-model="password"></input>
         </label>
       </div>
-      <input type="submit" value="Sign me up!" class="button button-block button-assertive"></input>
+      <button type="submit" class="button button-full button-assertive">Sign me up!</input>
     </form>
 
   </ion-content>
