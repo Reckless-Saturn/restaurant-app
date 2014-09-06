@@ -2,6 +2,28 @@ var serverUrl = 'http://127.0.0.1:5555';
 
 angular.module('starter.services', ['ngCordova'])
 
+.factory('App', function($http) {
+  var login = function(username, password) {
+    console.log('Username:', username, ' Password: ', password);
+
+    $http({
+      method: 'GET',
+      // todo: update URL
+      url: serverUrl+'/login',
+      data: {
+        username: username,
+      }
+    });
+    // NOTE: We're only querying username at the moment. No password for the MVP
+    // TODO: Add logic to determine if Customer or Restaurant. Add promise to redirect to appropriate page
+  };
+
+  return {
+    login: login
+  };
+
+})
+
 .factory('Customer', function($http, $location, $cordovaGeolocation) {
 
   // Define global pubnub variable
@@ -264,6 +286,5 @@ angular.module('starter.services', ['ngCordova'])
 /* 
 CUSTOMERS FACTORY:
 this should be the function to request from the server. Once the user submits on 'search-criteria.html', it should invoke this function. 
-
 Upon success, this function should change the value of searchResults
 */

@@ -1,6 +1,13 @@
 angular.module('starter.controllers', ['starter.services'])
 
 // Start Restaurant App's controllers
+.controller('AppCtrl', function($scope, App) {
+  
+  $scope.login = App.login;
+
+})
+
+
 .controller('CustomerCtrl', function($scope, Customer) {
 
   $scope.signup = Customer.signup;
