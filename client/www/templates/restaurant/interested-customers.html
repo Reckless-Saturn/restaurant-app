@@ -1,9 +1,10 @@
-<ion-view title="Restaurant: Interested Customers">
+<ion-view title="Interested Customers">
   <ion-nav-buttons side="left">
   </ion-nav-buttons>
   <ion-content class="has-header">
 
-    <ion-checkbox ng-repeat="customer in interestedCustomers" ng-click="chooseCustomer(customer.customerID, customer.partySize)">
+    <ion-checkbox class="checkbox-assertive" ng-repeat="customer in interestedCustomers" ng-click="chooseCustomer(customer.customerID, customer.partySize)">
+      <span class="icon ion-person iconbuffer"></span>
       {{ customer.name }}
       <br/>Party of {{ customer.partySize }}
       <br/>{{ customer.phoneNumber }}

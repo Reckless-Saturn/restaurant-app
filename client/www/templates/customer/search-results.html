@@ -1,12 +1,13 @@
-<ion-view title="Customer: Search Results">
+<ion-view title="Search Results">
   <ion-nav-buttons side="left">
   </ion-nav-buttons>
   <ion-content class="has-header">
 
-    <ion-checkbox ng-repeat="restaurant in searchResults" ng-click="chooseRestaurant(restaurant.restaurantID)">
+    <ion-checkbox class="checkbox-e checkbox-assertive" ng-repeat="restaurant in searchResults" ng-click="chooseRestaurant(restaurant.restaurantID)">
+      <span class="icon ion-fork iconbuffer"></span>
       {{ restaurant.restaurantName }}
       <br/>{{ restaurant.address }}
-      <br/>{{ restaurant.distance }} mi away - {{ restaurant.cuisine }} - {{ restaurant.priceRange }}/5
+      <br/>{{ restaurant.distance }} mi away - {{ restaurant.cuisine }} - ${{ restaurant.priceRange }}/5
 
       <!-- 
       Todo: 

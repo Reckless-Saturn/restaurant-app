@@ -2,16 +2,28 @@ var serverUrl = 'http://127.0.0.1:5555';
 
 angular.module('starter.services', ['ngCordova'])
 
-.factory('App', function($http) {
+.factory('App', function($http, $location) {
+
   var login = function(username, password) {
 
-  var loginUrl = serverUrl +'/login?'+
-    'username='+username;
+    var loginUrl = serverUrl+'/login?'+
+      'username='+username;
 
     $http({
       method: 'GET',
       url: loginUrl
+    }).then(function(response) {
+      // todo: Handle login based on response data object
+      // if customer,
+      $location.path('/customer/search-criteria');
+      // if restaurant,
+      $location.path('/restaurant/availability');
     });
+
+    // todo: Remove. Only here for testing purposes.
+    console.log('in App factory login');
+    $location.path('/customer/search-criteria'); // this works
+
     // NOTE: We're only querying username at the moment. No password for the MVP
     // TODO: Add logic to determine if Customer or Restaurant. Add promise to redirect to appropriate page
   };
@@ -22,7 +34,7 @@ angular.module('starter.services', ['ngCordova'])
 
 })
 
-.factory('Customer', function($http, $location, $cordovaGeolocation) {
+.factory('Customer', function($http, $location, $cordovaGeolocation, App) {
 
   // Define global pubnub variable
   var pubnub;
@@ -52,10 +64,15 @@ angular.module('starter.services', ['ngCordova'])
         lastName: lastName,
         email: email,
         phoneNumber: phoneNumber,
-        password: password
+        password: password,
       }
+    }).then(function(response) {
+      // todo: handle login after sign-up?
+      // App.login(username, password);
     });
 
+    // todo: Remove. Done here just to test.
+    App.login(username, password);
   };
 
   var searchResults = [
@@ -91,7 +108,7 @@ angular.module('starter.services', ['ngCordova'])
     // ngCordova geolocation
     $cordovaGeolocation
       .getCurrentPosition()
-      .then(function (position) {
+      .then(function(position) {
 
         var lat  = position.coords.latitude
         var long = position.coords.longitude
@@ -161,7 +178,7 @@ angular.module('starter.services', ['ngCordova'])
 
 })
 
-.factory('Restaurant', function($http, $location) {
+.factory('Restaurant', function($http, $location, App) {
 
   // Define global pubnub variable
   var pubnub;
@@ -203,7 +220,13 @@ angular.module('starter.services', ['ngCordova'])
             phoneNumber: phoneNumber,
             password: password
           }
+        }).then(function(response) {
+          // todo: handle login after sign-up?
+          // App.login(username, password);
         });
+
+        // todo: Remove. Done here just to test.
+        App.login(username, password);
 
       } else {
         alert('Google Maps Geocoder failed.');

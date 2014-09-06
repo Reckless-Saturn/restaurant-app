@@ -1,42 +1,10 @@
-<ion-nav-bar class="nav-title-slide-ios7 bar-assertive">
-  <ion-nav-back-button class="button-icon ion-arrow-left-c">
-  </ion-nav-back-button>
-</ion-nav-bar>
-         
-<ion-nav-view animation="slide-left-right"></ion-nav-view>
+<ion-side-menus>
 
-<ion-tabs class="tabs-icon-top tabs-assertive">
+  <ion-pane ion-side-menu-content>
+    <ion-nav-bar class="bar-assertive nav-title-slide-ios7">
+      <ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i></ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+  </ion-pane>
 
-  <ion-tab title="Splash" icon="ion-home" href="#/app/splash">
-    <ion-nav-view name="splash-tab"></ion-nav-view>
-  </ion-tab>
-
-  <ion-tab title="Login" icon="ion-log-in" href="#/app/login">
-    <ion-nav-view name="login-tab"></ion-nav-view>
-  </ion-tab>
-
-  <ion-tab title="C: Sign-Up" icon="ion-home" href="#/customer/signup">
-    <ion-nav-view name="customer/signup-tab"></ion-nav-view>
-  </ion-tab>
-
-  <ion-tab title="C: Search Criteria" icon="ion-search" href="#/customer/search-criteria">
-    <ion-nav-view name="customer/search-criteria-tab"></ion-nav-view>
-  </ion-tab>
-
-  <ion-tab title="C: Search Results" icon="ion-pizza" href="#/customer/search-results">
-    <ion-nav-view name="customer/search-results-tab"></ion-nav-view>
-  </ion-tab>
-
-  <ion-tab title="R: Sign-Up" icon="ion-home" href="#/restaurant/signup">
-    <ion-nav-view name="restaurant/signup-tab"></ion-nav-view>
-  </ion-tab>
-
-  <ion-tab title="R: Availability" icon="ion-toggle" href="#/restaurant/availability">
-    <ion-nav-view name="restaurant/availability-tab"></ion-nav-view>
-  </ion-tab>
-
-  <ion-tab title="R: Interested Customers" icon="ion-person-stalker" href="#/restaurant/interested-customers">
-    <ion-nav-view name="restaurant/interested-customers-tab"></ion-nav-view>
-  </ion-tab>
-
-</ion-tabs>
+</ion-side-menus>

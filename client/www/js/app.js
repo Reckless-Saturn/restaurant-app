@@ -36,7 +36,7 @@ angular.module('starter',
     .state('app.splash', {
       url: "/splash",
       views: {
-        'splash-tab' :{
+        'menuContent' :{
           templateUrl: "templates/splash.html"
         }
       }
@@ -45,7 +45,7 @@ angular.module('starter',
    .state('app.login', {
     url: "/login",
     views: {
-      'login-tab' :{
+      'menuContent' :{
         templateUrl: "templates/login.html",
         controller: 'AppCtrl'
         }
@@ -55,20 +55,20 @@ angular.module('starter',
 /////////////////////////////////////////////
 // C: Customer routing
 //
-    .state('customer', {
-      url: "/customer",
-      abstract: true,
-      templateUrl: "templates/customer/menu.html"
-    })
-
-    .state('customer.signUp', {
-      url: "/signup",
+    .state('app.customerSignUp', {
+      url: "/customer/signup",
       views: {
-        'customer/signup-tab' :{
+        'menuContent' :{
           templateUrl: "templates/customer/signup.html",
           controller: 'CustomerCtrl'
         }
       }
+    })
+
+    .state('customer', {
+      url: "/customer",
+      abstract: true,
+      templateUrl: "templates/customer/menu.html"
     })
 
     .state('customer.searchCriteria', {
@@ -94,20 +94,20 @@ angular.module('starter',
 /////////////////////////////////////////////
 // C: Restaurant Routing
 //
-    .state('restaurant', {
-      url: "/restaurant",
-      abstract: true,
-      templateUrl: "templates/restaurant/menu.html"
-    })
-
-    .state('restaurant.signUp', {
-      url: "/signup",
+    .state('app.restaurantSignUp', {
+      url: "/restaurant/signup",
       views: {
-        'restaurant/signup-tab' :{
+        'menuContent' :{
           templateUrl: "templates/restaurant/signup.html",
           controller: 'RestaurantCtrl'
         }
       }
+    })
+
+    .state('restaurant', {
+      url: "/restaurant",
+      abstract: true,
+      templateUrl: "templates/restaurant/menu.html"
     })
 
     .state('restaurant.availability', {

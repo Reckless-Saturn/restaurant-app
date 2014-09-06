@@ -1,5 +1,4 @@
-
-<ion-view title="Customer: Sign-Up">
+<ion-view title="Customer Sign-Up">
   <ion-nav-buttons side="left">
   </ion-nav-buttons>
   <ion-content class="has-header">
@@ -9,6 +8,10 @@
         <label class="item item-input item-stacked-label">
           <span class="input-label">Username</span>
           <input type="text" placeholder="armandito415" ng-model="username"></input>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Password</span>
+          <input type="password" placeholder="Shhh... It's super secret." ng-model="password"></input>
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">First Name</span>
@@ -26,12 +29,8 @@
           <span class="input-label">Phone Number</span>
           <input type="text" placeholder="415-555-5555" ng-model="phoneNumber"></input>
         </label>
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Password</span>
-          <input type="password" placeholder="It's super secret." ng-model="password"></input>
-        </label>
       </div>
-      <button type="submit" class="button button-full button-assertive">Sign me up!</input>
+      <button type="submit" class="button button-full button-dark">Sign me up!</button>
     </form>
 
   </ion-content>
