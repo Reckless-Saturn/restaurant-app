@@ -5,11 +5,10 @@ a {
 .splash {
   background: 
     linear-gradient(
-      rgba(255, 255, 255, 0.3), 
-      rgba(255, 255, 255, 0)
+      rgba(0, 0, 0, 0.6), 
+      rgba(0, 0, 0, 0)
     ),
-    url('../img/pizzaTitle.jpg') no-repeat center;
-  background-size: auto 100%;
+    url('../img/splash_repeat.png') repeat;
 }
 
 /* add space btw icon and text in buttons */
@@ -20,11 +19,12 @@ a {
 div.logo {
   margin-top: 50%;
   text-align: center;
-  font-family: 'Lobster', cursive;
+  font-family: 'Chewy', cursive;
   font-size: 5em;
   line-height: 0.8em;
   color: white;
-  text-shadow: 2px 2px #ef4e3a;
+  text-shadow: 2px 2px black;
+  text-transform: lowercase;
 }
 
 div.splashButtons {
