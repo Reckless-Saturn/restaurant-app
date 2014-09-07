@@ -13,7 +13,6 @@ connection.connect();
 ///////////////////////////////////////////////////////
 // insert users
 exports.addUser = function(response, data, callback) {
-
   // step 2 - insert user
   var insertUser = function() {
     connection.query(
@@ -29,51 +28,53 @@ exports.addUser = function(response, data, callback) {
       + '")',
       function(err, results) {
         if (err) { throw err; }
-        callback(response, "User added successfully");
+        callback(response, "Diner added successfully");
       }
     )
-  }
+  };
 
   // step 1 - find if username or email already exists
-  connection.query(
-    'select 1 from diners where username = "' + data.username
-    + '" or email = "' + data.email + '"',
-    function(err, results) {
-      if (err) { throw err; }
-      if (results.length > 0) {
-        callback(response, "Username or email already exists", 409);
-      } else {
-        insertUser();
-      }
-    }
-  );
+  findUsername(data.username, data.email, function(results) {
+    if (results.length === 0) { insertUser(); }
+    else { callback(response, "Username or email already in use", 409); }
+  })
 };
 
 ///////////////////////////////////////////////////////
 // insert restaurants
 exports.addRestaurant = function(response, data, callback) {
-  connection.query(
-    'insert into restaurants (restaurantName, password, address, latitude, longitude, priceRange, cuisine, email, phone)'
-    + ' values ("'
-      + data.restaurantName + '", "'
-      + data.password       + '", "'
-      + data.address        + '", "'
-      + data.lat            + '", "'
-      + data.long           + '", "'
-      + data.priceRange     + '", "'
-      + data.cuisine        + '", "'
-      + data.email          + '", "'
-      + data.phoneNumber
-    + '")',
-    function(err, results) {
-      if (err) { throw err; }
-      callback(response, "Restaurant added successfully");
-    }
-  )
+  // step 2 - insert restaurant
+  var insertRestaurant = function() {
+    connection.query(
+      'insert into restaurants (restaurantName, username, password, address, latitude, longitude, priceRange, cuisine, email, phone)'
+      + ' values ("'
+        + data.restaurantName + '", "'
+        + data.username       + '", "'
+        + data.password       + '", "'
+        + data.address        + '", "'
+        + data.lat            + '", "'
+        + data.long           + '", "'
+        + data.priceRange     + '", "'
+        + data.cuisine        + '", "'
+        + data.email          + '", "'
+        + data.phoneNumber
+      + '")',
+      function(err, results) {
+        if (err) { throw err; }
+        callback(response, "Restaurant added successfully");
+      }
+    )
+  };
+
+  // step 1 - find if username or email already exists
+  findUsername(data.username, data.email, function(results) {
+    if (results.length === 0) { insertRestaurant(); }
+    else { callback(response, "Username or email already in use", 409); }
+  })
 };
 
 ///////////////////////////////////////////////////////
-// query to find login info
+// insert transaction data
 exports.addTransaction = function(response, data) {
   connection.query(
     'insert into trans_history (customerID, restaurantID, partySize)'
@@ -91,32 +92,47 @@ exports.addTransaction = function(response, data) {
 
 ///////////////////////////////////////////////////////
 // query to find login info
-exports.getUserInfo = function(response, query, callback) {
-  connection.query(
-    'select * from diners where username = "' + query.username + '"',
-    function(err, results) {
-      if (err) { throw err; }
-      if (results.length > 0) {
-        callback(response, results, 200);
-      } else {
-        findRestaurants(results);
-      }
-    }
-  )
+exports.getLoginInfo = function(response, query, callback) {
+  findUsername(query.username, undefined, function(results) {
+    if (results.length > 0) { callback(response, results, 200); }
+    else { callback(response, "No login found", 204); }
+  })
+};
 
-  var findRestaurants = function(results) {
-    connection.query(
-      'select * from restaurants where username = "' + query.username + '"',
+///////////////////////////////////////////////////////
+// helper queries to find if a username already exists in *some* table
+var findUsername = function(name, email, callback) {
+  var dinerQuery = 'select * from diners where username = "' + name + '"';
+  var restaurantQuery = 'select * from restaurants where username = "' + name + '"';
+  if (email) {
+    dinerQuery += ' || email = ' + email + '"';
+    restaurantQuery += ' || email = ' + email + '"';
+  }
+
+  var searchDiners = function() {
+    connection.query(dinerQuery,
       function(err, results) {
         if (err) { throw err; }
         if (results.length > 0) {
-          callback(response, results, 200);
+          callback(results);
         } else {
-          callback(response, "No login found", 204);
+          searchRestaurants();
         }
       }
     )
   }
+
+  var searchRestaurants = function() {
+    connection.query(restaurantQuery,
+      function(err, results) {
+        if (err) { throw err; }
+        callback(results);
+      }
+    )
+  }
+
+  // start with diners. if the username isn't found, then try restaurants
+  searchDiners();
 };
 
 ///////////////////////////////////////////////////////
@@ -137,7 +153,7 @@ exports.getRestaurants = function(response, query, callback) {
       + ' * COS(RADIANS(' + query.longitude + ') - RADIANS(longitude))'
       + ' + SIN(RADIANS(' + query.latitude + ')) *'
       + ' SIN(RADIANS(latitude))))'
-      + ' AS distance'
+      + ' as distance'
     + ' from restaurants'
     + ' where priceRange <= ' + query.find_priceRange
       + ' and cuisine = "' + query.find_cuisine + '"'
