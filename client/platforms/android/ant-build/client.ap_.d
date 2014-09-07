@@ -54,12 +54,18 @@ C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\ngCordova \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular\angular-csp.css \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular\angular.js \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular\angular.js~Add ngCrodova \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular\angular.js~HEAD \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular\angular.min.js \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular\angular.min.js.gzip \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular\angular.min.js.map \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular\bower.json \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular\README.md \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular-animate\angular-animate.js \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular-animate\angular-animate.js~2b312692d9d4a7970e9a1096ef2828ddfbcd6f2f \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular-animate\angular-animate.js~Add ngCrodova \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular-animate\angular-animate.js~HEAD \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular-animate\angular-animate.js~HEAD_0 \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular-animate\angular-animate.min.js \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular-animate\angular-animate.min.js.map \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular-animate\bower.json \
@@ -76,7 +82,11 @@ C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular-ui-router\release \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular-ui-router\src \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular-ui-router\release\angular-ui-router.js \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular-ui-router\release\angular-ui-router.js~Add ngCrodova \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular-ui-router\release\angular-ui-router.js~HEAD \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular-ui-router\release\angular-ui-router.min.js \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular-ui-router\release\angular-ui-router.min.js~Add ngCrodova \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular-ui-router\release\angular-ui-router.min.js~HEAD \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular-ui-router\src\common.js \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular-ui-router\src\compat.js \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\angular-ui-router\src\resolve.js \
@@ -219,8 +229,18 @@ C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\ngCordova\demo\app\www\lib\ionic\js\angular\angular-animate.js \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\ngCordova\demo\app\www\lib\ionic\js\angular\angular-animate.min.js \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\ngCordova\demo\app\www\lib\ionic\js\angular\angular-resource.js \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\ngCordova\demo\app\www\lib\ionic\js\angular\angular-resource.js~2b312692d9d4a7970e9a1096ef2828ddfbcd6f2f \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\ngCordova\demo\app\www\lib\ionic\js\angular\angular-resource.js~Add ngCrodova \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\ngCordova\demo\app\www\lib\ionic\js\angular\angular-resource.js~HEAD \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\ngCordova\demo\app\www\lib\ionic\js\angular\angular-resource.js~HEAD_0 \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\ngCordova\demo\app\www\lib\ionic\js\angular\angular-resource.min.js \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\ngCordova\demo\app\www\lib\ionic\js\angular\angular-resource.min.js~Add ngCrodova \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\ngCordova\demo\app\www\lib\ionic\js\angular\angular-resource.min.js~HEAD \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\ngCordova\demo\app\www\lib\ionic\js\angular\angular-sanitize.js \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\ngCordova\demo\app\www\lib\ionic\js\angular\angular-sanitize.js~2b312692d9d4a7970e9a1096ef2828ddfbcd6f2f \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\ngCordova\demo\app\www\lib\ionic\js\angular\angular-sanitize.js~Add ngCrodova \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\ngCordova\demo\app\www\lib\ionic\js\angular\angular-sanitize.js~HEAD \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\ngCordova\demo\app\www\lib\ionic\js\angular\angular-sanitize.js~HEAD_0 \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\ngCordova\demo\app\www\lib\ionic\js\angular\angular-sanitize.min.js \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\ngCordova\demo\app\www\lib\ionic\js\angular\angular.js \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\lib\ngCordova\demo\app\www\lib\ionic\js\angular\angular.min.js \
@@ -338,10 +358,12 @@ C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\temp
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\templates\menu.html \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\templates\restaurant \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\templates\splash.html \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\templates\customer\menu.html \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\templates\customer\search-criteria.html \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\templates\customer\search-results.html \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\templates\customer\signup.html \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\templates\restaurant\availability.html \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\templates\restaurant\interested-customers.html \
+C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\templates\restaurant\menu.html \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\assets\www\templates\restaurant\signup.html \
 C:\Users\asus\Desktop\HR\restaurant-app\client\platforms\android\ant-build\AndroidManifest.xml \

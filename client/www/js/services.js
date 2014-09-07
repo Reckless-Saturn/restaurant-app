@@ -153,19 +153,16 @@ angular.module('starter.services', ['ngCordova'])
     });
 
     // C: .subscribe and .init should be the first things to happen so that the client is always able to here the server
-    // D: need to decide if .subscribe will be necessary
+    // D: need to add this logic instead of hardcoding
+    // var customer_channel = 'c' + customerID
+    var customer_channel = "c0";
+
     pubnub.subscribe({
-      channel: restaurant_channel,
-      message: function(m){console.log("--In subscribe: ", m)}
+      channel: customer_channel,
+      message: function(m){ console.log( m );}
     });
 
     console.log('chosen restaurant ID:', restaurantID);
-    // D: the POST request will not be needed thanks to PubNub
-    // $http({
-    //   method: 'POST',
-    //   url: serverUrl+'/customer/choose-restaurant',
-    //   data: { restaurantID: restaurantID }
-    // });
   };
 
   return {
@@ -293,8 +290,8 @@ angular.module('starter.services', ['ngCordova'])
     $http({
       method: 'POST',
       url: serverUrl+'/restaurant/choose-customer',
-      // D: restaurantID is hard coded for now
-      data: { customerID: customerID, restaurantID: 0, partySize: partySize }
+      // D: restaurantID and restaurantName are hard coded for now
+      data: { customerID: customerID, restaurantID: 0, partySize: partySize, restaurantName: "GoodStuff" }
     });
   };
 

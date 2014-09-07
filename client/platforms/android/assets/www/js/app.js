@@ -40,7 +40,17 @@ angular.module('starter',
           templateUrl: "templates/splash.html"
         }
       }
-    })   
+    })
+       .state('app.login', {
+        url: "/login",
+        views: {
+          'menuContent' :{
+            templateUrl: "templates/login.html",
+            controller: 'AppCtrl'
+
+          }
+        }
+      })     
 
 /////////////////////////////////////////////
 // C: Customer routing

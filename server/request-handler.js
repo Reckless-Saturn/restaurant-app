@@ -4,12 +4,20 @@ var url = require('url');
 var sendResponse = require('./helpers').sendResponse;
 var parser = require('./helpers').parseData;
 var parseQuery = require('./helpers').parseQuery;
+var pn = require("pubnub");
 // import db queries
 var addUser = require('./queries').addUser;
 var addRestaurant = require('./queries').addRestaurant;
 var getRestaurants = require('./queries').getRestaurants;
 var addTransaction = require('./queries').addTransaction;
 var getUserInfo = require('./queries').getUserInfo;
+
+///////////////////////////////////////////////////////
+// C: Initialize PubNub
+var pubnub = pn.init({
+    publish_key   : "pub-c-2c4e8ddb-7e65-4123-af2d-ef60485170d4",
+    subscribe_key : "sub-c-693a352e-3394-11e4-9846-02ee2ddab7fe"
+});
 
 ///////////////////////////////////////////////////////
 // route handlers
@@ -35,6 +43,15 @@ var handlePost = function(request, response, type) {
 var handleTransactionPost = function(request, response, type) {
   parser(request, function(data) {
     addTransaction(response, data);
+    // C: Publish Messages
+    var customer_channel = "c" + data.customerID;
+    console.log( "restaurantName:", data.restaurantName );
+    pubnub.publish({ 
+        channel   : 'c0',
+        message   : data.restaurantName,
+        callback  : function(e) { console.log( "SUCCESS!", e ); },
+        error     : function(e) { console.log( "FAILED! RETRY PUBLISH!", e ); }
+    });
   });
 };
 
@@ -71,3 +88,21 @@ module.exports = function(request, response) {
   }
 };
 
+// ///////////////////////////////////////////////////////
+// // C: Listen for Messages
+// pubnub.subscribe({
+//     channel  : "r0",
+//     callback : function(message) {
+//         console.log( " > ", message );
+//     }
+// });
+
+// ///////////////////////////////////////////////////////
+// // C: Type Console Message
+// var stdin = process.openStdin();
+// stdin.on( 'data', function(chunk) {
+//     pubnub.publish({
+//         channel : "r0",
+//         message : ''+chunk
+//     });
+// });

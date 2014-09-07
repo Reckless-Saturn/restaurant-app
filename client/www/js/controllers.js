@@ -15,7 +15,25 @@ angular.module('starter.controllers', ['starter.services'])
   // invoked after submitting search criteria form
   $scope.getSearchResults = Customer.getSearchResults;
   $scope.chooseRestaurant = Customer.chooseRestaurant;
+<<<<<<< HEAD
   
+=======
+  $scope.IR = Customer.IR;
+
+  // // begin watching
+  // var watch = $cordovaGeolocation.watchPosition({ frequency: 1000 });
+  // watch.promise.then(function() { /* Not  used */ }, 
+  //   function(err) {
+  //     // An error occurred.
+  //   }, 
+  //   function(position) {
+  //     // Active updates of the position here
+  //     // position.coords.[ latitude / longitude]
+  // });
+
+  // // clear watch
+  // $cordovaGeolocation.clearWatch(watch.watchID)
+>>>>>>> Add Server PubNub Communication
 })
 
 .controller('RestaurantCtrl', function($scope, Restaurant) {
