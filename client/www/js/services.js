@@ -13,19 +13,14 @@ angular.module('starter.services', ['ngCordova'])
       method: 'GET',
       url: loginUrl
     }).then(function(response) {
-      // todo: Handle login based on response data object
-      // if customer,
-      $location.path('/customer/search-criteria');
-      // if restaurant,
-      $location.path('/restaurant/availability');
+      // If restaurant logged in,
+      if(response.data.restaurantID || response.data.restaurantID === 0) { $location.path('/restaurant/availability'); }
+      // If customer logged in,
+      else if(response.data.customerID || response.data.customerID === 0) { $location.path('/customer/search-criteria'); }
     });
-
-    // todo: Remove. Only here for testing purposes.
-    console.log('in App factory login');
-    $location.path('/customer/search-criteria'); // this works
-
+    
     // NOTE: We're only querying username at the moment. No password for the MVP
-    // TODO: Add logic to determine if Customer or Restaurant. Add promise to redirect to appropriate page
+
   };
 
   return {
@@ -34,15 +29,15 @@ angular.module('starter.services', ['ngCordova'])
 
 })
 
-.factory('Customer', function($http, $location, $cordovaGeolocation, App) {
+.factory('Customer', function($http, $location, $cordovaGeolocation, $ionicPopup, App) {
 
   // Define global pubnub variable
   var pubnub;
   //// C: needed customer info for .publish
-  var customerInfo = {  customerID: 1, 
-                        name: "Armando Perez",
-                        phoneNumber: '503-555-7777',
-                        partySize: 1};
+  var customerInfo = { customerID: 1, 
+                       name: "Armando Perez",
+                       phoneNumber: '503-555-7777',
+                       partySize: 1 };
 
   var signup = function(username, firstName, lastName, email, phoneNumber, password) {
     console.log({ 
@@ -159,10 +154,25 @@ angular.module('starter.services', ['ngCordova'])
 
     pubnub.subscribe({
       channel: customer_channel,
-      message: function(m){ console.log( m );}
+      message: function(restaurantName){
+        console.log(restaurantName);
+        restaurantConfirmation(restaurantName);
+      }
     });
 
     console.log('chosen restaurant ID:', restaurantID);
+  };
+
+  var restaurantConfirmation = function(restaurantName) {
+    var confirmPopup = $ionicPopup.alert({
+      title: 'Restaurant Confirmation',
+      template: '<center><b>'+restaurantName+'</b><br/>is waiting for you.</center>',
+      okText: 'Let\'s get going!',
+      okType: 'button-balanced'
+    });
+    confirmPopup.then(function(res) {
+      console.log('res', res);
+    });
   };
 
   return {
