@@ -1,6 +1,6 @@
-angular.module('starter.controllers', ['starter.services'])
+// app.servies is required by app.controllers
+angular.module('app.controllers', ['app.services'])
 
-// Start Restaurant App's controllers
 .controller('AppCtrl', function($scope, App) {
   
   $scope.login = App.login;

@@ -1,11 +1,10 @@
 var serverUrl = 'http://127.0.0.1:5555';
 
-angular.module('starter.services', ['ngCordova'])
+angular.module('app.services', ['ngCordova'])
 
 .factory('App', function($http, $location) {
 
   var login = function(username, password) {
-
     var loginUrl = serverUrl+'/login?'+
       'username='+username;
 
@@ -20,7 +19,6 @@ angular.module('starter.services', ['ngCordova'])
     });
     
     // NOTE: We're only querying username at the moment. No password for the MVP
-
   };
 
   return {
@@ -40,6 +38,7 @@ angular.module('starter.services', ['ngCordova'])
                        partySize: 1 };
 
   var signup = function(username, firstName, lastName, email, phoneNumber, password) {
+    // For testing purposes
     console.log({ 
     username: username,
      firstName: firstName,
@@ -51,7 +50,6 @@ angular.module('starter.services', ['ngCordova'])
 
     $http({
       method: 'POST',
-      // todo: update URL
       url: serverUrl+'/customer/signup',
       data: {
         username: username,
@@ -63,11 +61,11 @@ angular.module('starter.services', ['ngCordova'])
       }
     }).then(function(response) {
       // todo: handle login after sign-up?
-      // App.login(username, password);
+      App.login(username, password);
     });
 
     // todo: Remove. Done here just to test.
-    App.login(username, password);
+    // App.login(username, password);
   };
 
   var searchResults = [
@@ -100,15 +98,17 @@ angular.module('starter.services', ['ngCordova'])
       subscribe_key: 'sub-c-693a352e-3394-11e4-9846-02ee2ddab7fe'
     });
 
-    // ngCordova geolocation
+    // Get customer's geolocation using ngCordova 
     $cordovaGeolocation
       .getCurrentPosition()
       .then(function(position) {
 
         var lat  = position.coords.latitude
         var long = position.coords.longitude
+        // For testing purposes
         console.log('lat', lat, 'long', long);
 
+        // searchUrl to be used in following http request
         var searchUrl = serverUrl+'/customer/search-criteria?'+
           'find_distance='+distance+
           '&find_priceRange='+priceRange+
@@ -129,7 +129,7 @@ angular.module('starter.services', ['ngCordova'])
           $location.path('/customer/search-results');
         });
         // D: the line below is temporary until above post is working with actual online server
-        $location.path('/customer/search-results');
+        // $location.path('/customer/search-results');
 
       }, function(err) {
         console.log(err)
@@ -137,6 +137,7 @@ angular.module('starter.services', ['ngCordova'])
 
   };
 
+  // Invoked when customer chooses a restaurant on search-results page
   var chooseRestaurant = function(restaurantID) {
 
     //C: Send Interest to Restaurant using PubNub
@@ -156,6 +157,7 @@ angular.module('starter.services', ['ngCordova'])
       channel: customer_channel,
       message: function(restaurantName){
         console.log(restaurantName);
+        // Alert customer a restaurant has confirmed them 
         restaurantConfirmation(restaurantName);
       }
     });
@@ -164,6 +166,7 @@ angular.module('starter.services', ['ngCordova'])
   };
 
   var restaurantConfirmation = function(restaurantName) {
+    // Alert using $ionicPopup
     var confirmPopup = $ionicPopup.alert({
       title: 'Restaurant Confirmation',
       template: '<center><b>'+restaurantName+'</b><br/>is waiting for you.</center>',
@@ -192,12 +195,14 @@ angular.module('starter.services', ['ngCordova'])
 
   var signup = function(username, password, restaurantName, address, priceRange, cuisine, email, phoneNumber) {
 
+    // Determine restaurant's geolocation based on their provided address
     var geocoder = new google.maps.Geocoder();
-
     geocoder.geocode({ address: address }, function(results, status) {
       if(status = google.maps.GeocoderStatus.OK) {
-        var lat = results[0].geometry.location.lat();
-        var long = results[0].geometry.location.lng();
+        var lat = results[0].geometry.location.lat();  // Latitude
+        var long = results[0].geometry.location.lng(); // Longitude
+
+        // For testing purposes
         console.log('lat', lat, 'long', long);
         console.log({
           username: username,
@@ -212,6 +217,7 @@ angular.module('starter.services', ['ngCordova'])
           phoneNumber: phoneNumber
         });
 
+        // If geolocation is sucessfully determined, sign up restaurant
         $http({
           method: 'POST',
           url: serverUrl+'/restaurant/signup',
@@ -229,11 +235,11 @@ angular.module('starter.services', ['ngCordova'])
           }
         }).then(function(response) {
           // todo: handle login after sign-up?
-          // App.login(username, password);
+          App.login(username, password);
         });
 
         // todo: Remove. Done here just to test.
-        App.login(username, password);
+        // App.login(username, password);
 
       } else {
         alert('Google Maps Geocoder failed.');
@@ -253,6 +259,7 @@ angular.module('starter.services', ['ngCordova'])
       partySize: 4 }
   ];
 
+  // Allow restaurant to toggle visibility in customers' searches
   var toggleAvailability = function(available) {
     
     // C: Initialize PubNub
@@ -278,8 +285,10 @@ angular.module('starter.services', ['ngCordova'])
         console.log(interestedCustomers); }
     });
 
+    // For testing purposes
     console.log('available:', available);
 
+    // Update restaurant's 'available' field in server
     $http({
       method: 'POST',
       url: serverUrl+'/restaurant/toggle-availability',
@@ -295,8 +304,11 @@ angular.module('starter.services', ['ngCordova'])
     $location.path('/restaurant/interested-customers');
   };
 
+  // Invoked when restaurant chooses a customer in interested-customers page
   var chooseCustomer = function(customerID, partySize) {
+    // For testing purposes
     console.log('chosen customer ID:', customerID);
+
     $http({
       method: 'POST',
       url: serverUrl+'/restaurant/choose-customer',
@@ -313,9 +325,3 @@ angular.module('starter.services', ['ngCordova'])
   };
 
 });
-
-/* 
-CUSTOMERS FACTORY:
-this should be the function to request from the server. Once the user submits on 'search-criteria.html', it should invoke this function. 
-Upon success, this function should change the value of searchResults
-*/
