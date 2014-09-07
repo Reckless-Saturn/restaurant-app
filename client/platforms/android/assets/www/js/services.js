@@ -2,14 +2,36 @@ var serverUrl = 'http://127.0.0.1:5555';
 
 angular.module('starter.services', ['ngCordova'])
 
+.factory('App', function($http) {
+  var login = function(username, password) {
+
+  var loginUrl = serverUrl +'/login?'+
+    'username='+username;
+
+    $http({
+      method: 'GET',
+      url: loginUrl
+    });
+    // NOTE: We're only querying username at the moment. No password for the MVP
+    // TODO: Add logic to determine if Customer or Restaurant. Add promise to redirect to appropriate page
+  };
+
+  return {
+    login: login
+  };
+
+})
+
 .factory('Customer', function($http, $location, $cordovaGeolocation) {
+
+  var IR = "IRs: ";
 
   // Define global pubnub variable
   var pubnub;
   //// C: needed customer info for .publish
   var customerInfo = {  customerID: 1, 
                         name: "Armando Perez",
-                        phoneNumber: 5557774444,
+                        phoneNumber: '503-555-7777',
                         partySize: 1};
 
   var signup = function(username, firstName, lastName, email, phoneNumber, password) {
@@ -116,19 +138,16 @@ angular.module('starter.services', ['ngCordova'])
     });
 
     // C: .subscribe and .init should be the first things to happen so that the client is always able to here the server
-    // D: need to decide if .subscribe will be necessary
+    // D: need to add this logic instead of hardcoding
+    // var customer_channel = 'c' + customerID
+    var customer_channel = "c0";
+
     pubnub.subscribe({
-      channel: restaurant_channel,
-      message: function(m){console.log("--In subscribe: ", m)}
+      channel: customer_channel,
+      message: function(m){ console.log( m );}
     });
 
     console.log('chosen restaurant ID:', restaurantID);
-    // D: the POST request will not be needed thanks to PubNub
-    // $http({
-    //   method: 'POST',
-    //   url: serverUrl+'/customer/choose-restaurant',
-    //   data: { restaurantID: restaurantID }
-    // });
   };
 
   return {
@@ -136,7 +155,8 @@ angular.module('starter.services', ['ngCordova'])
     getSearchResults: getSearchResults,
     chooseRestaurant: chooseRestaurant,
     searchResults: searchResults,
-    customerInfo: customerInfo // C: Needed for PubNub Communication
+    customerInfo: customerInfo, // C: Needed for PubNub Communication
+    IR: IR // D: for debugging
   };
 
 })
@@ -147,28 +167,44 @@ angular.module('starter.services', ['ngCordova'])
   var pubnub;
 
   var signup = function(restaurantName, address, priceRange, cuisine, email, phoneNumber, password) {
-  
-    console.log({
-      restaurantName: restaurantName,
-      address: address,
-      priceRange: priceRange,
-      cuisine: cuisine,
-      email: email,
-      phoneNumber: phoneNumber,
-      password: password
-    });
 
-    $http({
-      method: 'POST',
-      url: serverUrl+'/restaurant/signup',
-      data: {
-        restaurantName: restaurantName,
-        address: address,
-        priceRange: priceRange,
-        cuisine: cuisine,
-        email: email,
-        phoneNumber: phoneNumber,
-        password: password
+    var geocoder = new google.maps.Geocoder();
+
+    geocoder.geocode({ address: address }, function(results, status) {
+      if(status = google.maps.GeocoderStatus.OK) {
+        var lat = results[0].geometry.location.lat();
+        var long = results[0].geometry.location.lng();
+        console.log('lat', lat, 'long', long);
+
+        $http({
+          method: 'POST',
+          url: serverUrl+'/restaurant/signup',
+          data: {
+            restaurantName: restaurantName,
+            address: address,
+            lat: lat,
+            long: long,
+            priceRange: priceRange,
+            cuisine: cuisine,
+            email: email,
+            phoneNumber: phoneNumber,
+            password: password
+          }
+        });
+
+        console.log({
+          restaurantName: restaurantName,
+          address: address,
+          lat: lat,
+          long: long,
+          priceRange: priceRange,
+          cuisine: cuisine,
+          email: email,
+          phoneNumber: phoneNumber,
+          password: password
+        });
+      } else {
+        alert('Google Maps Geocoder failed.');
       }
     });
 
@@ -203,6 +239,9 @@ angular.module('starter.services', ['ngCordova'])
       channel: restaurant_channel,
       message: function(m){ 
         console.log(interestedCustomers);
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // D: data is coming in properly however view (ng-repeat) does not update
+        //    unless nav bar is taped or other customer is clicked
         interestedCustomers.push(m);
         console.log(interestedCustomers); }
     });
@@ -224,12 +263,13 @@ angular.module('starter.services', ['ngCordova'])
     $location.path('/app/restaurant/interested-customers');
   };
 
-  var chooseCustomer = function(customerID) {
+  var chooseCustomer = function(customerID, partySize) {
     console.log('chosen customer ID:', customerID);
     $http({
       method: 'POST',
       url: serverUrl+'/restaurant/choose-customer',
-      data: { customerID: customerID }
+      // D: restaurantID and restaurantName are hard coded for now
+      data: { customerID: customerID, restaurantID: 0, partySize: partySize, restaurantName: "GoodStuff" }
     });
   };
 
@@ -245,6 +285,5 @@ angular.module('starter.services', ['ngCordova'])
 /* 
 CUSTOMERS FACTORY:
 this should be the function to request from the server. Once the user submits on 'search-criteria.html', it should invoke this function. 
-
 Upon success, this function should change the value of searchResults
 */

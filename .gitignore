@@ -28,5 +28,6 @@ dist/
 node_modules/
 bower_components/
 client/www/lib/
+client/platforms
 
 .DS_Store

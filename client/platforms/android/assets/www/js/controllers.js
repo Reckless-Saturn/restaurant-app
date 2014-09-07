@@ -1,6 +1,13 @@
 angular.module('starter.controllers', ['starter.services'])
 
 // Start Restaurant App's controllers
+.controller('AppCtrl', function($scope, App) {
+  
+  $scope.login = App.login;
+
+})
+
+
 .controller('CustomerCtrl', function($scope, Customer) {
 
   $scope.signup = Customer.signup;
@@ -8,6 +15,7 @@ angular.module('starter.controllers', ['starter.services'])
   // invoked after submitting search criteria form
   $scope.getSearchResults = Customer.getSearchResults;
   $scope.chooseRestaurant = Customer.chooseRestaurant;
+  $scope.IR = Customer.IR;
 
   // // begin watching
   // var watch = $cordovaGeolocation.watchPosition({ frequency: 1000 });
@@ -22,7 +30,6 @@ angular.module('starter.controllers', ['starter.services'])
 
   // // clear watch
   // $cordovaGeolocation.clearWatch(watch.watchID)
-
 })
 
 .controller('RestaurantCtrl', function($scope, Restaurant) {
