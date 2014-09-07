@@ -2,6 +2,7 @@ a {
   text-decoration: none;
 }
 
+/* Splash page */
 .splash {
   background: 
     linear-gradient(
@@ -11,11 +12,12 @@ a {
     url('../img/splash_repeat.png') repeat;
 }
 
-/* add space btw icon and text in buttons */
+/* Add space between icon and text in buttons */
 .iconbuffer {
   margin-right: 10px;
 }
 
+/* Logo on splash page */
 div.logo {
   margin-top: 50%;
   text-align: center;
@@ -27,18 +29,21 @@ div.logo {
   text-transform: lowercase;
 }
 
+/* Buttons on splash page */
 div.splashButtons {
   margin: auto;
   margin-top: 30%;
   width: 90%;
 }
 
+/* Drop-down menus on forms */
 select {
   width: 50%;
   background-color: white;
   border: 1px solid black;
 }
 
+/* Error messages for form validation */
 .error {
   color: red;
 }
