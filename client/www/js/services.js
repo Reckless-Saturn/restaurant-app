@@ -15,11 +15,13 @@ angular.module('app.services', ['ngCordova'])
       // If restaurant logged in,
       if(response.data[0].restaurantID || response.data[0].restaurantID === 0) { 
         userData = response.data[0];
+        console.log( userData );
         $location.path('/restaurant/availability'); 
       }
       // If customer logged in,
       else if(response.data[0].customerID || response.data[0].customerID === 0) { 
         userData = response.data[0];
+        console.log( userData );
         $location.path('/customer/search-criteria'); 
       }
     });
@@ -96,7 +98,7 @@ angular.module('app.services', ['ngCordova'])
   ];
     
   var getSearchResults = function(distance, priceRange, partySize, cuisine) {
-
+    console.log( "in getSearchResults" );
     // C: Initialize PubNub
     // D: TODO - Initialization should be on User Login
     pubnub = PUBNUB.init({
@@ -108,7 +110,7 @@ angular.module('app.services', ['ngCordova'])
     $cordovaGeolocation
       .getCurrentPosition()
       .then(function(position) {
-
+        console.log("getCurrentPosition");
         var lat  = position.coords.latitude
         var long = position.coords.longitude
         // For testing purposes
@@ -135,6 +137,8 @@ angular.module('app.services', ['ngCordova'])
           });
           console.log("search results: ", response.data);
           userData.partySize = partySize;
+          userData.name = userData.firstName + " " + userData.lastName;
+          userData.phoneNumber = userData.phone;
           $location.path('/customer/search-results');
         });
         // D: the line below is temporary until above post is working with actual online server
@@ -152,6 +156,7 @@ angular.module('app.services', ['ngCordova'])
     //C: Send Interest to Restaurant using PubNub
     var restaurant_channel = "r" + restaurantID; 
     console.log( restaurant_channel );  // For testing purposes
+    console.log( userData );
     pubnub.publish({
       channel: restaurant_channel,        
       message: userData
