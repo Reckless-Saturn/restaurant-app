@@ -1,4 +1,4 @@
-var serverUrl = 'http://127.0.0.1:5555';
+var serverUrl = 'http://10.8.30.243:5555';
 
 angular.module('app.services', ['ngCordova'])
 
@@ -69,24 +69,24 @@ angular.module('app.services', ['ngCordova'])
   };
 
   var searchResults = [
-    { restaurantID: 0,
-      restaurantName: 'Mission Beach Cafe',
-      // priceRange will be a number from 1 to 5
-      // Todo: convert to dollar signs in view file; e.g. '2' --> '$$'
-      priceRange: 2,
-      address: '944 Market Street, San Francisco, CA',
-      latitude: 1,
-      longitude: 1,
-      distance: 0.1,
-      cuisine: 'American' },
-    { restaurantID: 1,
-      restaurantName: 'Local Sushi',
-      priceRange: 1,
-      address: '945 Market Street, San Francisco, CA',
-      latitude: 2,
-      longitude: 2,
-      distance: 0.2,
-      cuisine: 'Japanese' }
+    // { restaurantID: 0,
+    //   restaurantName: 'Mission Beach Cafe',
+    //   // priceRange will be a number from 1 to 5
+    //   // Todo: convert to dollar signs in view file; e.g. '2' --> '$$'
+    //   priceRange: 2,
+    //   address: '944 Market Street, San Francisco, CA',
+    //   latitude: 1,
+    //   longitude: 1,
+    //   distance: 0.1,
+    //   cuisine: 'American' },
+    // { restaurantID: 1,
+    //   restaurantName: 'Local Sushi',
+    //   priceRange: 1,
+    //   address: '945 Market Street, San Francisco, CA',
+    //   latitude: 2,
+    //   longitude: 2,
+    //   distance: 0.2,
+    //   cuisine: 'Japanese' }
   ];
     
   var getSearchResults = function(distance, priceRange, partySize, cuisine) {
@@ -124,7 +124,10 @@ angular.module('app.services', ['ngCordova'])
           url: searchUrl
         })
         .then(function(response) {
-          searchResults = response.data;
+          response.data.forEach(function(item) {
+            searchResults.push(item);
+          });
+          console.log("search results: ", response.data);
           customerInfo.partySize = partySize;
           $location.path('/customer/search-results');
         });
