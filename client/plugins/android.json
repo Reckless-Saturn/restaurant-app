@@ -68,6 +68,16 @@
                             "xml": "<service android:name=\"com.plugin.gcm.GCMIntentService\" />",
                             "count": 1
                         }
+                    ],
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+                            "count": 1
+                        }
                     ]
                 }
             }
@@ -84,6 +94,9 @@
             "PACKAGE_NAME": "com.ionicframework.client761154"
         },
         "com.phonegap.plugins.PushPlugin": {
+            "PACKAGE_NAME": "com.ionicframework.client761154"
+        },
+        "org.apache.cordova.geolocation": {
             "PACKAGE_NAME": "com.ionicframework.client761154"
         }
     },
