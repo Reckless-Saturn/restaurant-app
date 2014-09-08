@@ -2,15 +2,16 @@
 // import required files
 var url = require('url');
 var sendResponse = require('./helpers').sendResponse;
-var parser = require('./helpers').parseData;
-var parseQuery = require('./helpers').parseQuery;
+var parsePost = require('./helpers').parsePost;
+var parseGet = require('./helpers').parseGet;
+var send404 = require('./helpers').send404;
 var pn = require("pubnub");
 // import db queries
 var addUser = require('./queries').addUser;
 var addRestaurant = require('./queries').addRestaurant;
 var getRestaurants = require('./queries').getRestaurants;
 var addTransaction = require('./queries').addTransaction;
-var getUserInfo = require('./queries').getUserInfo;
+var getLoginInfo = require('./queries').getLoginInfo;
 
 ///////////////////////////////////////////////////////
 // C: Initialize PubNub
@@ -25,23 +26,34 @@ var handleOptions = function(request, response) {
   sendResponse(response, '', 200);
 };
 
-var handleGet = function(request, response) {
-  query = parseQuery(request);
-  getRestaurants(response, query, sendResponse);
+var handleLogin = function(request, response, type) {
+  var data = parseGet(request);
+  if (data) { getLoginInfo(response, data, sendResponse); }
+  else { send404(response); }
 };
 
-var handlePost = function(request, response, type) {
-  parser(request, function(data) {
-    if (type === 'customer') {
-      addUser(response, data, sendResponse);
-    } else if (type === 'restaurant') {
-      addRestaurant(response, data, sendResponse);
-    }
+var handleSearch = function(request, response) {
+  data = parseGet(request);
+  if (data) { getRestaurants(response, data, sendResponse); }
+  else { send404(response); }
+};
+
+var handleNewCust = function(request, response, type) {
+  parsePost(request, function(data) {
+    if (data) { addUser(response, data, sendResponse); }
+    else { send404(response); }
+  });
+};
+
+var handleNewRestaurant = function(request, response, type) {
+  parsePost(request, function(data) {
+    if (data) { addRestaurant(response, data, sendResponse); }
+    else { send404(response); }
   });
 };
 
 var handleTransactionPost = function(request, response, type) {
-  parser(request, function(data) {
+  parsePost(request, function(data) {
     addTransaction(response, data);
     // C: Publish Messages
     var customer_channel = "c" + data.customerID;
@@ -55,11 +67,6 @@ var handleTransactionPost = function(request, response, type) {
   });
 };
 
-var handleLoginGet = function(request, response, type) {
-  query = parseQuery(request);
-  getUserInfo(response, query, sendResponse);
-};
-
 //////////////////////////////////////////////////////
 // main server router
 module.exports = function(request, response) {
@@ -68,23 +75,23 @@ module.exports = function(request, response) {
   if (request.method === 'OPTIONS') {
     handleOptions(request, response);
 
+  } else if (request.method === 'GET' && path == '/login') {
+    handleLogin(request, response );
+
   } else if (request.method === 'GET' && path === '/customer/search-criteria') {
-    handleGet(request, response);
+    handleSearch(request, response);
 
   } else if (request.method === 'POST' && path == '/customer/signup') {
-    handlePost(request, response, 'customer');
+    handleNewCust(request, response);
 
   } else if (request.method === 'POST' && path == '/restaurant/signup') {
-    handlePost(request, response, 'restaurant');
+    handleNewRestaurant(request, response);
 
   } else if (request.method === 'POST' && path == '/restaurant/choose-customer') {
     handleTransactionPost(request, response );
 
-  } else if (request.method === 'GET' && path == '/login') {
-    handleLoginGet(request, response );
-
   } else {
-    sendResponse(response, 'Bad request', 404);
+    send404(response);
   }
 };
 
