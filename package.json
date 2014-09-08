@@ -18,9 +18,10 @@
   "homepage": "https://github.com/Reckless-Saturn/restaurant-app",
   "dependencies": {
     "chai": "^1.9.1",
-    "chai-http": "^0.5.0",
+    "http": "0.0.0",
     "mocha": "^1.21.4",
     "mysql": "^2.4.3",
-    "pubnub": "^3.6.7"
+    "pubnub": "^3.6.7",
+    "url": "^0.10.1"
   }
 }
