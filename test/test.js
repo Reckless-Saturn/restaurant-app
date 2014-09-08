@@ -1,12 +1,7 @@
 var http = require('http');
 var chai = require('chai');
-var chaiHttp = require('chai-http');
-var assert = chai.assert;
-var should = chai.should();
-var expect = chai.expect;
 var request = require('request');
-
-chai.use(chaiHttp);
+var expect = chai.expect;
 
 var server = require('../server/server.js');
 describe('server', function () {
@@ -18,7 +13,7 @@ describe('server', function () {
         uri: 'http://localhost:5555'
       },
       function(err, response, body) {
-        assert.equal(200, response.statusCode);
+        expect(response.statusCode).to.equal(200);
         done();
       });
     });
@@ -28,8 +23,8 @@ describe('server', function () {
     it('should return 200 for logging in successfully - diner', function (done) {
       request.get('http://localhost:5555/login?username=armando', function(err, response, body) {
         var data = JSON.parse(response.body)[0];
-        assert.equal(200, response.statusCode);
-        assert.equal(1, data.customerID);
+        expect(response.statusCode).to.equal(200);
+        expect(data.customerID).to.equal(1);
         done();
       });
     });
@@ -37,15 +32,15 @@ describe('server', function () {
     it('should return 200 for logging in successfully - restaurant', function (done) {
       request.get('http://localhost:5555/login?username=a', function(err, response, body) {
         var data = JSON.parse(response.body)[0];
-        assert.equal(200, response.statusCode);
-        assert.equal(1, data.restaurantID);
+        expect(response.statusCode).to.equal(200);
+        expect(data.restaurantID).to.equal(1);
         done();
       });
     });
 
     it('should return 204 for an unsuccessful login', function (done) {
       request.get('http://localhost:5555/login?username=z', function(err, response, body) {
-        assert.equal(204, response.statusCode);
+        expect(response.statusCode).to.equal(204);
         done();
       });
     });
@@ -55,7 +50,7 @@ describe('server', function () {
     it('should return data for restaurants near hack reactor', function (done) {
       request.get('http://localhost:5555/customer/search-criteria?find_distance=10&find_priceRange=4&find_partySize=2&find_cuisine=american&customerLoc=37.783548,-122.408953', function(err, response, body) {
         var data = JSON.parse(response.body)[0];
-        assert.equal(200, response.statusCode);
+        expect(response.statusCode).to.equal(200);
         expect(data.restaurantName).to.not.be.undefined;
         done();
       });
@@ -71,8 +66,8 @@ describe('server', function () {
         url: 'http://localhost:5555/customer/signup'
       }
       request.post(options, function (err, response, body) {
-        assert.equal(409, response.statusCode);
-        assert.equal("Username or email already in use", response.body);
+        expect(response.statusCode).to.equal(409);
+        expect(response.body).to.equal("Username or email already in use");
         done();
       });
     });
@@ -91,8 +86,8 @@ describe('server', function () {
         url: 'http://localhost:5555/restaurant/signup'
       }
       request.post(options, function (err, response, body) {
-        assert.equal(409, response.statusCode);
-        assert.equal("Username or email already in use", response.body);
+        expect(response.statusCode).to.equal(409);
+        expect(response.body).to.equal("Username or email already in use");
         done();
       });
     });
@@ -101,18 +96,18 @@ describe('server', function () {
   describe('404', function () {
     it('should return 404 for dead pages', function (done) {
       request.get('http://localhost:5555/test', function(err, response, body) {
-        assert.equal(404, response.statusCode);
+        expect(response.statusCode).to.equal(404);
         done();
       });
     });
 
     it('should return 404 for empty requests', function (done) {
       request.get('http://localhost:5555/login', function(err, response, body) {
-        assert.equal(404, response.statusCode);
+        expect(response.statusCode).to.equal(404);
       });
 
       request.post('http://localhost:5555/customer/signup', function (err, response, body) {
-        assert.equal(404, response.statusCode);
+        expect(response.statusCode).to.equal(404);
         done();
       });
     });
@@ -124,11 +119,11 @@ describe('server', function () {
         url: 'http://localhost:5555/login'
       }
       request.post(options, function(err, response, body) {
-        assert.equal(404, response.statusCode);
+        expect(response.statusCode).to.equal(404);
       });
 
       request.get('http://localhost:5555/customer/signup?username=p&lat=1&long=1&priceRange=1', function(err, response, body) {
-        assert.equal(404, response.statusCode);
+        expect(response.statusCode).to.equal(404);
         done();
       });
     });
