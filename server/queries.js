@@ -14,6 +14,7 @@ connection.connect();
 // insert users
 exports.addUser = function(response, data, callback) {
   // step 2 - insert user
+
   var insertUser = function() {
     connection.query(
       'insert into diners (username, password, firstName, lastName,'
@@ -105,8 +106,8 @@ var findUsername = function(name, email, callback) {
   var dinerQuery = 'select * from diners where username = "' + name + '"';
   var restaurantQuery = 'select * from restaurants where username = "' + name + '"';
   if (email) {
-    dinerQuery += ' || email = ' + email + '"';
-    restaurantQuery += ' || email = ' + email + '"';
+    dinerQuery += ' or email = "' + email + '"';
+    restaurantQuery += ' or email = "' + email + '"';
   }
 
   var searchDiners = function() {
@@ -161,6 +162,9 @@ exports.getRestaurants = function(response, query, callback) {
     function(err, results) {
       if (err) { throw err; }
       // if there are no results, this will return an empty array
+      results.map(function(result) {
+        result.distance = Math.round(result.distance * 100) / 100
+      });
       callback(response, results);
     }
   );
