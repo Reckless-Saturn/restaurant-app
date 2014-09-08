@@ -60,7 +60,7 @@ var handleTransactionPost = function(request, response) {
       var customer_channel = "c" + data.customerID;
       console.log( "restaurantName:", data.restaurantName );
       pubnub.publish({
-          channel   : 'c0',
+          channel   : customer_channel,
           message   : data.restaurantName,
           callback  : function(e) { console.log( "SUCCESS!", e ); },
           error     : function(e) { console.log( "FAILED! RETRY PUBLISH!", e ); }

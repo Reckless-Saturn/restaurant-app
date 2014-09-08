@@ -1,5 +1,5 @@
 var serverUrl = 'http://10.8.30.243:5555';
-
+var userData = {};
 angular.module('app.services', ['ngCordova'])
 
 .factory('App', function($http, $location) {
@@ -13,9 +13,15 @@ angular.module('app.services', ['ngCordova'])
       url: loginUrl
     }).then(function(response) {
       // If restaurant logged in,
-      if(response.data[0].restaurantID || response.data[0].restaurantID === 0) { $location.path('/restaurant/availability'); }
+      if(response.data[0].restaurantID || response.data[0].restaurantID === 0) { 
+        userData = response.data[0];
+        $location.path('/restaurant/availability'); 
+      }
       // If customer logged in,
-      else if(response.data[0].customerID || response.data[0].customerID === 0) { $location.path('/customer/search-criteria'); }
+      else if(response.data[0].customerID || response.data[0].customerID === 0) { 
+        userData = response.data[0];
+        $location.path('/customer/search-criteria'); 
+      }
     });
     
     // NOTE: We're only querying username at the moment. No password for the MVP
@@ -31,11 +37,11 @@ angular.module('app.services', ['ngCordova'])
 
   // Define global pubnub variable
   var pubnub;
-  //// C: needed customer info for .publish
-  var customerInfo = { customerID: 1, 
-                       name: "Armando Perez",
-                       phoneNumber: '503-555-7777',
-                       partySize: 1 };
+  //// C: needed customer info for .publish HARD CODED
+  // var customerInfo = { customerID: 1, 
+  //                      name: "Armando Perez",
+  //                      phoneNumber: '503-555-7777',
+  //                      partySize: 1 };
 
   var signup = function(username, firstName, lastName, email, phoneNumber, password) {
     // For testing purposes
@@ -128,7 +134,7 @@ angular.module('app.services', ['ngCordova'])
             searchResults.push(item);
           });
           console.log("search results: ", response.data);
-          customerInfo.partySize = partySize;
+          userData.partySize = partySize;
           $location.path('/customer/search-results');
         });
         // D: the line below is temporary until above post is working with actual online server
@@ -148,13 +154,13 @@ angular.module('app.services', ['ngCordova'])
     console.log( restaurant_channel );  // For testing purposes
     pubnub.publish({
       channel: restaurant_channel,        
-      message: customerInfo
+      message: userData
     });
 
     // C: .subscribe and .init should be the first things to happen so that the client is always able to here the server
     // D: need to add this logic instead of hardcoding
-    // var customer_channel = 'c' + customerID
-    var customer_channel = "c0";
+    var customer_channel = 'c' + userData.customerID;
+    // var customer_channel = "c0";
 
     pubnub.subscribe({
       channel: customer_channel,
@@ -185,8 +191,7 @@ angular.module('app.services', ['ngCordova'])
     signup: signup,
     getSearchResults: getSearchResults,
     chooseRestaurant: chooseRestaurant,
-    searchResults: searchResults,
-    customerInfo: customerInfo // C: Needed for PubNub Communication
+    searchResults: searchResults
   };
 
 })
@@ -272,8 +277,8 @@ angular.module('app.services', ['ngCordova'])
     });
 
     //C: Subscribe to restaurant's own channel
-    // var restaurant_channel = "r" + restaurantID; 
-    var restaurant_channel = "r" + "0"; // D: need to create global on restaurant login to obtain restaurant id
+    var restaurant_channel = "r" + userData.restaurantID; 
+    // var restaurant_channel = "r" + "0"; // D: need to create global on restaurant login to obtain restaurant id
     console.log( restaurant_channel );  // For testing purposes
 
     // C: .subscribe and .init should be the first things to happen when a re
@@ -317,7 +322,7 @@ angular.module('app.services', ['ngCordova'])
       method: 'POST',
       url: serverUrl+'/restaurant/choose-customer',
       // D: restaurantID and restaurantName are hard coded for now
-      data: { customerID: customerID, restaurantID: 0, partySize: partySize, restaurantName: "GoodStuff" }
+      data: { customerID: customerID, restaurantID: userData.restaurantID, partySize: partySize, restaurantName: userData.restaurantName }
     });
   };
 
