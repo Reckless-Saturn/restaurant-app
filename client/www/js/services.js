@@ -13,9 +13,9 @@ angular.module('app.services', ['ngCordova'])
       url: loginUrl
     }).then(function(response) {
       // If restaurant logged in,
-      if(response.data.restaurantID || response.data.restaurantID === 0) { $location.path('/restaurant/availability'); }
+      if(response.data[0].restaurantID || response.data[0].restaurantID === 0) { $location.path('/restaurant/availability'); }
       // If customer logged in,
-      else if(response.data.customerID || response.data.customerID === 0) { $location.path('/customer/search-criteria'); }
+      else if(response.data[0].customerID || response.data[0].customerID === 0) { $location.path('/customer/search-criteria'); }
     });
     
     // NOTE: We're only querying username at the moment. No password for the MVP
