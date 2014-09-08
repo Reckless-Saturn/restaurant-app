@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////
 // import required files
 var url = require('url');
+var pn = require("pubnub");
 var sendResponse = require('./helpers').sendResponse;
 var parsePost = require('./helpers').parsePost;
 var parseGet = require('./helpers').parseGet;
 var send404 = require('./helpers').send404;
-var pn = require("pubnub");
 // import db queries
 var addUser = require('./queries').addUser;
 var addRestaurant = require('./queries').addRestaurant;
@@ -26,7 +26,7 @@ var handleOptions = function(request, response) {
   sendResponse(response, '', 200);
 };
 
-var handleLogin = function(request, response, type) {
+var handleLogin = function(request, response) {
   var data = parseGet(request);
   if (data) { getLoginInfo(response, data, sendResponse); }
   else { send404(response); }
@@ -38,32 +38,35 @@ var handleSearch = function(request, response) {
   else { send404(response); }
 };
 
-var handleNewCust = function(request, response, type) {
+var handleNewCust = function(request, response) {
   parsePost(request, function(data) {
     if (data) { addUser(response, data, sendResponse); }
     else { send404(response); }
   });
 };
 
-var handleNewRestaurant = function(request, response, type) {
+var handleNewRestaurant = function(request, response) {
   parsePost(request, function(data) {
     if (data) { addRestaurant(response, data, sendResponse); }
     else { send404(response); }
   });
 };
 
-var handleTransactionPost = function(request, response, type) {
+var handleTransactionPost = function(request, response) {
   parsePost(request, function(data) {
-    addTransaction(response, data);
-    // C: Publish Messages
-    var customer_channel = "c" + data.customerID;
-    console.log( "restaurantName:", data.restaurantName );
-    pubnub.publish({ 
-        channel   : 'c0',
-        message   : data.restaurantName,
-        callback  : function(e) { console.log( "SUCCESS!", e ); },
-        error     : function(e) { console.log( "FAILED! RETRY PUBLISH!", e ); }
-    });
+    if (data) {
+      addTransaction(response, data);
+      // C: Publish Messages
+      var customer_channel = "c" + data.customerID;
+      console.log( "restaurantName:", data.restaurantName );
+      pubnub.publish({
+          channel   : 'c0',
+          message   : data.restaurantName,
+          callback  : function(e) { console.log( "SUCCESS!", e ); },
+          error     : function(e) { console.log( "FAILED! RETRY PUBLISH!", e ); }
+      });
+    }
+    else { send404(response); }
   });
 };
 
@@ -75,41 +78,22 @@ module.exports = function(request, response) {
   if (request.method === 'OPTIONS') {
     handleOptions(request, response);
 
-  } else if (request.method === 'GET' && path == '/login') {
-    handleLogin(request, response );
+  } else if (request.method === 'GET' && path === '/login') {
+    handleLogin(request, response);
 
   } else if (request.method === 'GET' && path === '/customer/search-criteria') {
     handleSearch(request, response);
 
-  } else if (request.method === 'POST' && path == '/customer/signup') {
+  } else if (request.method === 'POST' && path === '/customer/signup') {
     handleNewCust(request, response);
 
-  } else if (request.method === 'POST' && path == '/restaurant/signup') {
+  } else if (request.method === 'POST' && path === '/restaurant/signup') {
     handleNewRestaurant(request, response);
 
-  } else if (request.method === 'POST' && path == '/restaurant/choose-customer') {
-    handleTransactionPost(request, response );
+  } else if (request.method === 'POST' && path === '/restaurant/choose-customer') {
+    handleTransactionPost(request, response);
 
   } else {
     send404(response);
   }
 };
-
-// ///////////////////////////////////////////////////////
-// // C: Listen for Messages
-// pubnub.subscribe({
-//     channel  : "r0",
-//     callback : function(message) {
-//         console.log( " > ", message );
-//     }
-// });
-
-// ///////////////////////////////////////////////////////
-// // C: Type Console Message
-// var stdin = process.openStdin();
-// stdin.on( 'data', function(chunk) {
-//     pubnub.publish({
-//         channel : "r0",
-//         message : ''+chunk
-//     });
-// });
