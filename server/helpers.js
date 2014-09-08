@@ -20,25 +20,36 @@ module.exports.sendResponse = function(response, data, status) {
 };
 
 ///////////////////////////////////////////////////////
+// send a 404 response
+module.exports.send404 = function(response) {
+  module.exports.sendResponse(response, 'Bad request', 404);
+}
+
+///////////////////////////////////////////////////////
 // parser for get requests
-module.exports.parseQuery = function(request) {
-  var query = url.parse(request.url, true).query;
-  if (query.customerLoc) {
-    var coords = query.customerLoc.split(',');
-    query.latitude = coords[0];
-    query.longitude = coords[1];
+module.exports.parseGet = function(request) {
+  var data = url.parse(request.url, true).query;
+
+  if (data.username || data.customerLoc) {
+    if (data.customerLoc) {
+      var coords = data.customerLoc.split(',');
+      data.latitude = coords[0];
+      data.longitude = coords[1];
+    }
+    return data;
   }
-  return query;
+  return undefined;
 };
 
 ///////////////////////////////////////////////////////
 // parser for post requests
-module.exports.parseData = function(request, callback) {
+module.exports.parsePost = function(request, callback) {
   var data = "";
   request.on("data", function(chunk) {
     data += chunk;
   });
   request.on("end", function() {
-    callback(JSON.parse(data));
+    if (data) { callback(JSON.parse(data)); }
+    else { callback(); }
   });
 };
