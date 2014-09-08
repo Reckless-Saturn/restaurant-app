@@ -2,19 +2,21 @@
 
 When writing any block of code that is logically subordinate to the line immediately before and after it, that block should be indented two spaces more than the surrounding lines
 
-* Do not put any tab characters anywhere in your code. You would do best to stop pressing the tab key entirely.
+* Do not put any tab characters anywhere in your code.
 * Increase the indent level for all blocks by two extra spaces
     * When a line opens a block, the next line starts 2 spaces further in than the line that opened
 
         ```javascript
         // good:
         if(condition) {
-          action();
+          action1();
+          action2();
         }
 
         // bad:
         if(condition) {
-        action();
+        action1();
+        action2();
         }
         ```
 
@@ -22,12 +24,14 @@ When writing any block of code that is logically subordinate to the line immedia
         ```javascript
         // good:
         if(condition) {
-          action();
+          action1();
+          action2();
         }
 
         // bad:
         if(condition) {
-          action();
+          action1();
+          action2();
           }
         ```
 
@@ -83,7 +87,8 @@ When writing any block of code that is logically subordinate to the line immedia
 
 ### Language constructs
 
-* Do not use `for...in` statements with the intent of iterating over a list of numeric keys. Use a for-with-semicolons statement in stead.
+* Use for-loops sparingly. We favor native methods instead: forEach, map, filter
+* If you need to use for-loops, do not use `for...in` statements. Use a for-with-semicolons statement in stead.
 
   ```javascript
   // good:
@@ -99,7 +104,7 @@ When writing any block of code that is logically subordinate to the line immedia
   }
   ```
 
-* Never omit braces for statement blocks (although they are technically optional).
+* Never omit braces for statement blocks.
     ```javascript
     // good:
     for(key in object) {
@@ -152,21 +157,6 @@ When writing any block of code that is logically subordinate to the line immedia
   alert('hi')
   ```
 
-* Semicolons are not required at the end of statements that include a block--i.e. `if`, `for`, `while`, etc.
-
-
-  ```javascript
-  // good:
-  if(condition) {
-    response();
-  }
-
-  // bad:
-  if(condition) {
-    response();
-  };
-  ```
-
 * Misleadingly, a function may be used at the end of a normal assignment statement, and would require a semicolon (even though it looks rather like the end of some statement block).
 
   ```javascript
@@ -198,6 +188,38 @@ When writing any block of code that is logically subordinate to the line immedia
 
 ### Padding & additional whitespace
 
+* `if` statements with only one action should be put all on one line. Examples include an `if` statement to increment a counter, set a variable, return a statement, errors. 
+
+    ```javascript
+    // good: 
+    if (true) { counter++; }
+    else { counter--; }
+
+    // bad: 
+    if (true) {
+      counter++;
+    }
+    ```
+* Put `else` and `else if` statements on the same line as the ending curly brace for the preceding `if` block
+    ```javascript
+    // good:
+    if(condition) {
+      response();
+      counter++;
+    } else {
+      otherResponse();
+      counter--;
+    }
+
+    // bad:
+    if(condition) {
+      response();
+    }
+    else {
+      otherResponse();
+    }
+    ```
+
 * Generally, we don't care where you put extra spaces, provided they are not distracting.
 * You may use it as padding for visual clarity. If you do though, make sure it's balanced on both sides.
 
@@ -217,45 +239,10 @@ When writing any block of code that is logically subordinate to the line immedia
     var secondItem = getSecond();
     ```
 
-* Put `else` and `else if` statements on the same line as the ending curly brace for the preceding `if` block
-    ```javascript
-    // good:
-    if(condition) {
-      response();
-    } else {
-      otherResponse();
-    }
-
-    // bad:
-    if(condition) {
-      response();
-    }
-    else {
-      otherResponse();
-    }
-    ```
-
-
 
 ### Working with files
 
 * Do not end a file with any character other than a newline.
-* Don't use the -a or -m flags for `git commit` for the first half of the class, since they conceal what is actually happening (and do slightly different things than most people expect).
-
-    ```shell
-    # good:
-    > git add .
-    > git commit
-    [save edits to the commit message file using the text editor that opens]
-
-    # bad:
-    > git commit -a
-    [save edits to the commit message file using the text editor that opens]
-
-    # bad:
-    > git add .
-    > git commit -m "updated algorithm"
-    ```
 
 
 ### Opening or closing too many blocks at once
@@ -263,17 +250,18 @@ When writing any block of code that is logically subordinate to the line immedia
 * The more blocks you open on a single line, the more your reader needs to remember about the context of what they are reading. Try to resolve your blocks early, and refactor. A good rule is to avoid closing more than two blocks on a single line--three in a pinch.
 
     ```javascript
-    // avoid:
-    _.ajax(url, {success: function() {
-      // ...
-    }});
-
-    // prefer:
+    // good:
     _.ajax(url, {
       success: function() {
         // ...
       }
     });
+
+    // bad:
+    _.ajax(url, {success: function() {
+      // ...
+    }});
+
     ```
 
 
@@ -282,7 +270,6 @@ When writing any block of code that is logically subordinate to the line immedia
 * Use a new var statement for each line you declare a variable on.
 * Do not break variable declarations onto mutiple lines.
 * Use a new line for each variable declaration.
-* See http://benalman.com/news/2012/05/multiple-var-statements-javascript/ for more details
 
     ```javascript
     // good:
@@ -296,12 +283,18 @@ When writing any block of code that is logically subordinate to the line immedia
     // use sparingly:
     var eel, fly;
     ```
+* If setting variables based on a condition, use `||` (OR) operators instead of if-statements
 
-### Capital letters in variable names
+    ```javascript
+    // good:
 
-* Some people choose to use capitalization of the first letter in their variable names to indicate that they contain a [class](http://en.wikipedia.org/wiki/Class_(computer_science\)). This capitalized variable might contain a function, a prototype, or some other construct that acts as a representative for the whole class.
-* Optionally, some people use a capital letter only on functions that are written to be run with the keyword `new`.
-* Do not use all-caps for any variables. Some people use this pattern to indicate an intended "constant" variable, but the language does not offer true constants, only mutable variables.
+    var name = arg || 'David';
+
+    // bad:
+    if (arg) { name = arg; }
+    else { name = 'David'; }
+    ```
+
 
 
 ### Minutia
@@ -378,3 +371,17 @@ When writing any block of code that is logically subordinate to the line immedia
     <!-- bad -->
     <script src="a.js" type="text/javascript"></script>
     ```
+
+### Comments
+
+* Use big comment flags to break up major code blocks
+
+    ```javascript
+    //////////////////////////////////////
+    //
+    // C: Helper functions for algorithm
+    ```
+* In comment flags, prefix each comment with `D:`, `C:`, or `Q:`. 
+  * `D:` is a note for debugging
+  * `C:` is for general comments
+  * `Q:` is for questions
