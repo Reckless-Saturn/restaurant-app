@@ -106,6 +106,8 @@ module.exports = function(request, response) {
   } else if (request.method === 'POST' && path === '/restaurant/choose-customer') {
     handleTransactionPost(request, response);
 
+  } else if (request.method === 'POST' && path === '/restaurant/toggle-availability') {
+
   } else {
     send404(response);
   }
