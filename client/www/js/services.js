@@ -60,7 +60,7 @@ angular.module('app.services', ['ngCordova'])
         password: password,
       }
     }).then(function(response) {
-      // todo: handle login after sign-up?
+      // login after sign-up
       App.login(username, password);
     });
 
@@ -234,7 +234,7 @@ angular.module('app.services', ['ngCordova'])
             password: password
           }
         }).then(function(response) {
-          // todo: handle login after sign-up?
+          // login after sign-up
           App.login(username, password);
         });
 
@@ -271,18 +271,19 @@ angular.module('app.services', ['ngCordova'])
     //C: Subscribe to restaurant's own channel
     // var restaurant_channel = "r" + restaurantID; 
     var restaurant_channel = "r" + "0"; // D: need to create global on restaurant login to obtain restaurant id
-    console.log( restaurant_channel );
+    console.log( restaurant_channel );  // For testing purposes
 
     // C: .subscribe and .init should be the first things to happen when a re
     pubnub.subscribe({
       channel: restaurant_channel,
-      message: function(m){ 
-        console.log(interestedCustomers);
+      message: function(m) { 
+        console.log(interestedCustomers);  // For testing purposes
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // D: data is coming in properly however view (ng-repeat) does not update
         //    unless nav bar is taped or other customer is clicked
         interestedCustomers.push(m);
-        console.log(interestedCustomers); }
+        console.log(interestedCustomers); // For testing purposes
+      }
     });
 
     // For testing purposes

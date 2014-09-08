@@ -6,8 +6,8 @@ a {
 .splash {
   background: 
     linear-gradient(
-      rgba(0, 0, 0, 0.6), 
-      rgba(0, 0, 0, 0)
+      rgba(0, 0, 0, 0.9), 
+      rgba(0, 0, 0, 0.3)
     ),
     url('../img/splash_repeat.png') repeat;
 }
@@ -19,14 +19,20 @@ a {
 
 /* Logo on splash page */
 div.logo {
-  margin-top: 50%;
+  margin-top: 40%;
   text-align: center;
   font-family: 'Chewy', cursive;
   font-size: 5em;
-  line-height: 0.8em;
+  line-height: 0em;
   color: white;
   text-shadow: 2px 2px black;
   text-transform: lowercase;
+}
+
+/* Motto on splash page */
+div.logo span.motto {
+  color: white;
+  font-size: 0.3em;
 }
 
 /* Buttons on splash page */
