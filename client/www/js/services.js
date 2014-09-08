@@ -116,7 +116,7 @@ angular.module('app.services', ['ngCordova'])
           '&find_cuisine='+cuisine+
           '&customerLoc='+lat+','+long;
 
-        console.log('searchUrl', searchUrl);
+        console.log('searchUrl', searchUrl); // For testing purposes
 
         // Send GET request after getting customer position
         $http({
@@ -132,7 +132,7 @@ angular.module('app.services', ['ngCordova'])
         // $location.path('/customer/search-results');
 
       }, function(err) {
-        console.log(err)
+        console.log(err);
       });
 
   };
@@ -142,7 +142,7 @@ angular.module('app.services', ['ngCordova'])
 
     //C: Send Interest to Restaurant using PubNub
     var restaurant_channel = "r" + restaurantID; 
-    console.log( restaurant_channel );
+    console.log( restaurant_channel );  // For testing purposes
     pubnub.publish({
       channel: restaurant_channel,        
       message: customerInfo
@@ -156,13 +156,13 @@ angular.module('app.services', ['ngCordova'])
     pubnub.subscribe({
       channel: customer_channel,
       message: function(restaurantName){
-        console.log(restaurantName);
+        console.log(restaurantName);  // For testing purposes
         // Alert customer a restaurant has confirmed them 
         restaurantConfirmation(restaurantName);
       }
     });
 
-    console.log('chosen restaurant ID:', restaurantID);
+    console.log('chosen restaurant ID:', restaurantID); // For testing purposes
   };
 
   var restaurantConfirmation = function(restaurantName) {
@@ -174,7 +174,7 @@ angular.module('app.services', ['ngCordova'])
       okType: 'button-balanced'
     });
     confirmPopup.then(function(res) {
-      console.log('res', res);
+      console.log('res', res);  // For testing purposes
     });
   };
 

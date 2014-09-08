@@ -7,7 +7,6 @@ angular.module('app.controllers', ['app.services'])
 
 })
 
-
 .controller('CustomerCtrl', function($scope, Customer) {
 
   $scope.signup = Customer.signup;
@@ -26,3 +25,5 @@ angular.module('app.controllers', ['app.services'])
   $scope.chooseCustomer = Restaurant.chooseCustomer;
 
 })
+
+;
