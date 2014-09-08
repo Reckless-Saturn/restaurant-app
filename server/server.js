@@ -5,7 +5,7 @@ var router = require('./request-handler');
 
 ///////////////////////////////////////////////////////
 // set up server config
-var ip = "127.0.0.1";
+var ip = "0.0.0.0";
 var port = 5555;
 
 ///////////////////////////////////////////////////////
@@ -13,4 +13,3 @@ var port = 5555;
 var server = http.createServer(router);
 server.listen(port, ip);
 console.log("Listening");
-
