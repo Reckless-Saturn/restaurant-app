@@ -54,7 +54,6 @@ describe('server', function () {
         expect(data.restaurantName).to.not.be.undefined;
         done();
       });
-
     });
   });
 

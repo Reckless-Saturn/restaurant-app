@@ -28,26 +28,38 @@ var handleOptions = function(request, response) {
 
 var handleLogin = function(request, response) {
   var data = parseGet(request);
-  if (data) { getLoginInfo(response, data, sendResponse); }
+  if (data) {
+    console.log("  ", data);
+    getLoginInfo(response, data, sendResponse);
+  }
   else { send404(response); }
 };
 
 var handleSearch = function(request, response) {
   data = parseGet(request);
-  if (data) { getRestaurants(response, data, sendResponse); }
+  if (data) {
+    console.log("  ", data);
+    getRestaurants(response, data, sendResponse);
+  }
   else { send404(response); }
 };
 
 var handleNewCust = function(request, response) {
   parsePost(request, function(data) {
-    if (data) { addUser(response, data, sendResponse); }
+    if (data) {
+      console.log("  ", data);
+      addUser(response, data, sendResponse);
+    }
     else { send404(response); }
   });
 };
 
 var handleNewRestaurant = function(request, response) {
   parsePost(request, function(data) {
-    if (data) { addRestaurant(response, data, sendResponse); }
+    if (data) {
+      console.log("  ", data);
+      addRestaurant(response, data, sendResponse);
+    }
     else { send404(response); }
   });
 };
@@ -55,6 +67,7 @@ var handleNewRestaurant = function(request, response) {
 var handleTransactionPost = function(request, response) {
   parsePost(request, function(data) {
     if (data) {
+      console.log("  ", data);
       addTransaction(response, data);
       // C: Publish Messages
       var customer_channel = "c" + data.customerID;
@@ -74,7 +87,7 @@ var handleTransactionPost = function(request, response) {
 // main server router
 module.exports = function(request, response) {
   var path = url.parse(request.url, true).pathname;
-  console.log(request.method, "request -", path);
+  console.log("\n", request.method, "request -", path);
   if (request.method === 'OPTIONS') {
     handleOptions(request, response);
 

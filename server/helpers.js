@@ -22,6 +22,7 @@ module.exports.sendResponse = function(response, data, status) {
 ///////////////////////////////////////////////////////
 // send a 404 response
 module.exports.send404 = function(response) {
+  console.log("  Bad request");
   module.exports.sendResponse(response, 'Bad request', 404);
 }
 
